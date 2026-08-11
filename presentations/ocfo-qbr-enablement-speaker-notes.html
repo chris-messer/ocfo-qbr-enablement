@@ -51,7 +51,11 @@
     .seg button:hover { color: var(--signal); }
     .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
     .seg button[aria-pressed="true"]:hover { color: #fff; }
-    main { overflow: auto; padding: 18px 22px 24px; }
+    main { overflow: auto; padding: 18px 22px 24px; display: flex; flex-direction: column; }
+    .cues { order: 1; }
+    .transition { order: 2; }
+    .say { order: 3; }
+    #bullets { order: 4; }
     .cues {
       background: rgba(255,255,255,.94); border: 1px solid var(--line); border-left: 3px solid var(--blue);
       border-radius: 10px; padding: 18px 20px 12px; margin-bottom: 16px;
@@ -72,13 +76,13 @@
     body[data-mode="cues"] .say,
     body[data-mode="cues"] #bullets { display: none; }
     body[data-mode="full"] .cues { display: none; }
-    body[data-mode="full"] .say { font-size: 16px; color: var(--ink); background: rgba(255,255,255,.82); }
+    body[data-mode="full"] .say { order: 1; font-size: 16px; color: var(--ink); background: rgba(255,255,255,.82); }
     .block { margin-bottom: 14px; }
     .block h2 { margin: 0 0 8px; font: 700 12px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
     .block ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.45; }
     .block li { margin-bottom: 4px; }
     .transition {
-      margin-top: 8px; padding: 12px 14px; border-left: 3px solid var(--blue);
+      margin-bottom: 16px; padding: 12px 14px; border-left: 3px solid var(--blue);
       background: rgba(34,114,180,.07); color: var(--ink); font-size: 14px; line-height: 1.4;
     }
     footer {
