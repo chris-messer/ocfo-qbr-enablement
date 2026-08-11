@@ -1,0 +1,1801 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Selling to the Office of the CFO — HLS QBR walkthrough</title>
+  <style>
+    :root {
+      --ink: #1b3139;
+      --muted: #52666d;
+      --dim: #75868b;
+      --oat: #f9f7f4;
+      --oat-2: #eeede9;
+      --panel: #ffffff;
+      --line: #d7d6d1;
+      --signal: #ff3621;
+      --blue: #2272b4;
+      --green: #00a972;
+      --danger: #98102a;
+      --amber: #b06000;
+      --display: "DM Sans", "Avenir Next", "Inter", sans-serif;
+      --body: "Inter", "DM Sans", "Avenir Next", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--oat); color: var(--ink); }
+    body {
+      font-family: var(--body);
+      background:
+        radial-gradient(circle at 88% 8%, rgba(255, 54, 33, .07), transparent 28%),
+        linear-gradient(135deg, #f9f7f4 0%, #f5f3ef 58%, #eeede9 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; opacity: .5;
+      background-image:
+        linear-gradient(rgba(27,49,57,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27,49,57,.014) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
+    .deck { position: relative; width: 100%; height: 100%; }
+    .slide {
+      position: absolute; inset: 0;
+      display: grid; grid-template-rows: auto 1fr auto;
+      padding: clamp(34px, 5vw, 76px) clamp(44px, 7vw, 112px) 32px;
+      opacity: 0; visibility: hidden; transform: translateX(28px);
+      transition: opacity .32s ease, transform .42s cubic-bezier(.2,.75,.2,1), visibility .32s;
+    }
+    .slide.active { opacity: 1; visibility: visible; transform: translateX(0); z-index: 2; }
+    .slide.past { transform: translateX(-28px); }
+    .slide::after {
+      content: ""; position: absolute; right: 0; top: 0; width: 28%; height: 4px;
+      background: var(--signal);
+    }
+    .slide.opener::after { width: 100%; }
+    .eyebrow {
+      display: flex; align-items: center; gap: 14px;
+      color: var(--signal); text-transform: uppercase; letter-spacing: .18em;
+      font: 700 13px/1 var(--display);
+    }
+    .eyebrow .num {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      border: 1px solid rgba(255,54,33,.38); border-radius: 50%;
+      letter-spacing: 0; color: var(--ink);
+    }
+    .content { align-self: center; width: 100%; max-width: 1450px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display); letter-spacing: -.025em; }
+    h1 { font-size: clamp(58px, 7.4vw, 116px); line-height: .92; max-width: 1100px; margin-bottom: 30px; }
+    h2 { font-size: clamp(34px, 3.5vw, 55px); line-height: 1.02; margin-bottom: 22px; max-width: 1250px; }
+    h3 { font-size: clamp(20px, 1.75vw, 29px); line-height: 1.1; margin-bottom: 10px; }
+    .lead { font-size: clamp(18px, 1.7vw, 26px); line-height: 1.36; color: #40575f; max-width: 1120px; margin-bottom: 34px; }
+    .quiet { color: var(--muted); }
+    .signal { color: var(--signal); }
+    mark { background: rgba(0,169,114,.2); color: var(--ink); padding: 0 3px; border-radius: 2px; }
+    .footer {
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--dim); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .brand { color: var(--ink); font-weight: 700; }
+    .counter { font-variant-numeric: tabular-nums; }
+    .progress { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--signal); z-index: 20; transition: width .3s ease; }
+    .tag { font: 700 11px/1 var(--display); letter-spacing: .15em; text-transform: uppercase; color: var(--dim); }
+    .stamp { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 14px; color: var(--muted); font-size: clamp(14px, 1.15vw, 19px); line-height: 1.4; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+    .rule-block { border-top: 1px solid var(--line); padding-top: 18px; min-width: 0; }
+    .rule-block .kicker { color: var(--signal); font: 700 12px/1.2 var(--display); letter-spacing: .13em; text-transform: uppercase; margin-bottom: 12px; }
+    .rule-block p { color: var(--muted); font-size: clamp(15px, 1.3vw, 21px); line-height: 1.38; margin: 0; }
+    .rule-block.hot { border-top: 2px solid var(--signal); }
+
+    /* title + close */
+    .title-slide .content { align-self: end; padding-bottom: 5vh; }
+    .title-slide .overline { color: var(--signal); font: 700 15px/1 var(--display); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 24px; }
+    .title-slide .subtitle { max-width: 900px; color: var(--muted); font-size: clamp(20px, 2.1vw, 31px); line-height: 1.35; }
+    .title-slide .meta { margin-top: 42px; display: flex; flex-wrap: wrap; gap: 14px 34px; color: var(--dim); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
+    .ghost { position: absolute; right: clamp(30px, 5vw, 90px); bottom: 4vh; font: 700 clamp(150px, 22vw, 330px)/1 var(--display); color: rgba(27,49,57,.04); pointer-events: none; letter-spacing: -.04em; }
+
+    /* 1 · fork */
+    .fork { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(30px, 5vw, 74px); }
+    .fork > div { border-top: 2px solid var(--line); padding-top: 16px; min-width: 0; }
+    .fork .now { border-top-color: var(--signal); }
+    .fork ul { list-style: none; margin: 12px 0 0; padding: 0; }
+    .fork li { padding: 12px 0; border-bottom: 1px solid rgba(27,49,57,.08); font-size: clamp(16px, 1.5vw, 24px); line-height: 1.25; }
+    .fork .then li { color: var(--dim); }
+    .fork .now li { color: var(--ink); }
+    .fork .now li.hot { color: var(--signal); font-weight: 600; }
+
+    /* 3 · row comparison */
+    .rows { border-top: 1px solid var(--line); }
+    .rows .head { display: grid; grid-template-columns: 1fr 46px 1fr; gap: 0 18px; padding: 12px 0 4px; }
+    .row { display: grid; grid-template-columns: 1fr 46px 1fr; align-items: center; gap: 0 18px; padding: 17px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(17px, 1.55vw, 25px); }
+    .row .arrow { color: var(--dim); text-align: center; font-size: 18px; }
+    .row .hear { color: var(--danger); }
+    .row.hot { border-bottom-color: rgba(255,54,33,.4); }
+    .row.hot .hear { color: var(--signal); font-weight: 600; }
+
+    /* 4 · proof grid */
+    .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px clamp(30px, 4.5vw, 66px); }
+    .proof { display: grid; grid-template-columns: 40px 1fr; gap: 16px; border-top: 1px solid var(--line); padding-top: 16px; min-width: 0; }
+    .proof .n { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,54,33,.42); display: grid; place-items: center; font: 700 14px/1 var(--display); color: var(--ink); }
+    .proof p { margin: 0; color: var(--muted); font-size: clamp(15px, 1.25vw, 20px); line-height: 1.38; }
+    .banner { margin-top: 30px; border-left: 3px solid var(--green); background: rgba(0,169,114,.08); padding: 13px 17px; font-size: clamp(14px, 1.2vw, 19px); line-height: 1.4; color: var(--ink); }
+
+    /* 5 + 13 · document facsimile */
+    .doc-wrap { display: grid; grid-template-columns: minmax(0, 1.42fr) minmax(0, .8fr); gap: clamp(28px, 4vw, 58px); align-items: start; }
+    .doc { position: relative; }
+    .doc .sheet { position: absolute; inset: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; }
+    .doc .sheet.s1 { transform: translate(9px, 9px); opacity: .45; }
+    .doc .sheet.s2 { transform: translate(4.5px, 4.5px); opacity: .72; }
+    .page { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: clamp(20px, 2.4vw, 34px); }
+    .fold { position: absolute; top: -1px; right: -1px; width: 0; height: 0; border-left: 17px solid transparent; border-top: 17px solid var(--oat-2); filter: drop-shadow(-1px 1px 0 rgba(27,49,57,.14)); }
+    .letterhead { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 9px; margin-bottom: 14px; }
+    .letterhead b { font: 700 12px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+    .letterhead span { font: 400 10.5px/1 var(--mono); color: var(--dim); }
+    .page h3 { font-size: clamp(19px, 1.85vw, 30px); margin-bottom: 14px; }
+    .page p { font-size: clamp(13.5px, 1.13vw, 18px); line-height: 1.5; color: var(--ink); margin: 0 0 11px; }
+    .line { height: 5px; border-radius: 3px; background: var(--oat-2); margin-bottom: 8px; }
+    .greek { margin-bottom: 14px; }
+    .strike { color: var(--dim); text-decoration: line-through; text-decoration-color: rgba(152,16,42,.55); }
+    .side ul { list-style: none; margin: 10px 0 0; padding: 0; }
+    .side li { padding: 11px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(14px, 1.2vw, 19px); line-height: 1.32; }
+    .side .ok { color: var(--green); border-bottom: 0; padding-top: 16px; }
+
+    /* 6 · hinge compare — one grid: HIPAA | dimension label | SOX, uniform row bands */
+    .hinge {
+      --hinge-row: clamp(48px, 6.6vh, 86px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(122px, 196px) minmax(0, 1fr);
+      grid-template-rows: auto repeat(5, var(--hinge-row));
+      column-gap: clamp(16px, 2.2vw, 32px);
+    }
+    .hinge > * { min-width: 0; }
+    .hinge .h-head { align-self: end; padding-bottom: 10px; border-bottom: 2px solid var(--line); }
+    .hinge .h-head b { font: 700 clamp(17px,1.6vw,25px)/1.1 var(--display); display: block; }
+    .hinge .h-head span { font-size: 12.5px; color: var(--dim); letter-spacing: .04em; }
+    .hinge .h-head.col-sox { border-bottom-color: var(--signal); }
+    .hinge .h-head.col-spine { border-bottom-color: transparent; }
+    .hinge .h-cell {
+      display: flex; align-items: center;
+      border-bottom: 1px solid rgba(27,49,57,.09);
+      font-size: clamp(13.5px, 1.2vw, 19.5px); line-height: 1.28;
+    }
+    .hinge .h-cell.col-hipaa { color: var(--muted); }
+    .hinge .h-cell.col-sox { color: var(--ink); }
+    .hinge .h-cell.col-spine {
+      justify-content: center; text-align: center; padding: 0 8px;
+      color: var(--dim); font: 700 clamp(9.5px, .78vw, 12px)/1.25 var(--display);
+      letter-spacing: .13em; text-transform: uppercase;
+      background: rgba(27,49,57,.026); border-bottom-color: transparent;
+    }
+    .hinge .h-cell.row-pre-kill { border-bottom-color: transparent; }
+    .hinge .h-cell.row-kill { font-style: italic; border-top: 2px solid rgba(152,16,42,.34); border-bottom-color: transparent; }
+    .hinge .h-cell.col-hipaa.row-kill, .hinge .h-cell.col-sox.row-kill { color: var(--danger); }
+    .hinge .h-cell.col-spine.row-kill { color: var(--danger); background: rgba(152,16,42,.08); font-style: normal; }
+
+    /* 7 · matrix + chain */
+    .matrix { width: 100%; border-collapse: collapse; }
+    .matrix th { text-align: left; font: 700 11px/1 var(--display); letter-spacing: .15em; text-transform: uppercase; color: var(--dim); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .matrix td { padding: 16px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(15px, 1.4vw, 22px); vertical-align: top; }
+    .matrix td:first-child { font-weight: 600; padding-right: 26px; width: 34%; }
+    .matrix td:last-child { color: var(--muted); }
+    .chain { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .chain .node { border: 1px solid var(--line); background: var(--panel); padding: 9px 14px; font: 600 12.5px/1 var(--mono); letter-spacing: .02em; }
+    .chain i { color: var(--signal); font-style: normal; font-size: 15px; }
+    .chain .cap { color: var(--muted); font-size: clamp(13px, 1.05vw, 17px); margin-left: 6px; }
+    .room { margin-top: 18px; color: var(--muted); font-size: clamp(13.5px, 1.15vw, 18px); }
+    .room b { color: var(--ink); }
+
+    /* interactive shared */
+    .gfx { position: relative; min-width: 0; min-height: 0; }
+    .gfx > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    .chip-btn {
+      appearance: none; border: 1px solid var(--line); background: rgba(255,255,255,.72); color: var(--muted);
+      font: 700 11.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase;
+      padding: 10px 13px; border-radius: 999px; cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip-btn:hover { color: var(--ink); border-color: var(--dim); }
+    .chip-btn[aria-pressed="true"] { border-color: var(--signal); color: var(--signal); background: #fff; }
+    .chip-btn:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+
+    /* 8 · calendar */
+    .cal { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: clamp(24px, 3vw, 46px); }
+    .cal-stage { display: grid; grid-template-rows: 38px 244px; gap: 16px; }
+    .cal-detail { height: 298px; border-top: 2px solid var(--signal); padding-top: 16px; display: grid; grid-template-rows: 18px 42px 1fr; overflow: hidden; }
+    .cal-detail h3 { margin: 0; font-size: clamp(19px, 1.7vw, 27px); }
+    .cal-detail dl { margin: 8px 0 0; }
+    .cal-detail dt { font: 700 10.5px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+    .cal-detail dd { margin: 0 0 15px; font-size: clamp(14px, 1.2vw, 19px); line-height: 1.32; color: var(--ink); }
+    .cal-detail dd.avoid { color: var(--danger); }
+
+    /* 11 · consolidated demo contract + choreography */
+    .split { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr); gap: 22px; }
+    .beat-rail { display: grid; grid-template-rows: repeat(4, 1fr); gap: 12px; height: min(468px, 61vh); }
+    .beat-card {
+      appearance: none; text-align: left; border: 1px solid var(--line); background: rgba(255,255,255,.68);
+      border-radius: 9px; padding: 12px 15px; cursor: pointer; color: var(--ink); min-width: 0;
+      display: grid; grid-template-rows: auto auto 1fr; gap: 4px; font-family: var(--body);
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .beat-card .bn { font: 700 10.5px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+    .beat-card b { display: block; font: 700 clamp(16px,1.4vw,21px)/1.1 var(--display); }
+    .beat-card .bd { display: block; color: var(--muted); font-size: clamp(12.5px, 1.02vw, 15.5px); line-height: 1.3; }
+    .beat-card[aria-pressed="true"] { border-color: var(--signal); background: #fff; box-shadow: inset 3px 0 0 var(--signal); }
+    .beat-card[aria-pressed="true"] .bn { color: var(--signal); }
+    .beat-card:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .stage { display: grid; grid-template-rows: minmax(0, 1fr) 168px; gap: 12px; height: min(468px, 61vh); }
+    .stage .gfx { border: 1px solid var(--line); background: rgba(255,255,255,.6); border-radius: 9px; }
+    .lanes2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; height: 168px; }
+    .lanes2 > div { border-top: 1px solid var(--line); padding-top: 12px; min-width: 0; overflow: hidden; }
+    .lanes2 p { margin: 8px 0 0; font-size: clamp(13.5px, 1.15vw, 18px); line-height: 1.38; color: var(--ink); }
+    .lanes2 .say p { color: var(--muted); font-style: italic; }
+
+    /* 10 · champion path — scoped so other slides keep their geometry.
+       Text stays in grid cells; an SVG overlay draws the curved
+       Controller → Internal Audit → CFO route without affecting layout. */
+    .champ {
+      --champ-dash: 1.5px dashed var(--signal);
+      --champ-gap: 13px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) 44px minmax(0, 1fr) 44px minmax(0, .95fr);
+      grid-template-rows: auto 30px auto auto;
+      column-gap: 0;
+      row-gap: var(--champ-gap);
+      margin-top: 6px;
+      align-items: stretch;
+      position: relative;
+    }
+    .champ-audit {
+      grid-column: 5;
+      grid-row: 1;
+      border: var(--champ-dash);
+      border-radius: 7px;
+      background: rgba(249,247,244,.92);
+      padding: 11px 15px;
+      position: relative;
+    }
+    .champ-audit .tag { display: block; color: var(--danger); margin-bottom: 6px; }
+    .champ-audit b { display: block; font: 700 clamp(16px, 1.4vw, 21px)/1.15 var(--display); }
+    .champ-audit .blurb { margin: 5px 0 0; font-size: clamp(12.5px, 1.02vw, 16px); line-height: 1.3; color: var(--muted); }
+    .champ-branch {
+      grid-column: 3 / 6;
+      grid-row: 1 / 4;
+      width: 100%;
+      height: 100%;
+      align-self: stretch;
+      pointer-events: none;
+      z-index: 2;
+      overflow: visible;
+    }
+    .champ-branch path {
+      fill: none;
+      stroke: var(--signal);
+      stroke-width: 2;
+      stroke-dasharray: 7 6;
+      vector-effect: non-scaling-stroke;
+    }
+    .champ-node {
+      grid-row: 3;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel);
+      padding: 15px 18px;
+      min-width: 0;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+    .champ-node.n1 { grid-column: 1; }
+    .champ-node.n2 { grid-column: 3; }
+    .champ-node.n3 { grid-column: 5; }
+    .champ-node.exam { border-color: var(--signal); }
+    .champ-node .role {
+      font: 700 clamp(17px, 1.5vw, 23px)/1.2 var(--display);
+      letter-spacing: -.02em;
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+    .champ-node .blurb {
+      margin: 0;
+      font-size: clamp(13px, 1.08vw, 17px);
+      line-height: 1.35;
+      color: var(--muted);
+    }
+    .champ-arrow {
+      grid-row: 3;
+      display: grid;
+      place-items: center;
+      color: var(--dim);
+      font-size: 22px;
+      line-height: 1;
+      align-self: center;
+    }
+    .champ-arrow.a1 { grid-column: 2; }
+    .champ-arrow.a2 { grid-column: 4; }
+    .champ-note {
+      grid-column: 1 / -1;
+      grid-row: 4;
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.12vw, 18px);
+      line-height: 1.4;
+    }
+    @media (max-width: 1100px) {
+      .champ {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 10px;
+      }
+      .champ-audit,
+      .champ-node,
+      .champ-arrow,
+      .champ-note {
+        grid-column: 1;
+        grid-row: auto;
+      }
+      .champ-branch { display: none; }
+      .champ-arrow { transform: rotate(90deg); height: 28px; }
+      .champ-node { min-height: 0; }
+    }
+
+    /* 13 · posture matrix (compete × consumption) — scoped to this slide */
+    .stack-map {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+      grid-template-rows: 40px minmax(0, 1fr);
+      gap: 12px clamp(18px, 2.4vw, 34px);
+      height: clamp(404px, 61vh, 468px);
+    }
+    .stack-chips {
+      grid-column: 1 / -1;
+      display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; overflow-x: auto;
+    }
+    .stack-chips .chip-btn {
+      padding: 8px 10px; font-size: 10.5px; letter-spacing: .075em; white-space: nowrap; flex: 0 0 auto;
+    }
+    .stack-plot { position: relative; min-width: 0; min-height: 0; height: 100%; }
+    .stack-plot > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .stack-detail {
+      height: 100%;
+      min-width: 0;
+      display: grid;
+      grid-template-rows: 90px 86px 54px 1fr 1fr;
+      gap: 0;
+      overflow: hidden;
+    }
+    .stack-detail .stack-id { border-top: 2px solid var(--signal); padding-top: 10px; min-width: 0; overflow: hidden; }
+    .stack-detail .stack-id h3 { margin: 0 0 5px; font-size: clamp(17px, 1.5vw, 25px); }
+    .stack-detail .stack-meta { color: var(--dim); font: 700 10.5px/1.3 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+    .stack-detail .stack-quad {
+      margin-top: 8px; display: inline-block;
+      font: 700 10.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase;
+      color: var(--green); border: 1px solid rgba(0,169,114,.35); padding: 5px 8px; border-radius: 999px;
+    }
+    .stack-detail .stack-quad.is-compete { color: var(--blue); border-color: rgba(34,114,180,.35); }
+    .stack-detail .stack-row {
+      border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; min-width: 0; overflow: hidden;
+    }
+    .stack-detail .stack-row .tag { display: block; margin-bottom: 5px; }
+    .stack-detail .stack-row.coop .tag { color: var(--green); }
+    .stack-detail .stack-row.comp .tag { color: var(--danger); }
+    .stack-detail .stack-row p {
+      margin: 0; font-size: clamp(12.5px, 1.02vw, 16px); line-height: 1.32; color: var(--ink);
+    }
+    .stack-detail .stack-row.owner p { color: var(--muted); }
+
+    @media (max-width: 1100px) {
+      .stack-map { height: auto; grid-template-columns: 1fr; grid-template-rows: 40px 280px auto; }
+      .stack-detail { height: auto; grid-template-rows: auto; }
+    }
+
+    /* 13 · worksheet */
+    /* 13 · worksheet — boxes reveal on click; every cell keeps a fixed height
+       so revealing copy can never reflow the page facsimile. Spacing above the
+       page tightens with viewport height so the ask strip stays on screen. */
+    .worksheet h2 { margin-bottom: clamp(12px, 2vh, 22px); }
+    .worksheet .lead { margin-bottom: clamp(14px, 2.4vh, 34px); }
+    .worksheet .page { padding: clamp(19px, 2.4vh, 32px); }
+    .worksheet .letterhead { padding-bottom: 7px; margin-bottom: 11px; }
+    .work { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .box {
+      border: 1px solid var(--line); border-radius: 3px; background: rgba(255,255,255,.55);
+      padding: 13px 16px; min-height: 134px;
+      appearance: none; width: 100%; text-align: left; color: var(--ink); cursor: pointer;
+      font-family: var(--body); display: grid; grid-template-rows: auto auto 1fr;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .box:hover { border-color: var(--dim); }
+    .box[aria-pressed="true"] { border-color: var(--signal); background: #fff; }
+    .box:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .box .bn { color: var(--signal); font: 700 11px/1 var(--display); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
+    .box b { display: block; font: 700 clamp(15px,1.3vw,20px)/1.15 var(--display); margin-bottom: 8px; }
+    .box .body { position: relative; min-width: 0; }
+    .box .fill {
+      display: block; font-size: clamp(12.5px, 1.02vw, 16px); line-height: 1.4; color: var(--muted);
+      opacity: 0; transition: opacity .18s ease;
+    }
+    .box[aria-pressed="true"] .fill { opacity: 1; }
+    .box .hint {
+      position: absolute; inset: 0; font: 400 10px/1 var(--mono); letter-spacing: .1em;
+      text-transform: uppercase; color: var(--dim); opacity: .75; transition: opacity .18s ease;
+    }
+    .box[aria-pressed="true"] .hint { opacity: 0; }
+    .work-all {
+      appearance: none; border: 1px solid var(--line); background: transparent; border-radius: 999px;
+      padding: 5px 11px; margin-left: 12px; cursor: pointer;
+      font: 700 9.5px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .work-all:hover { color: var(--signal); border-color: var(--signal); }
+    .work-all:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .example {
+      margin-top: 13px; border-top: 1px dashed var(--line); padding-top: 11px;
+      font: 400 clamp(12.5px,1.02vw,16px)/1.5 var(--mono); color: var(--muted);
+      min-height: 76px;
+    }
+    .example b { color: var(--ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px; display: block; margin-bottom: 6px; }
+    .ask-line { display: block; opacity: 0; transition: opacity .2s ease; }
+    .example.is-ready .ask-line { opacity: 1; color: var(--ink); }
+    .ask-stub { display: block; height: 5px; width: 62%; border-radius: 3px; background: var(--oat-2); margin-top: 7px; }
+    .example.is-ready .ask-stub { display: none; }
+
+    /* 14 · close */
+    .standards { list-style: none; margin: 0; padding: 0; max-width: 1180px; }
+    .standards li { display: grid; grid-template-columns: 58px 1fr; gap: 20px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .standards .n { color: var(--signal); font: 700 clamp(22px,2vw,32px)/1 var(--display); }
+    .standards b { font: 700 clamp(22px,2.1vw,34px)/1.1 var(--display); }
+    .standards span { display: block; color: var(--muted); font-size: clamp(14px, 1.2vw, 19px); margin-top: 6px; line-height: 1.35; }
+
+    /* appendix · vocab grid */
+    .vocab { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; border-top: 1px solid var(--line); }
+    .vocab .row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(27,49,57,.09); align-items: baseline; }
+    .vocab .term { font: 700 15px/1.2 var(--mono); color: var(--signal); letter-spacing: .02em; }
+    .vocab .def { color: var(--muted); font-size: clamp(14px, 1.2vw, 19px); line-height: 1.35; margin: 0; }
+    .frame-line { margin-top: 26px; border-left: 3px solid var(--blue); padding: 10px 16px; background: rgba(34,114,180,.07); font-size: clamp(15px, 1.25vw, 20px); line-height: 1.4; color: var(--ink); }
+
+    /* appendix · discovery bank */
+    .disc { display: grid; grid-template-rows: 44px 320px; gap: 18px; }
+    .disc-panel { height: 320px; border-top: 2px solid var(--signal); padding-top: 16px; display: grid; grid-template-rows: 22px auto 1fr; overflow: hidden; }
+    .disc-panel h3 { margin: 0; font-size: clamp(20px, 1.8vw, 28px); }
+    .disc-panel ol { margin: 12px 0 0; padding-left: 22px; }
+    .disc-panel li { margin-bottom: 10px; color: var(--ink); font-size: clamp(15px, 1.3vw, 21px); line-height: 1.35; }
+
+    .nav-hint { position: fixed; right: 24px; bottom: 18px; z-index: 21; color: rgba(187,184,180,.65); font-size: 11px; letter-spacing: .08em; display: flex; gap: 14px; align-items: center; }
+    .notes-link {
+      appearance: none; border: 1px solid rgba(255,54,33,.35); background: rgba(255,255,255,.88);
+      color: var(--ink); font: 700 11px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 999px; cursor: pointer;
+    }
+    .notes-link:hover { border-color: var(--signal); color: var(--signal); }
+
+    /* ── position rail ─────────────────────────────────────────────
+       Nothing about the active slide or the rail's open state may move the box:
+       the origin is the left edge and expansion grows rightward, so sections
+       already passed never move. --rail-w is the widest expanded state. */
+    .rail {
+      --rail-w: 1080px;
+      --rail-gutter: clamp(34px, 4.8vw, 88px);
+      position: fixed; z-index: 15;
+      top: clamp(22px, 3vw, 50px);
+      left: calc(100vw - var(--rail-gutter) - var(--rail-w));
+      right: var(--rail-gutter);
+      height: 34px; min-height: 34px; max-height: 34px;
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 13px; overflow: hidden;
+    }
+    .rail.is-hidden { display: none; }
+    .rail-sec { display: flex; align-items: center; gap: 9px; flex: none; }
+    .rail-sname {
+      position: relative; appearance: none; background: none; cursor: pointer;
+      border: 0; border-radius: 2px; padding: 0 0 7px; white-space: nowrap; flex: none;
+      font: 700 9.5px/1 var(--display); letter-spacing: .13em; text-transform: uppercase;
+      color: var(--dim); transition: color .22s ease;
+    }
+    .rail-sname::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(27,49,57,.09); border-radius: 2px; }
+    .rail-fill { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: rgba(82,102,109,.5); border-radius: 2px; z-index: 1; transition: width .3s ease, background .22s ease; }
+    .rail-sec.is-past .rail-sname { color: var(--muted); }
+    .rail-sec.is-open .rail-sname { color: var(--signal); }
+    .rail-sec.is-open .rail-fill { background: var(--signal); }
+    .rail-sname:hover { color: var(--ink); }
+    .rail-sec.is-open .rail-sname:hover { color: var(--signal); }
+    .rail-sname:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .rail-subs { display: none; }
+    .rail-sec.is-open .rail-subs { display: flex; align-items: center; gap: 8px; flex: none; }
+    .rail-sec.is-open .rail-subs::before { content: "\203a"; flex: none; margin-right: -1px; font: 400 13px/1 var(--display); color: rgba(255,54,33,.55); }
+    .rail-sub { display: flex; align-items: center; gap: 6px; flex: none; padding: 3px 0; border: 1px solid transparent; border-radius: 999px; transition: background .22s ease, border-color .22s ease; }
+    .rail-sub.is-open { background: rgba(255,255,255,.75); border-color: var(--line); padding: 3px 7px 3px 10px; }
+    .rail-uname { appearance: none; border: 0; background: none; cursor: pointer; flex: none; padding: 0; white-space: nowrap; border-radius: 2px; font: 500 11.5px/1 var(--body); color: var(--dim); transition: color .22s ease; }
+    .rail-sub.is-past .rail-uname { color: var(--muted); }
+    .rail-sub.is-open .rail-uname { color: var(--ink); font-weight: 600; }
+    .rail-uname:hover { color: var(--ink); }
+    .rail-uname:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .rail-pips { display: none; }
+    .rail-sub.is-open .rail-pips { display: flex; align-items: center; }
+    .rail-pip { appearance: none; border: 0; background: none; cursor: pointer; width: 12px; height: 18px; padding: 0; border-radius: 4px; display: grid; place-items: center; }
+    .rail-pip i { width: 5px; height: 5px; border-radius: 50%; background: rgba(27,49,57,.22); transition: background .22s ease, box-shadow .22s ease; }
+    .rail-pip.is-past i { background: rgba(82,102,109,.62); }
+    .rail-pip.is-here i { background: var(--signal); box-shadow: 0 0 0 3px rgba(255,54,33,.18); }
+    .rail-pip:hover i { background: var(--ink); }
+    .rail-pip.is-here:hover i { background: var(--signal); }
+    .rail-pip:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 0; }
+    /* the close is not another chapter of the argument: no fill track, quieter label */
+    .rail-sec:last-child .rail-sname { padding-bottom: 0; font-size: 8.5px; letter-spacing: .1em; }
+    .rail-sec:last-child .rail-sname::after, .rail-sec:last-child .rail-fill { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide, .rail-sname, .rail-uname, .rail-fill, .rail-pip i, .chip-btn, .beat-card { transition: none; }
+    }
+    /* below this the fixed origin would land inside the eyebrow, so the rail
+       keeps only the section spine — which is the same width on every slide. */
+    @media (max-width: 1340px) {
+      .rail { left: auto; gap: 10px; }
+      .rail-sec.is-open .rail-subs { display: none; }
+    }
+    @media (max-width: 1100px) {
+      .cal, .split, .doc-wrap { grid-template-columns: 1fr; }
+      .stack-map { height: auto; grid-template-columns: 1fr; grid-template-rows: 40px 280px auto; }
+      .beat-rail, .stage { height: auto; }
+      .stage { grid-template-rows: 240px auto; }
+    }
+    @media (max-width: 900px) {
+      .slide { padding: 28px 30px 24px; overflow: auto; }
+      .rail { display: none; }
+      .grid-4, .proofs, .work, .fork { grid-template-columns: 1fr; }
+      .hinge { grid-template-rows: none; grid-auto-rows: minmax(var(--hinge-row), auto); }
+    }
+    @media print {
+      html, body { height: auto; overflow: visible; background: #fff; }
+      body::before { display: none; }
+      .deck { height: auto; }
+      .slide { position: relative; inset: auto; opacity: 1 !important; visibility: visible !important; transform: none !important; height: 100vh; page-break-after: always; break-after: page; }
+      .rail, .nav-hint, .progress { display: none !important; }
+      @page { size: landscape; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+
+    <!-- 01 · title -->
+    <section class="slide title-slide active" aria-label="Selling to the Office of the CFO">
+      <div></div>
+      <div class="content">
+        <div class="overline">Databricks HLS · AMER IND QBR · Day 2</div>
+        <h1>Selling to the<br>Office of the <span class="signal">CFO</span></h1>
+        <p class="subtitle">How finance people actually decide to trust you — including the SOX conversation that quietly kills good deals.</p>
+        <div class="meta"><span>Prospecting &amp; plays</span><span>45 minutes</span><span>Chris Messer · ex-CPA · SOX / ITGC</span></div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 18</span></div>
+    </section>
+
+    <!-- 02 · fork: already covered vs this hour -->
+    <section class="slide" aria-label="What this hour adds">
+      <div class="eyebrow"><span class="num">02</span> Framing</div>
+      <div class="content">
+        <h2>August 5 gave you the play; this hour is how finance decides to buy it</h2>
+        <p class="lead">Keep every asset from that session. What is missing is execution with people who close books.</p>
+        <div class="fork">
+          <div class="then">
+            <div class="tag">Already covered</div>
+            <ul>
+              <li>Follow the money and the personas</li>
+              <li>HLS money map</li>
+              <li>Subvertical Genie spaces</li>
+              <li>Pitch narrative and workshop CTA</li>
+            </ul>
+          </div>
+          <div class="now">
+            <div class="tag" style="color:var(--signal)">This hour</div>
+            <ul>
+              <li>How finance decides to trust a number</li>
+              <li class="hot">SOX: the exact language, and the myth to drop</li>
+              <li>Prospecting against the close calendar</li>
+              <li>A demo standard a controller respects</li>
+              <li>What each role does this week</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stamp">Same discovery questions. Same Genie spaces. Different way of running them.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 18</span></div>
+    </section>
+
+    <!-- 03 · CPA rejection -->
+    <section class="slide" aria-label="What a CPA hears">
+      <div class="eyebrow"><span class="num">03</span> Problem space</div>
+      <div class="content">
+        <h2>A CPA hears “ask anything in plain language” as a control failure</h2>
+        <p class="lead">Four rejections that fire before the demo reaches its second question.</p>
+        <div class="grid-4">
+          <div class="rule-block">
+            <div class="kicker">Uncontrolled answers</div>
+            <p>Who owns the definition when the answer is wrong?</p>
+          </div>
+          <div class="rule-block">
+            <div class="kicker">No bridge</div>
+            <p>How does this tie to the ledger I sign?</p>
+          </div>
+          <div class="rule-block">
+            <div class="kicker">Unexplainable path</div>
+            <p>Where is the evidence of how it was produced?</p>
+          </div>
+          <div class="rule-block hot">
+            <div class="kicker">“Is this in SOX scope?”</div>
+            <p>One wrong sentence here ends the evaluation.</p>
+          </div>
+        </div>
+        <div class="stamp">Speed without controls is a spreadsheet culture with a better interface. Careers end on unsupported numbers.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 18</span></div>
+    </section>
+
+    <!-- 04 · vocabulary translation -->
+    <section class="slide" aria-label="Seller language in finance dialect">
+      <div class="eyebrow"><span class="num">04</span> Vocabulary</div>
+      <div class="content">
+        <h2>Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy</h2>
+        <p class="lead">They are not afraid of AI. They are afraid of a number nobody will sign.</p>
+        <div class="rows">
+          <div class="head"><span class="tag">We say</span><span></span><span class="tag">They hear</span></div>
+          <div class="row"><span>Instant insights</span><span class="arrow">&rarr;</span><span class="hear">Unreviewed answers</span></div>
+          <div class="row"><span>Self-serve for everyone</span><span class="arrow">&rarr;</span><span class="hear">Metric anarchy and segregation-of-duties risk</span></div>
+          <div class="row"><span>Live data</span><span class="arrow">&rarr;</span><span class="hear">Which version of the close?</span></div>
+          <div class="row hot"><span>“A SOX compliant platform”</span><span class="arrow">&rarr;</span><span class="hear">This vendor does not understand SOX</span></div>
+        </div>
+        <div class="stamp">Meeting-one win: they believe you can produce a number <b>and</b> the story of how it was produced.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 18</span></div>
+    </section>
+
+    <!-- 05 · four proofs -->
+    <section class="slide" aria-label="Four trust proofs">
+      <div class="eyebrow"><span class="num">05</span> Framing</div>
+      <div class="content">
+        <h2>Every Office of the CFO demo must land definition, lineage, reconciliation, and action</h2>
+        <p class="lead">Interesting answers are the easy part. These four are what make it a finance tool.</p>
+        <div class="proofs">
+          <div class="proof"><div class="n">01</div><div><h3>Definition</h3><p>A named metric owner and a semantic or metric view behind it.</p></div></div>
+          <div class="proof"><div class="n">02</div><div><h3>Lineage</h3><p>Source to gold to answer, shown as a path rather than asserted.</p></div></div>
+          <div class="proof"><div class="n">03</div><div><h3>Reconciliation</h3><p>A bridge to a number they already believe: ledger, board KPI, prior close.</p></div></div>
+          <div class="proof"><div class="n">04</div><div><h3>Action</h3><p>What changes before period end, and who owns that change.</p></div></div>
+        </div>
+        <div class="banner">Proofs one through three are also what Internal Audit asks for — in their language, long before anyone says the word SOX.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 18</span></div>
+    </section>
+
+    <!-- 06 · SOX facsimile -->
+    <section class="slide" aria-label="SOX positioning language">
+      <div class="eyebrow"><span class="num">06</span> Client need</div>
+      <div class="content">
+        <h2>Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification</h2>
+        <div class="doc-wrap">
+          <div class="doc">
+            <div class="sheet s1"></div>
+            <div class="sheet s2"></div>
+            <div class="page">
+              <div class="fold"></div>
+              <div class="letterhead"><b>Databricks · compliance positioning</b><span>standard response · verbatim</span></div>
+              <h3>Can Databricks be used with SOX compliance?</h3>
+              <p>The Sarbanes-Oxley Act of 2002 is a US federal law administered by the Securities and Exchange Commission. <mark>Databricks can support a SOX-compliant workload</mark>, and has customers running SOX-compliant workloads on the platform.</p>
+              <div class="greek"><div class="line" style="width:97%"></div><div class="line" style="width:91%"></div><div class="line" style="width:64%"></div></div>
+              <p>Most SOX requirements are about how customers maintain their source code and their testing processes — commonly Repos for source control and cluster policies for allowed instance types and runtime versions.</p>
+              <p><mark>When it comes to actual audits, there is no SOX certification or validation for cloud service providers.</mark> Databricks is a general-purpose, data-agnostic compute platform and is not audited for SOX. For review of Databricks itself, consult the controls within our <mark>SOC 2 Type II</mark> report covering change management, release management, and access management.</p>
+              <div class="greek"><div class="line" style="width:88%"></div><div class="line" style="width:42%"></div></div>
+            </div>
+          </div>
+          <div class="side">
+            <div class="tag">Loses credibility instantly</div>
+            <ul>
+              <li class="strike">“Databricks is SOX certified.”</li>
+              <li class="strike">“SOX does not apply to Genie.”</li>
+              <li class="strike">“Do not worry about Internal Audit.”</li>
+              <li class="ok">Ask for SOC 2 Type II when they want evidence about our controls — that request path is real and answerable.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 18</span></div>
+    </section>
+
+    <!-- 07 · HIPAA vs SOX hinge -->
+    <section class="slide" aria-label="HIPAA compared with SOX">
+      <div class="eyebrow"><span class="num">07</span> Vocabulary</div>
+      <div class="content">
+        <h2>HIPAA protects the record; SOX protects the integrity of the reported number</h2>
+        <p class="lead">You are already fluent in the left column. The right column has different owners, different evidence, and no certificate.</p>
+        <div class="hinge">
+          <div class="h-head col-hipaa"><b>HIPAA</b><span>The conversation you already win</span></div>
+          <div class="h-head col-spine">&nbsp;</div>
+          <div class="h-head col-sox"><b>SOX</b><span>The conversation that stalls deals</span></div>
+
+          <div class="h-cell col-hipaa">PHI inside the record</div>
+          <div class="h-cell col-spine">What it protects</div>
+          <div class="h-cell col-sox">Integrity of the reported number, including IPE and ITGCs</div>
+
+          <div class="h-cell col-hipaa">Privacy, Security, Compliance</div>
+          <div class="h-cell col-spine">Who owns the question</div>
+          <div class="h-cell col-sox">Controller, Internal Audit, CFO</div>
+
+          <div class="h-cell col-hipaa">Signed BAA, framework alignment</div>
+          <div class="h-cell col-spine">The paperwork</div>
+          <div class="h-cell col-sox">No certification exists for any cloud provider; SOC 2 Type II covers our controls</div>
+
+          <div class="h-cell col-hipaa row-pre-kill">De-identification, access, breach response</div>
+          <div class="h-cell col-spine row-pre-kill">Control focus</div>
+          <div class="h-cell col-sox row-pre-kill">Change management, segregation of duties, reconciliation, lineage, source-control repos</div>
+
+          <div class="h-cell col-hipaa row-kill">“It is encrypted, so PHI is fine.”</div>
+          <div class="h-cell col-spine row-kill">Ends the meeting</div>
+          <div class="h-cell col-sox row-kill">“Databricks is SOX certified.”</div>
+        </div>
+        <div class="stamp">Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 18</span></div>
+    </section>
+
+    <!-- 08 · SOX meeting playbook -->
+    <section class="slide" aria-label="Running the SOX conversation">
+      <div class="eyebrow"><span class="num">08</span> Recommendation</div>
+      <div class="content">
+        <h2>Run SOX as their control environment on Unity Catalog, with Audit in the room</h2>
+        <p class="lead">Not a product argument. A control map they recognise, paired with the platform pattern that carries it.</p>
+        <table class="matrix">
+          <thead><tr><th>Control need they must satisfy</th><th>Pattern on Databricks</th></tr></thead>
+          <tbody>
+            <tr><td>Change management</td><td>Repos with CI/CD and approval gates</td></tr>
+            <tr><td>Access and segregation of duties</td><td>Unity Catalog privileges driven by their entitlement system</td></tr>
+            <tr><td>Evidence trail</td><td>Unity Catalog audit logs and lineage</td></tr>
+            <tr><td>Configuration lock-down</td><td>Cluster policies and runtime allowlists</td></tr>
+          </tbody>
+        </table>
+        <div class="chain">
+          <span class="node">Requestor</span><i>&rarr;</i>
+          <span class="node">Approver</span><i>&rarr;</i>
+          <span class="node">Grantor</span><i>&rarr;</i>
+          <span class="node">Auditor</span>
+          <span class="cap">Separation is required across all four. Find the system that owns it before finance gold lands in a Genie space.</span>
+        </div>
+        <div class="room">In the room: <b>Controller · Internal Audit · Finance Transformation · Platform IT</b> — a workshop, not a quiet pilot that Audit discovers later.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 18</span></div>
+    </section>
+
+    <!-- 09 · calendar (interactive) -->
+    <section class="slide" aria-label="The finance calendar">
+      <div class="eyebrow"><span class="num">09</span> Framing</div>
+      <div class="content">
+        <h2>Finance opens four different doors a month: close, forecast, board, and audit</h2>
+        <p class="lead">Same office, four cycles, four seats. Prospect on their calendar instead of ours.</p>
+        <div class="cal">
+          <div class="cal-stage">
+            <div class="chips" role="group" aria-label="Select a cycle"></div>
+            <div class="gfx" aria-hidden="true"></div>
+          </div>
+          <div class="cal-detail" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 18</span></div>
+    </section>
+
+    <!-- 10 · champion path -->
+    <section class="slide" aria-label="Champion path">
+      <div class="eyebrow"><span class="num">10</span> Options</div>
+      <div class="content">
+        <h2>Land Finance Transformation, pass the Controller’s exam, then earn the CFO mandate</h2>
+        <p class="lead">The seat that gets promoted for retiring spreadsheets is not the seat that signs.</p>
+        <div class="champ" role="img" aria-label="Finance Transformation leads to the Controller, who leads to the CFO. A dashed branch runs from the Controller to Internal Audit, which gates the CFO when SOX is live.">
+          <div class="champ-audit">
+            <span class="tag">When SOX is live</span>
+            <b>Internal Audit</b>
+            <p class="blurb">The Controller routes through them.</p>
+          </div>
+          <svg class="champ-branch" viewBox="0 0 1000 250" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <marker id="champ-coral-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0 0 L10 5 L0 10 Z" fill="var(--signal)" stroke="none"></path>
+              </marker>
+            </defs>
+            <path d="M245 146 C245 96 390 92 535 92"></path>
+            <path d="M842 96 C850 112 850 126 842 145" marker-end="url(#champ-coral-arrow)"></path>
+          </svg>
+          <div class="champ-node n1">
+            <span class="role">Finance Transformation</span>
+            <p class="blurb">The champion. Owns the pain.</p>
+          </div>
+          <div class="champ-arrow a1" aria-hidden="true">&rarr;</div>
+          <div class="champ-node exam n2">
+            <span class="role">Controller</span>
+            <p class="blurb">The exam: definitions, recon, controls.</p>
+          </div>
+          <div class="champ-arrow a2" aria-hidden="true">&rarr;</div>
+          <div class="champ-node n3">
+            <span class="role">CFO</span>
+            <p class="blurb">The mandate and the budget.</p>
+          </div>
+          <div class="champ-note">Skip Audit and the Controller brings them anyway — two quarters later, with a parked pilot attached.</div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 18</span></div>
+    </section>
+
+    <!-- 11 · demo contract + choreography (interactive) -->
+    <section class="slide" aria-label="Demo contract and choreography">
+      <div class="eyebrow"><span class="num">11</span> Recommendation</div>
+      <div class="content">
+        <h2>One four-beat demo contract you can run tomorrow on margin or PMPM</h2>
+        <p class="lead" style="margin-bottom:16px">Select a beat: the card is the standard; the stage shows what appears and the sentence to land.</p>
+        <div class="split">
+          <div class="beat-rail" role="group" aria-label="Select a beat"></div>
+          <div class="stage">
+            <div class="gfx" aria-hidden="true"></div>
+            <div class="lanes2" aria-live="polite">
+              <div class="screen"><span class="tag">On screen</span><p></p></div>
+              <div class="say"><span class="tag">Sentence to land</span><p></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 18</span></div>
+    </section>
+
+    <!-- 12 · compete / cooperate matrix (interactive) -->
+    <section class="slide" aria-label="Posture toward finance platforms">
+      <div class="eyebrow"><span class="num">12</span> Options</div>
+      <div class="content">
+        <h2>Planning and close platforms stay; we feed the governed truth they never see</h2>
+        <p class="lead" style="margin-bottom:16px">How we sit with each tool, and the Databricks consumption underneath it.</p>
+        <div class="stack-map">
+          <div class="stack-chips chips" role="group" aria-label="Select a platform"></div>
+          <div class="stack-plot gfx" role="img" aria-label="Positioning matrix of finance platforms"></div>
+          <div class="stack-detail" aria-live="polite">
+            <div class="stack-id">
+              <h3></h3>
+              <div class="stack-meta"></div>
+              <div class="stack-quad"></div>
+            </div>
+            <div class="stack-row does"><span class="tag">What it does</span><p></p></div>
+            <div class="stack-row owner"><span class="tag">Who owns it</span><p></p></div>
+            <div class="stack-row coop"><span class="tag">Cooperate · augment</span><p></p></div>
+            <div class="stack-row comp"><span class="tag">Compete</span><p></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 18</span></div>
+    </section>
+
+    <!-- 13 · worksheet facsimile -->
+    <section class="slide worksheet" aria-label="LOB to Office of the CFO worksheet">
+      <div class="eyebrow"><span class="num">13</span> Recommendation</div>
+      <div class="content">
+        <h2>Translate a line-of-business win you already have into an Office of the CFO ask</h2>
+        <p class="lead">Do not cold-start the CFO, and do not abandon the LOB sponsor who got you in.</p>
+        <div class="doc">
+          <div class="sheet s1"></div>
+          <div class="sheet s2"></div>
+          <div class="page">
+            <div class="fold"></div>
+            <div class="letterhead">
+              <b>Line of business &rarr; Office of the CFO</b>
+              <span>one page · before outreach<button type="button" class="work-all">Reveal all</button></span>
+            </div>
+            <div class="work" role="group" aria-label="Worksheet boxes — select to reveal the worked example"></div>
+            <div class="example" aria-live="polite"><b>Meeting ask</b><span class="ask-line"></span><i class="ask-stub"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 18</span></div>
+    </section>
+
+    <!-- 14 · close -->
+    <section class="slide opener" aria-label="Four standards">
+      <div></div>
+      <div class="content">
+        <div class="overline" style="color:var(--signal);font:700 14px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px">Leave with four standards</div>
+        <h2 style="font-size:clamp(38px,4.2vw,64px);margin-bottom:32px">Trust before wow. SOX without the myth. Their calendar. The demo contract.</h2>
+        <ul class="standards">
+          <li><span class="n">01</span><div><b>Trust before wow</b><span>Definition, lineage, reconciliation, action — every time.</span></div></li>
+          <li><span class="n">02</span><div><b>SOX without the myth</b><span>We support SOX-compliant workloads. No cloud provider is SOX certified. SOC 2 Type II covers our controls; Repos, cluster policies and Unity Catalog carry theirs.</span></div></li>
+          <li><span class="n">03</span><div><b>Prospect on their calendar</b><span>Close, forecast, board, audit — four doors, four openers.</span></div></li>
+          <li><span class="n">04</span><div><b>Demo the contract</b><span>Variance, driver, proof including access, action before period end.</span></div></li>
+        </ul>
+        <div class="stamp">Resources: go/cfo · the August 5 assets · the SOX discussion deck · the finance workshop CTA · appendix after this slide</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 18</span></div>
+      <div class="ghost" aria-hidden="true">CFO</div>
+    </section>
+
+    <!-- 15 · appendix · three pillars -->
+    <section class="slide" aria-label="Three finance pillars">
+      <div class="eyebrow"><span class="num">15</span> Appendix</div>
+      <div class="content">
+        <h2>Finance outcomes organize as compress, multiply, and defend</h2>
+        <p class="lead">Field-guide spine for use-case mapping after the live hour — not a second pitch.</p>
+        <div class="grid-3">
+          <div class="rule-block">
+            <div class="kicker">01 · Compress the cycle</div>
+            <p>Close, procure-to-pay, order-to-cash, audit prep, earnings — fewer days, fewer exceptions, less manual package assembly.</p>
+          </div>
+          <div class="rule-block">
+            <div class="kicker">02 · Multiply the visibility</div>
+            <p>Spend, cash, contracts, and budget variance in time to act — not a month-end surprise.</p>
+          </div>
+          <div class="rule-block hot">
+            <div class="kicker">03 · Defend the margin</div>
+            <p>Revenue recognition, EBIT attribution, and AI investment ROI with audit-ready math and lineage.</p>
+          </div>
+        </div>
+        <div class="stamp">Same four trust proofs apply under every pillar. Pillar three is where SOX language and the demo contract meet.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 18</span></div>
+    </section>
+
+    <!-- 16 · appendix · CFO vocabulary -->
+    <section class="slide" aria-label="CFO vocabulary">
+      <div class="eyebrow"><span class="num">16</span> Appendix</div>
+      <div class="content">
+        <h2>Lead with scorecard units — days, dollars, basis points — not platform nouns</h2>
+        <p class="lead">If the sentence cannot land on a P&amp;L or balance-sheet effect, it is not ready for this buyer.</p>
+        <div class="vocab">
+          <div class="row"><span class="term">DSO</span><p class="def">Days to collect after a sale. A 10-day cut at $1B revenue ≈ $27M working capital.</p></div>
+          <div class="row"><span class="term">DPO</span><p class="def">Days to pay suppliers. Within terms, higher preserves cash; P2P intelligence targets 5–10 days.</p></div>
+          <div class="row"><span class="term">CCC</span><p class="def">Cash conversion cycle: DSO + inventory days − DPO. Shorter means less cash trapped in operations.</p></div>
+          <div class="row"><span class="term">EBIT</span><p class="def">Operating profit the board watches. Every use case should name its EBIT path: cost, revenue, or capital.</p></div>
+          <div class="row"><span class="term">bps</span><p class="def">Basis points — 100 bps = 1.0%. Use for forecast accuracy, margin, and cost moves.</p></div>
+          <div class="row"><span class="term">Run-rate</span><p class="def">Annualize a period win. A $5M quarter is a $20M run-rate when you present ROI.</p></div>
+        </div>
+        <div class="frame-line"><b>Framing that lands:</b> “AI yes, with controls.” The CEO already committed to AI; the CFO has to fund it, govern it, and defend it to the board — with attributable offsets, not a slide deck.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 18</span></div>
+    </section>
+
+    <!-- 17 · appendix · discovery bank (interactive) -->
+    <section class="slide" aria-label="Discovery question bank">
+      <div class="eyebrow"><span class="num">17</span> Appendix</div>
+      <div class="content">
+        <h2>Discovery that maps to their scorecard, not our feature list</h2>
+        <p class="lead">Six banks. Toggle the category; ask two questions, then shut up and listen.</p>
+        <div class="disc">
+          <div class="chips" role="group" aria-label="Select a discovery bank"></div>
+          <div class="disc-panel" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 18</span></div>
+    </section>
+
+    <!-- 18 · appendix · stack cooperate cues -->
+    <section class="slide" aria-label="Finance stack stays">
+      <div class="eyebrow"><span class="num">18</span> Appendix</div>
+      <div class="content">
+        <h2>ERP and EPM stay as systems of record; Databricks is the governed intelligence layer</h2>
+        <p class="lead">Field-guide posture that pairs with the compete / cooperate spectrum earlier in this deck.</p>
+        <div class="grid-3">
+          <div class="rule-block">
+            <div class="kicker">ERP of record</div>
+            <p>SAP, Oracle, Workday, NetSuite record the event. They were not built to analyze across systems, forecast from operations, or host AI.</p>
+          </div>
+          <div class="rule-block">
+            <div class="kicker">Planning &amp; close tools</div>
+            <p>Anaplan, Adaptive, Planful, BlackLine, FloQast, OneStream, and Excel keep their seats. Feed cleaner actuals and drivers; do not ask FP&amp;A to abandon the surface they trust.</p>
+          </div>
+          <div class="rule-block hot">
+            <div class="kicker">Regulated function</div>
+            <p>Governance is the architecture: lineage, access, audit logs — the same posture banks and insurers already buy. Controls first, then speed.</p>
+          </div>
+        </div>
+        <div class="stamp">When they ask for hard ROI, translate to days and working capital — then bring the customer proof, not a feature tour.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 18</span></div>
+    </section>
+
+  </main>
+
+  <div class="progress" aria-hidden="true"></div>
+  <nav class="rail" aria-label="Where you are in the deck"></nav>
+  <div class="nav-hint">
+    <button type="button" class="notes-link" id="open-notes">Open speaker notes</button>
+    <span>&larr; &rarr; · Space</span>
+  </div>
+
+  <script>
+    (() => {
+      const CHANNEL = 'ocfo-qbr-enablement-deck';
+      const STORAGE_KEY = 'ocfo-qbr-enablement-slide';
+      // Pages root serves speaker-notes.html; opening from presentations/ keeps the long name.
+      const NOTES_FILE = location.pathname.includes('/presentations/')
+        ? 'ocfo-qbr-enablement-speaker-notes.html'
+        : 'speaker-notes.html';
+      const NOTES_WINDOW = 'ocfo-qbr-enablement-notes';
+
+      const slides = [...document.querySelectorAll('.slide')];
+      const progress = document.querySelector('.progress');
+      const bc = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel(CHANNEL) : null;
+      let index = 0;
+      let touchStartX = null;
+      let lastNavAt = 0;
+      let applyingRemote = false;
+
+      const C = { ink:'#1b3139', blue:'#2272b4', green:'#00a972', signal:'#ff3621',
+                  muted:'#52666d', dim:'#75868b', line:'#d7d6d1', faint:'#c9cecf',
+                  amber:'#b06000', danger:'#98102a', panel:'#ffffff', oat2:'#eeede9' };
+      const NS = 'http://www.w3.org/2000/svg';
+      const DISPLAY = 'DM Sans, Avenir Next, Inter, sans-serif';
+      const BODY = 'Inter, DM Sans, sans-serif';
+
+      function el(name, attrs, text) {
+        const node = document.createElementNS(NS, name);
+        for (const k in attrs) node.setAttribute(k, attrs[k]);
+        if (text != null) node.textContent = text;
+        return node;
+      }
+      // A fixed viewBox is what pins the geometry: every state of every figure
+      // is drawn into the same coordinate box, so nothing moves on a click.
+      function newSvg(host, w, h) {
+        host.querySelectorAll('svg').forEach(s => s.remove());
+        const svg = el('svg', { viewBox: `0 0 ${w} ${h}`, preserveAspectRatio: 'xMidYMid meet' });
+        host.appendChild(svg);
+        return svg;
+      }
+      function add(parent, name, attrs, text) { const n = el(name, attrs, text); parent.appendChild(n); return n; }
+
+      /* ───────── data ───────── */
+
+      const CYCLES = [
+        { id: 'close', label: 'Close week', span: [0.02, 0.20], seat: 'Controller · Finance Transformation',
+          opener: 'Reconciliation latency and days to close', avoid: 'A product tour of Genie' },
+        { id: 'forecast', label: 'Flash / forecast', span: [0.25, 0.53], seat: 'FP&A',
+          opener: 'Which driver moved margin this month', avoid: 'Platform architecture' },
+        { id: 'board', label: 'Board pack', span: [0.57, 0.75], seat: 'CFO · Chief of Staff',
+          opener: 'One variance nobody can explain yet', avoid: 'A lakehouse primer' },
+        { id: 'audit', label: 'Audit season', span: [0.83, 0.99], seat: 'Internal Audit · Controller',
+          opener: 'How peers design SOX-compliant finance workloads', avoid: '“SOX certified” · “an AI coworker”' },
+      ];
+      const MONTH_END = 0.78;   // where the month axis stops and the season band begins
+
+      const BEATS = [
+        { id: 'ask', name: 'Surface', card: 'Where is the KPI off plan, by segment?',
+          screen: 'One prompt, one chart, the worst segment already highlighted. Nothing else on the page.',
+          say: '“Is this the segmentation the board pack uses, or do you cut it differently?”' },
+        { id: 'why', name: 'Explain', card: 'What is driving the worst segment?',
+          screen: 'Driver breakdown for that one segment, largest contributor on top.',
+          say: '“So the variance is concentrated in one driver, not spread across the book.”' },
+        { id: 'prove', name: 'Prove', card: 'Definition, lineage, bridge, access',
+          screen: 'The metric definition and its owner, the lineage path, the bridge to last month’s pack, and the access model.',
+          say: '“Here is who owns this definition, here is the path the number took, here is how it ties to the pack you signed — and access is granted through Unity Catalog and your entitlement process, not open chat on production.”' },
+        { id: 'act', name: 'Act', card: 'What changes before period end',
+          screen: 'One action, one owner, one date inside the current period.',
+          say: '“Before period end, this is the one thing that changes — and this is the person who owns it.”' },
+      ];
+
+      // Worksheet boxes reveal one worked example, one box at a time.
+      // The meeting ask is assembled from the same four answers.
+      const WORKSHEET = [
+        { id: 'win', title: 'The win you already have',
+          fill: 'A commercial Genie space the brand team already trusts — rebate and chargeback questions answered without a ticket.' },
+        { id: 'lever', title: 'The P&L, cash, or risk lever it moves',
+          fill: 'Gross-to-net leakage — argued every close, and still without an agreed driver by the read-through.' },
+        { id: 'seat', title: 'The finance seat — plus Internal Audit if it lands in scope',
+          fill: 'FP&A with the Controller. Internal Audit joins the moment that number lands in the reported pack.' },
+        { id: 'bridge', title: 'Bridge sentence, and the control posture if finance will consume it',
+          fill: '“Same truth, one definition owner; finance gold sits in a governed Unity Catalog space, not a side copy.”' },
+      ];
+      const MEETING_ASK = 'Fifteen minutes with FP&A and Controllership on gross-to-net: one agreed definition, '
+        + 'the lineage behind it, the bridge to last month’s signed pack, and how access is governed — '
+        + 'before the next forecast lock.';
+
+      // Positioning matrix:
+      //   x = 0 protect their process  →  1 become their truth layer
+      //   y = 0 low Databricks consumption  →  1 high
+      // Positions are pre-solved so nothing relies on force simulation.
+      // Quadrant assignment and every caption count derive from this array only.
+      const QUADRANTS = {
+        gold:     { id: 'gold',     name: 'Feed the gold',     truth: true  },
+        feed:     { id: 'feed',     name: 'Feed it anyway',    truth: true  },
+        land:     { id: 'land',     name: 'Land underneath',   truth: false },
+        protect:  { id: 'protect',  name: 'Protect, don’t chase', truth: false },
+      };
+      function toolQuadrant(t) {
+        const truth = t.x >= 0.5;
+        const high = t.y >= 0.5;
+        if (truth && high) return QUADRANTS.gold;
+        if (truth && !high) return QUADRANTS.feed;
+        if (!truth && high) return QUADRANTS.land;
+        return QUADRANTS.protect;
+      }
+      const TOOLS = [
+        { id: 'anaplan', name: 'Anaplan', short: 'Anaplan',
+          does: 'Enterprise planning and modelling — budgets, forecasts, and driver-based scenarios FP&A runs the business on.',
+          owner: 'FP&A · Finance Transformation',
+          coop: 'Become the truth layer beneath it: feed governed actuals and reusable driver definitions, own the actuals-to-plan bridge.',
+          compete: 'Only where the model has become a warehouse — extract sprawl, model bloat, no lineage to a named source.',
+          x: 0.82, y: 0.90, lx: 0, ly: 15, anchor: 'middle' },
+        { id: 'adaptive', name: 'Workday Adaptive', short: 'Adaptive',
+          does: 'Workday Adaptive Planning — FP&A budgeting, forecasting, and workforce / expense planning on Workday.',
+          owner: 'FP&A · Workday admin co-owns',
+          coop: 'Publish reconciled actuals and operating drivers; keep the bridge from operational detail to forecast assumptions.',
+          compete: 'Where extracts and duplicated dimensions have turned planning prep into a separate data-engineering estate.',
+          x: 0.68, y: 0.76, lx: -12, ly: -6, anchor: 'end' },
+        { id: 'planful', name: 'Planful', short: 'Planful',
+          does: 'FP&A and performance management — planning, management-reporting consolidation, and variance workflows.',
+          owner: 'FP&A · Corporate Finance',
+          coop: 'Supply certified actuals, operational drivers, and transaction-grain drill paths under their planning surface.',
+          compete: 'Where reporting prep has escaped into brittle exports and they are already simplifying that layer.',
+          x: 0.90, y: 0.64, lx: 12, ly: 4, anchor: 'start' },
+        { id: 'onestream', name: 'OneStream', short: 'OneStream',
+          does: 'Corporate performance management — statutory and management consolidation, close, and CPM workflows.',
+          owner: 'Controller · Corp Fin consolidation',
+          coop: 'Deliver a certified, reconciled feed into consolidation; keep transaction-grain analytics on our side.',
+          compete: 'Protect statutory consolidation — only custom cubes that became a shadow reporting layer are in play.',
+          x: 0.58, y: 0.70, lx: -12, ly: -6, anchor: 'end' },
+        { id: 'oracle-epm', name: 'Oracle EPM / FCCS', short: 'Oracle EPM',
+          does: 'Oracle EPM Cloud / FCCS — cloud consolidation, close, and EPM apps that replaced on-prem Hyperion for many.',
+          owner: 'Controller · Corp Fin',
+          coop: 'Reconcile and certify feeds into EPM; keep operational detail, cross-system semantics, and AI on Databricks.',
+          compete: 'Protect statutory consolidation itself; only duplicate analytics layers around EPM are worth the conversation.',
+          x: 0.60, y: 0.44, lx: 12, ly: 6, anchor: 'start' },
+        { id: 'blackline', name: 'BlackLine', short: 'BlackLine',
+          does: 'Close and account reconciliation — matching, certifications, and the controls of record for month-end.',
+          owner: 'Controller · Accounting operations',
+          coop: 'Protect the close workflow; feed governed sub-ledger, bank, and settlement detail so matching runs on complete populations.',
+          compete: 'Not a displace motion for the close tool itself — only for shadow recon still living in spreadsheets.',
+          x: 0.30, y: 0.44, lx: 12, ly: -4, anchor: 'start' },
+        { id: 'floqast', name: 'FloQast', short: 'FloQast',
+          does: 'Close management — checklists, account reconciliations, and flux analysis wrapped around month-end.',
+          owner: 'Controller · Accounting operations',
+          coop: 'Protect the close process; feed complete populations, governed balances, and exception detail with lineage.',
+          compete: 'Not a rip-replace of FloQast — only when spreadsheet close has outgrown any control model.',
+          x: 0.34, y: 0.28, lx: 12, ly: 8, anchor: 'start' },
+        { id: 'hfm', name: 'Oracle HFM', short: 'HFM',
+          does: 'Oracle Hyperion Financial Management — legacy on-prem statutory consolidation, often already on a retirement path.',
+          owner: 'Controller · Corp Fin consolidation',
+          coop: 'Protect statutory consolidation mid-audit; stage and reconcile inputs, and land the data layer as it retires.',
+          compete: 'Honest when HFM is already retiring and the finance data layer is in scope for that migration.',
+          x: 0.22, y: 0.60, lx: 12, ly: -4, anchor: 'start' },
+      ];
+
+      // Discovery banks from the CFO Field Guide — captions and counts derive from this object.
+      const BANKS = [
+        { id: 'close', label: 'Close', title: 'Close and reporting',
+          qs: [
+            'How many days does monthly close take end to end, and where are the bottlenecks?',
+            'How many manual journals and reconciliations land each cycle?',
+            'If Audit asked for lineage on a revenue number, how fast could you produce it?',
+            'How much of accounting time is consolidation versus analysis?',
+          ]},
+        { id: 'forecast', label: 'Forecast', title: 'Forecasting and planning',
+          qs: [
+            'How far out are forecasts still reliable — 30, 60, or 90 days?',
+            'Do FP&A models connect to live operational data, or to manually updated assumptions?',
+            'How long is the annual budget cycle, and how many iterations?',
+            'Can you decompose a variance into price, volume, and mix automatically?',
+          ]},
+        { id: 'cash', label: 'Cash', title: 'Revenue and cash',
+          qs: [
+            'Is ASC 606 / IFRS 15 fully automated, or still full of manual adjustments?',
+            'What is current DSO, and do you see late-pay risk before it hits aging?',
+            'What is the touchless cash-application rate?',
+            'Can you see consolidated cash across entities in real time?',
+          ]},
+        { id: 'spend', label: 'Spend', title: 'Spend and procurement',
+          qs: [
+            'What share of total spend is classified and visible to finance?',
+            'How do you know contracts are honored at the point of purchase?',
+            'What is the invoice exception rate, and what does it cost in processing time?',
+            'How much do you lose to duplicate payments, leakage, or off-contract spend?',
+          ]},
+        { id: 'controls', label: 'Controls', title: 'Governance and compliance',
+          qs: [
+            'How confident are you in SOX controls on financial data — any recent material weakness?',
+            'Can you produce complete lineage from source system to board deck for any reported number?',
+            'How are you preparing for ESG disclosure requirements?',
+            'If a regulator asked for every revenue-recognition judgment last year, how long would that take?',
+          ]},
+        { id: 'wins', label: 'Wins', title: 'Quick wins and priorities',
+          qs: [
+            'What is the biggest time sink that produces the least strategic value?',
+            'If you cut five days from close, what would the team do with that time?',
+            'Where are you most worried about data quality in financial reporting?',
+            'If you could give the CFO one real-time metric they lack today, what would it be?',
+          ]},
+      ];
+
+      /* ───────── nav ───────── */
+
+      const VIZ = {};
+      function registerViz(i, setup) { VIZ[i] = setup(slides[i]) || {}; }
+
+      function broadcastSlide(i) {
+        try { localStorage.setItem(STORAGE_KEY, String(i)); } catch (_) {}
+        if (bc) bc.postMessage({ slideIndex: i, source: 'deck' });
+      }
+
+      function show(next, opts = {}) {
+        VIZ[index]?.teardown?.(slides[index]);
+        index = Math.max(0, Math.min(slides.length - 1, next));
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+          slide.classList.toggle('past', i < index);
+          slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+        });
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        paintRail(index);
+        history.replaceState(null, '', `#${index + 1}`);
+        if (!opts.silent && !applyingRemote) broadcastSlide(index);
+        const shown = index;
+        requestAnimationFrame(() => { if (index === shown) VIZ[shown]?.enter?.(slides[shown]); });
+      }
+
+      function applyRemote(i) {
+        if (!Number.isFinite(i) || i === index) return;
+        applyingRemote = true;
+        show(i, { silent: true });
+        applyingRemote = false;
+      }
+
+      if (bc) {
+        bc.onmessage = (event) => {
+          const i = event?.data?.slideIndex;
+          if (typeof i === 'number') applyRemote(i);
+        };
+      }
+      window.addEventListener('storage', (event) => {
+        if (event.key !== STORAGE_KEY || event.newValue == null) return;
+        applyRemote(Number(event.newValue));
+      });
+
+      document.querySelector('#open-notes')?.addEventListener('click', () => {
+        const url = new URL(NOTES_FILE, window.location.href);
+        url.hash = String(index + 1);
+        window.open(url.toString(), NOTES_WINDOW, 'width=560,height=940,menubar=no,toolbar=no,location=no,status=no');
+        broadcastSlide(index);
+      });
+
+      const swallowsKey = (target, key) =>
+        target.closest('input, textarea, select') || (key === ' ' && target.closest('button'));
+
+      document.addEventListener('click', (event) => {
+        const btn = event.target.closest('.deck button');
+        if (btn) setTimeout(() => btn.blur(), 0);
+      }, true);
+
+      document.addEventListener('keydown', (event) => {
+        if (swallowsKey(event.target, event.key)) return;
+        if (['ArrowRight', 'PageDown', ' ', 'ArrowLeft', 'PageUp', 'Home', 'End'].includes(event.key)) {
+          event.preventDefault();
+        }
+      });
+      document.addEventListener('keyup', (event) => {
+        if (swallowsKey(event.target, event.key)) return;
+        const isStepKey = ['ArrowRight', 'PageDown', ' ', 'ArrowLeft', 'PageUp'].includes(event.key);
+        const now = Date.now();
+        if (isStepKey && (event.repeat || now - lastNavAt < 180)) return;
+        if (isStepKey) lastNavAt = now;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(index + 1);
+        else if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
+        else if (event.key === 'Home') show(0);
+        else if (event.key === 'End') show(slides.length - 1);
+      });
+
+      document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      document.addEventListener('touchend', e => {
+        if (touchStartX === null) return;
+        const delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 55) show(index + (delta < 0 ? 1 : -1));
+        touchStartX = null;
+      }, { passive: true });
+
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => VIZ[index]?.enter?.(slides[index]), 220);
+      });
+
+      /* ───────── position rail ─────────
+         The only place the hierarchy is written down. Slide numbers are 0-based
+         indices into the deck's .slide list. */
+      const OUTLINE = [
+        ['Frame',    [['Open',      [0, 1]]]],
+        ['Trust',    [['Buy',       [2, 3, 4]]]],
+        ['SOX',      [['Answer',    [5]],
+                      ['Contrast',  [6]],
+                      ['Playbook',  [7]]]],
+        ['Land',     [['Timing',    [8]],
+                      ['Champion',  [9]]]],
+        ['Demo',     [['Contract + run', [10]]]],
+        ['Field',    [['Tools',     [11]],
+                      ['Expand',    [12]]]],
+        ['Close',    [['Standards', [13]]]],
+        ['Appendix', [['Pillars',   [14]],
+                      ['Vocab',     [15]],
+                      ['Discover',  [16]],
+                      ['Stack',     [17]]]],
+      ];
+
+      const rail = document.querySelector('.rail');
+
+      (function buildRail() {
+        const seen = new Set();
+        const order = [];
+        let html = '';
+        for (const [section, subs] of OUTLINE) {
+          const all = subs.flatMap(([, idx]) => idx);
+          for (const i of all) {
+            if (seen.has(i)) console.error(`rail: slide ${i} is listed twice`);
+            if (!slides[i]) console.error(`rail: slide ${i} does not exist`);
+            seen.add(i); order.push(i);
+          }
+          html += `<div class="rail-sec" data-from="${all[0]}" data-to="${all[all.length - 1]}">`
+            + `<button type="button" class="rail-sname" data-slide="${all[0]}">`
+            + `${section}<i class="rail-fill"></i></button><div class="rail-subs">`;
+          for (const [sub, idx] of subs) {
+            const contiguous = idx.every((n, k) => k === 0 || n === idx[k - 1] + 1);
+            if (!contiguous) console.error(`rail: subsection "${sub}" is not a contiguous run`, idx);
+            html += `<div class="rail-sub" data-from="${idx[0]}" data-to="${idx[idx.length - 1]}">`
+              + `<button type="button" class="rail-uname" data-slide="${idx[0]}">${sub}</button>`
+              + `<div class="rail-pips">`
+              + idx.map(i => {
+                  const label = slides[i]?.querySelector('h1, h2')?.textContent.trim() || sub;
+                  return `<button type="button" class="rail-pip" data-slide="${i}"`
+                    + ` title="${String(i + 1).padStart(2, '0')} · ${label}"`
+                    + ` aria-label="Slide ${i + 1} of ${slides.length}: ${label}"><i></i></button>`;
+                }).join('')
+              + `</div></div>`;
+          }
+          html += `</div></div>`;
+        }
+        slides.forEach((_, i) => { if (!seen.has(i)) console.error(`rail: slide ${i} is not in OUTLINE`); });
+        if (order.some((n, k) => k && n !== order[k - 1] + 1)) console.error('rail: OUTLINE is not in deck order');
+        rail.innerHTML = html;
+      })();
+
+      function paintRail(i) {
+        rail.classList.toggle('is-hidden', !slides[i]?.querySelector('.eyebrow'));
+        const mark = (node) => {
+          const from = Number(node.dataset.from), to = Number(node.dataset.to);
+          const open = i >= from && i <= to;
+          node.classList.toggle('is-open', open);
+          node.classList.toggle('is-past', i > to);
+          return { from, to, open };
+        };
+        rail.querySelectorAll('.rail-sec').forEach(sec => {
+          const { from, to, open } = mark(sec);
+          const done = open ? (i - from + 1) / (to - from + 1) : i > to ? 1 : 0;
+          sec.querySelector('.rail-fill').style.width = `${done * 100}%`;
+          sec.querySelector('.rail-sname').setAttribute('aria-current', open ? 'step' : 'false');
+        });
+        rail.querySelectorAll('.rail-sub').forEach(sub => {
+          const { open } = mark(sub);
+          sub.querySelector('.rail-uname').setAttribute('aria-current', open ? 'step' : 'false');
+        });
+        rail.querySelectorAll('.rail-pip').forEach(pip => {
+          const n = Number(pip.dataset.slide);
+          pip.classList.toggle('is-here', n === i);
+          pip.classList.toggle('is-past', n < i);
+          pip.setAttribute('aria-current', n === i ? 'true' : 'false');
+        });
+      }
+
+      rail.addEventListener('click', (event) => {
+        const target = event.target.closest('[data-slide]');
+        if (!target) return;
+        setTimeout(() => target.blur(), 0);
+        show(Number(target.dataset.slide));
+      });
+
+      /* ───────── slide 09 · finance calendar, persistent visual with states ───────── */
+      registerViz(8, (slide) => {
+        const host = slide.querySelector('.gfx');
+        const chips = slide.querySelector('.chips');
+        const detail = slide.querySelector('.cal-detail');
+        let state = CYCLES[0].id;
+
+        chips.innerHTML = CYCLES.map(c =>
+          `<button type="button" class="chip-btn" data-cycle="${c.id}" aria-pressed="false">${c.label}</button>`).join('');
+        chips.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-cycle]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.cycle;
+          paint();
+        });
+
+        function paintDetail() {
+          const c = CYCLES.find(x => x.id === state);
+          detail.innerHTML =
+            `<div class="tag">Cycle ${CYCLES.indexOf(c) + 1} of ${CYCLES.length}</div>`
+            + `<h3>${c.label}</h3>`
+            + `<dl><dt>Best seat</dt><dd>${c.seat}</dd>`
+            + `<dt>Opener</dt><dd>${c.opener}</dd>`
+            + `<dt>Avoid</dt><dd class="avoid">${c.avoid}</dd></dl>`;
+        }
+
+        function paint() {
+          [...chips.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cycle === state)));
+          const W = 1000, H = 250;
+          const svg = newSvg(host, W, H);
+          const padL = 26, padR = 26, base = 168;
+          const x = t => padL + t * (W - padL - padR);
+
+          // the month axis, then a break, then the season band — two different
+          // kinds of time on one strip, so the break has to be visible
+          add(svg, 'line', { x1: x(0), y1: base, x2: x(MONTH_END - 0.02), y2: base, stroke: C.line, 'stroke-width': 2 });
+          add(svg, 'line', { x1: x(MONTH_END + 0.02), y1: base, x2: x(1), y2: base, stroke: C.line, 'stroke-width': 2, 'stroke-dasharray': '5 5' });
+          // four even weeks spanning the month portion only: each label is centred
+          // inside its own week, which keeps the last one clear of the break
+          const weekEdge = k => (k / 4) * MONTH_END;
+          for (let k = 0; k < 4; k++) {
+            add(svg, 'line', { x1: x(weekEdge(k)), y1: base - 6, x2: x(weekEdge(k)), y2: base + 6, stroke: C.faint, 'stroke-width': 1.5 });
+            add(svg, 'text', {
+              x: (x(weekEdge(k)) + x(weekEdge(k + 1))) / 2, y: base + 24, 'text-anchor': 'middle',
+              'font-family': BODY, 'font-size': 13, fill: C.dim
+            }, `W${k + 1}`);
+          }
+          add(svg, 'text', {
+            x: x(1), y: base + 24, 'text-anchor': 'end',
+            'font-family': BODY, 'font-size': 13, fill: C.dim
+          }, 'month end \u2192 annual cycle');
+          add(svg, 'path', {
+            d: `M${x(MONTH_END) - 4} ${base - 12} l10 -6 M${x(MONTH_END) + 2} ${base + 12} l10 -6`,
+            stroke: C.dim, 'stroke-width': 1.6, fill: 'none'
+          });
+
+          CYCLES.forEach((c, k) => {
+            const on = c.id === state;
+            const x0 = x(c.span[0]), x1 = x(c.span[1]);
+            add(svg, 'rect', {
+              x: x0, y: 58, width: x1 - x0, height: 110, rx: 5,
+              fill: on ? 'rgba(255,54,33,.11)' : 'rgba(27,49,57,.035)',
+              stroke: on ? C.signal : C.line, 'stroke-width': on ? 1.6 : 1
+            });
+            add(svg, 'text', {
+              x: (x0 + x1) / 2, y: 44, 'text-anchor': 'middle',
+              'font-family': DISPLAY, 'font-size': on ? 19 : 16, 'font-weight': 700,
+              fill: on ? C.signal : C.dim
+            }, c.label);
+            add(svg, 'text', {
+              x: (x0 + x1) / 2, y: 104, 'text-anchor': 'middle',
+              'font-family': DISPLAY, 'font-size': 11.5, 'font-weight': 700, 'letter-spacing': '1.6',
+              fill: on ? C.ink : C.faint
+            }, `0${k + 1}`);
+            add(svg, 'text', {
+              x: (x0 + x1) / 2, y: 134, 'text-anchor': 'middle',
+              'font-family': BODY, 'font-size': 13, fill: on ? C.muted : C.faint
+            }, c.seat.split(' · ')[0]);
+            const dot = add(svg, 'circle', {
+              cx: (x0 + x1) / 2, cy: base, r: on ? 8 : 5,
+              fill: on ? C.signal : C.panel, stroke: on ? C.signal : C.dim, 'stroke-width': 1.6
+            });
+            dot.style.cursor = 'pointer';
+          });
+
+          add(svg, 'text', {
+            x: x(0), y: 226, 'font-family': BODY, 'font-size': 14.5, fill: C.muted
+          }, `${CYCLES.length} cycles, ${CYCLES.length} seats — the opener changes with the week, not with our quarter.`);
+
+          paintDetail();
+        }
+
+        return { enter() { paint(); requestAnimationFrame(paint); } };
+      });
+
+      /* ───────── slide 11 · demo contract + choreography ───────── */
+      registerViz(10, (slide) => {
+        const railHost = slide.querySelector('.beat-rail');
+        const host = slide.querySelector('.gfx');
+        const screenP = slide.querySelector('.lanes2 .screen p');
+        const sayP = slide.querySelector('.lanes2 .say p');
+        let state = BEATS[0].id;
+
+        railHost.innerHTML = BEATS.map((b, k) =>
+          `<button type="button" class="beat-card" data-beat="${b.id}" aria-pressed="false">`
+          + `<span class="bn">Beat ${String(k + 1).padStart(2, '0')} · standard</span>`
+          + `<b>${b.name}</b>`
+          + `<span class="bd">${b.card}</span></button>`).join('');
+        railHost.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-beat]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.beat;
+          paint();
+        });
+
+        // every state draws into the same 900×288 box: header strip, body, caption
+        function paint() {
+          [...railHost.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.beat === state)));
+          const beat = BEATS.find(b => b.id === state);
+          const k = BEATS.indexOf(beat);
+          const W = 900, H = 288;
+          const svg = newSvg(host, W, H);
+          const padL = 34, top = 30;
+
+          // beat strip, derived from BEATS so it cannot disagree with the rail
+          const stripW = W - padL * 2, seg = stripW / BEATS.length;
+          BEATS.forEach((b, j) => {
+            add(svg, 'rect', {
+              x: padL + j * seg + 2, y: top, width: seg - 4, height: 4, rx: 2,
+              fill: j < k ? 'rgba(82,102,109,.45)' : j === k ? C.signal : 'rgba(27,49,57,.12)'
+            });
+            add(svg, 'text', {
+              x: padL + j * seg + 2, y: top + 22, 'font-family': DISPLAY, 'font-size': 10.5,
+              'font-weight': 700, 'letter-spacing': '1.5', fill: j === k ? C.signal : C.faint
+            }, b.name.toUpperCase());
+          });
+
+          const bodyTop = 84;
+          const label = (t, y2, fill) => add(svg, 'text', {
+            x: padL, y: y2, 'font-family': DISPLAY, 'font-size': 11, 'font-weight': 700,
+            'letter-spacing': '1.5', fill: fill || C.dim
+          }, t);
+
+          if (state === 'ask') {
+            add(svg, 'rect', { x: padL, y: bodyTop, width: stripW, height: 34, rx: 17, fill: C.panel, stroke: C.line });
+            add(svg, 'text', { x: padL + 18, y: bodyTop + 22, 'font-family': BODY, 'font-size': 15, fill: C.muted },
+              'Where is margin off plan by segment this month?');
+            // per-bar labels only — narrative lives in the ON SCREEN panel, not under the axis
+            const bars = [0.52, 0.71, 0.44, 0.93, 0.6];
+            const bw = 62, gap = 26, y0 = bodyTop + 62, maxH = 96;
+            bars.forEach((v, j) => {
+              const worst = v === Math.max(...bars);
+              add(svg, 'rect', {
+                x: padL + j * (bw + gap), y: y0 + (maxH - v * maxH), width: bw, height: v * maxH, rx: 3,
+                fill: worst ? C.signal : 'rgba(27,49,57,.14)'
+              });
+              add(svg, 'text', {
+                x: padL + j * (bw + gap) + bw / 2, y: y0 + maxH + 20, 'text-anchor': 'middle',
+                'font-family': BODY, 'font-size': 12.5, fill: worst ? C.ink : C.dim
+              }, `Seg ${j + 1}`);
+            });
+          }
+
+          if (state === 'why') {
+            label('Drivers behind segment 4', bodyTop - 12);
+            const rows = [['Rate / price', 0.86], ['Mix', 0.54], ['Utilisation', 0.33], ['One-time items', 0.16]];
+            rows.forEach(([name, v], j) => {
+              const y0 = bodyTop + 12 + j * 40;
+              add(svg, 'text', { x: padL, y: y0 + 18, 'font-family': BODY, 'font-size': 14.5, fill: C.ink }, name);
+              add(svg, 'rect', { x: padL + 200, y: y0 + 4, width: stripW - 200, height: 18, rx: 3, fill: 'rgba(27,49,57,.06)' });
+              add(svg, 'rect', {
+                x: padL + 200, y: y0 + 4, width: (stripW - 200) * v, height: 18, rx: 3,
+                fill: j === 0 ? C.signal : 'rgba(27,49,57,.18)'
+              });
+            });
+            label('Concentrated in one driver, not spread across the book', 262);
+          }
+
+          if (state === 'prove') {
+            const rows = [
+              ['Definition', 'Owner named in the metric view'],
+              ['Lineage', 'source → silver → gold → answer'],
+              ['Bridge', 'ties to last month’s reported pack'],
+            ];
+            rows.forEach(([k2, v], j) => {
+              const y0 = bodyTop - 8 + j * 46;
+              add(svg, 'rect', { x: padL, y: y0, width: stripW, height: 36, rx: 4, fill: C.panel, stroke: C.line });
+              add(svg, 'text', {
+                x: padL + 14, y: y0 + 23, 'font-family': DISPLAY, 'font-size': 11.5, 'font-weight': 700,
+                'letter-spacing': '1.4', fill: C.signal
+              }, k2.toUpperCase());
+              add(svg, 'text', { x: padL + 130, y: y0 + 23, 'font-family': BODY, 'font-size': 14.5, fill: C.ink }, v);
+            });
+            const chips = ['Unity Catalog privileges', 'Their entitlement workflow', 'Audit log'];
+            let cx = padL;
+            chips.forEach(t => {
+              const w = 22 + t.length * 7.4;
+              add(svg, 'rect', { x: cx, y: 224, width: w, height: 30, rx: 15, fill: 'rgba(0,169,114,.09)', stroke: C.green });
+              add(svg, 'text', { x: cx + 11, y: 243, 'font-family': BODY, 'font-size': 13, fill: C.ink }, t);
+              cx += w + 10;
+            });
+            label('Access is governed, and you say so out loud', 274, C.muted);
+          }
+
+          if (state === 'act') {
+            add(svg, 'rect', { x: padL, y: bodyTop, width: stripW, height: 92, rx: 5, fill: C.panel, stroke: C.signal });
+            add(svg, 'text', {
+              x: padL + 20, y: bodyTop + 38, 'font-family': DISPLAY, 'font-size': 21, 'font-weight': 700, fill: C.ink
+            }, 'One action, inside the current period');
+            add(svg, 'text', { x: padL + 20, y: bodyTop + 68, 'font-family': BODY, 'font-size': 15, fill: C.muted },
+              'Named owner · agreed by close · reviewed in the next pack');
+            ['Owner', 'Date', 'Where it shows up'].forEach((t, j) => {
+              add(svg, 'rect', { x: padL + j * 268, y: 204, width: 246, height: 46, rx: 4, fill: 'rgba(27,49,57,.04)', stroke: C.line });
+              add(svg, 'text', {
+                x: padL + j * 268 + 14, y: 224, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700,
+                'letter-spacing': '1.4', fill: C.dim
+              }, t.toUpperCase());
+              add(svg, 'rect', { x: padL + j * 268 + 14, y: 232, width: 150, height: 5, rx: 3, fill: C.oat2 });
+            });
+            label('The beat most demos skip', 276, C.muted);
+          }
+
+          screenP.textContent = beat.screen;
+          sayP.textContent = beat.say;
+        }
+
+        return { enter() { paint(); requestAnimationFrame(paint); } };
+      });
+
+      /* ───────── slide 12 · posture × consumption matrix, fixed geometry ───────── */
+      registerViz(11, (slide) => {
+        const host = slide.querySelector('.stack-plot');
+        const chips = slide.querySelector('.stack-chips');
+        const idEl = slide.querySelector('.stack-id h3');
+        const metaEl = slide.querySelector('.stack-meta');
+        const quadEl = slide.querySelector('.stack-quad');
+        const doesP = slide.querySelector('.stack-row.does p');
+        const ownerP = slide.querySelector('.stack-row.owner p');
+        const coopP = slide.querySelector('.stack-row.coop p');
+        const compP = slide.querySelector('.stack-row.comp p');
+        let state = TOOLS[0].id;
+
+        chips.innerHTML = TOOLS.map(t =>
+          `<button type="button" class="chip-btn" data-tool="${t.id}" aria-pressed="false">${t.short}</button>`).join('');
+        chips.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-tool]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.tool;
+          paint();
+        });
+
+        const goldCount = TOOLS.filter(t => toolQuadrant(t).id === 'gold').length;
+
+        function paint() {
+          [...chips.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tool === state)));
+          const W = 760, H = 470;
+          const svg = newSvg(host, W, H);
+          const padL = 116, padR = 26, padT = 30, padB = 74;
+          const x0 = padL, x1 = W - padR, y0 = padT, y1 = H - padB;
+          const px = v => x0 + v * (x1 - x0);
+          const py = v => y1 - v * (y1 - y0);
+          const midX = px(0.5), midY = py(0.5);
+
+          // money quadrant wash (become truth layer + high consumption)
+          add(svg, 'rect', { x: midX, y: y0, width: x1 - midX, height: midY - y0, fill: 'rgba(0,169,114,.06)' });
+
+          // plot frame + quadrant dividers
+          add(svg, 'rect', { x: x0, y: y0, width: x1 - x0, height: y1 - y0, fill: 'none', stroke: C.line, 'stroke-width': 1.5 });
+          add(svg, 'line', { x1: midX, y1: y0, x2: midX, y2: y1, stroke: C.faint, 'stroke-width': 1, 'stroke-dasharray': '4 5' });
+          add(svg, 'line', { x1: x0, y1: midY, x2: x1, y2: midY, stroke: C.faint, 'stroke-width': 1, 'stroke-dasharray': '4 5' });
+
+          // quadrant labels — names derived from QUADRANTS, positioned per corner
+          const qLabel = (text, cx, cy, anchor, hot) => add(svg, 'text', {
+            x: cx, y: cy, 'text-anchor': anchor, 'font-family': DISPLAY, 'font-size': 12.5,
+            'font-weight': 700, 'letter-spacing': '.9', fill: hot ? C.green : C.dim
+          }, text.toUpperCase());
+          qLabel(QUADRANTS.land.name, x0 + 12, y0 + 22, 'start', false);
+          qLabel(QUADRANTS.gold.name, x1 - 12, y0 + 22, 'end', true);
+          qLabel(QUADRANTS.protect.name, x0 + 12, y1 - 12, 'start', false);
+          qLabel(QUADRANTS.feed.name, x1 - 12, y1 - 12, 'end', false);
+
+          // Y axis — consumption, LOW→HIGH
+          add(svg, 'text', {
+            x: 26, y: (y0 + y1) / 2, 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700,
+            'letter-spacing': '1.4', fill: C.muted, 'text-anchor': 'middle',
+            transform: `rotate(-90 26 ${(y0 + y1) / 2})`
+          }, 'DATABRICKS CONSUMPTION');
+          add(svg, 'text', { x: 44, y: y0 + 12, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700, 'letter-spacing': '1', fill: C.dim, 'text-anchor': 'middle' }, 'HIGH');
+          add(svg, 'text', { x: 44, y: y1 - 2, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700, 'letter-spacing': '1', fill: C.dim, 'text-anchor': 'middle' }, 'LOW');
+
+          // X axis — protect ↔ truth layer
+          add(svg, 'text', { x: x0, y: y1 + 30, 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.muted }, 'PROTECT THEIR PROCESS');
+          add(svg, 'text', { x: x1, y: y1 + 30, 'text-anchor': 'end', 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.green }, 'BECOME THEIR TRUTH LAYER');
+          add(svg, 'text', { x: (x0 + x1) / 2, y: y1 + 52, 'text-anchor': 'middle', 'font-family': BODY, 'font-size': 12.5, fill: C.dim }, `${goldCount} of ${TOOLS.length} land in “Feed the gold” — high consumption once we become the truth layer beneath the tool.`);
+
+          // plotted tools — deterministic positions + per-tool label offsets
+          TOOLS.forEach((t) => {
+            const on = t.id === state;
+            const cx = px(t.x), cy = py(t.y);
+            add(svg, 'circle', {
+              cx, cy, r: on ? 9 : 6,
+              fill: on ? C.signal : C.panel, stroke: on ? C.signal : C.dim, 'stroke-width': 1.6
+            });
+            add(svg, 'text', {
+              x: cx + t.lx, y: cy + t.ly + 4, 'text-anchor': t.anchor,
+              'font-family': DISPLAY, 'font-size': on ? 15.5 : 13, 'font-weight': 700,
+              fill: on ? C.ink : C.muted
+            }, t.short);
+          });
+
+          const t = TOOLS.find(item => item.id === state);
+          const q = toolQuadrant(t);
+          idEl.textContent = t.name;
+          metaEl.textContent = q.name;
+          quadEl.textContent = q.truth ? 'Become their truth layer' : 'Protect their process';
+          quadEl.classList.toggle('is-compete', !q.truth);
+          doesP.textContent = t.does;
+          ownerP.textContent = t.owner;
+          coopP.textContent = t.coop;
+          compP.textContent = t.compete;
+        }
+
+        return { enter() { paint(); requestAnimationFrame(paint); } };
+      });
+
+      /* ───────── slide 13 · LOB → OCFO worksheet, click to reveal ─────────
+         Revealed boxes are remembered, so leaving and returning redraws the
+         same state. Heights are fixed in CSS, so revealing never reflows. */
+      registerViz(12, (slide) => {
+        const work = slide.querySelector('.work');
+        const example = slide.querySelector('.example');
+        const askLine = slide.querySelector('.ask-line');
+        const revealAll = slide.querySelector('.work-all');
+        const shown = new Set();
+
+        work.innerHTML = WORKSHEET.map((w, k) =>
+          `<button type="button" class="box" data-box="${w.id}" aria-pressed="false">`
+          + `<span class="bn">${String(k + 1).padStart(2, '0')}</span>`
+          + `<b>${w.title}</b>`
+          + `<span class="body"><span class="hint">Click to reveal</span>`
+          + `<span class="fill">${w.fill}</span></span></button>`).join('');
+
+        work.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-box]');
+          if (!btn) return;
+          event.stopPropagation();
+          const id = btn.dataset.box;
+          if (shown.has(id)) shown.delete(id); else shown.add(id);
+          paint();
+        });
+        revealAll.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const complete = shown.size === WORKSHEET.length;
+          shown.clear();
+          if (!complete) WORKSHEET.forEach(w => shown.add(w.id));
+          paint();
+        });
+
+        function paint() {
+          [...work.children].forEach(b => b.setAttribute('aria-pressed', String(shown.has(b.dataset.box))));
+          const complete = shown.size === WORKSHEET.length;
+          example.classList.toggle('is-ready', complete);
+          askLine.textContent = complete ? MEETING_ASK : '';
+          revealAll.textContent = complete ? 'Reset' : 'Reveal all';
+        }
+
+        return { enter() { paint(); } };
+      });
+
+      /* ───────── slide 18 · discovery banks (appendix), fixed panel height ───────── */
+      registerViz(16, (slide) => {
+        const chips = slide.querySelector('.chips');
+        const panel = slide.querySelector('.disc-panel');
+        let state = BANKS[0].id;
+
+        chips.innerHTML = BANKS.map(b =>
+          `<button type="button" class="chip-btn" data-bank="${b.id}" aria-pressed="false">${b.label}</button>`).join('');
+        chips.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-bank]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.bank;
+          paint();
+        });
+
+        function paint() {
+          [...chips.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bank === state)));
+          const bank = BANKS.find(b => b.id === state);
+          const k = BANKS.indexOf(bank) + 1;
+          panel.innerHTML =
+            `<div class="tag">Bank ${String(k).padStart(2, '0')} of ${String(BANKS.length).padStart(2, '0')} · ${bank.qs.length} questions</div>`
+            + `<h3>${bank.title}</h3>`
+            + `<ol>${bank.qs.map(q => `<li>${q}</li>`).join('')}</ol>`;
+        }
+
+        return { enter() { paint(); } };
+      });
+
+      let start = Number(location.hash.slice(1)) - 1;
+      if (!Number.isFinite(start) || start < 0) {
+        try { start = Number(localStorage.getItem(STORAGE_KEY)); } catch (_) { start = 0; }
+      }
+      show(Number.isFinite(start) && start >= 0 ? start : 0);
+    })();
+  </script>
+</body>
+</html>
