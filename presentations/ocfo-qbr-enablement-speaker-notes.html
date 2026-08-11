@@ -31,6 +31,7 @@
       border-bottom: 1px solid var(--line);
       display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
     }
+    .head-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex: none; }
     .brand { color: var(--signal); font: 700 11px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; }
     .counter { font: 700 13px/1 var(--display); color: var(--dim); font-variant-numeric: tabular-nums; }
     h1 { margin: 10px 0 0; font: 700 26px/1.1 var(--display); letter-spacing: -.02em; }
@@ -38,13 +39,40 @@
       margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.4;
       padding: 10px 12px; background: rgba(255,255,255,.7); border-left: 3px solid var(--signal);
     }
+    .seg {
+      display: inline-flex; background: rgba(255,255,255,.85); border: 1px solid var(--line);
+      border-radius: 999px; padding: 3px; gap: 2px;
+    }
+    .seg button {
+      border: 0; background: transparent; color: var(--dim); border-radius: 999px;
+      font: 700 11px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
+      padding: 8px 13px; cursor: pointer; white-space: nowrap;
+    }
+    .seg button:hover { color: var(--signal); }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .seg button[aria-pressed="true"]:hover { color: #fff; }
     main { overflow: auto; padding: 18px 22px 24px; }
+    .cues {
+      background: rgba(255,255,255,.94); border: 1px solid var(--line); border-left: 3px solid var(--blue);
+      border-radius: 10px; padding: 18px 20px 12px; margin-bottom: 16px;
+    }
+    .cues .label { display: block; color: var(--blue); font: 700 11px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+    .cue-group { margin-bottom: 16px; }
+    .cue-group:last-child { margin-bottom: 6px; }
+    .cue-group h3 { margin: 0 0 6px; font: 700 14px/1.25 var(--display); letter-spacing: -.01em; color: var(--ink); }
+    .cue-group ul { margin: 0; padding-left: 20px; }
+    .cue-group li { margin-bottom: 7px; font-size: 16px; line-height: 1.45; color: var(--ink); }
+    .cue-group li::marker { color: var(--blue); }
     .say {
-      font-size: 16px; line-height: 1.55; color: var(--ink);
-      background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 10px;
+      font-size: 15px; line-height: 1.6; color: var(--muted);
+      background: rgba(255,255,255,.68); border: 1px solid var(--line); border-radius: 10px;
       padding: 16px 18px; margin-bottom: 16px;
     }
     .say .label { display: block; color: var(--signal); font: 700 11px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+    body[data-mode="cues"] .say,
+    body[data-mode="cues"] #bullets { display: none; }
+    body[data-mode="full"] .cues { display: none; }
+    body[data-mode="full"] .say { font-size: 16px; color: var(--ink); background: rgba(255,255,255,.82); }
     .block { margin-bottom: 14px; }
     .block h2 { margin: 0 0 8px; font: 700 12px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
     .block ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.45; }
@@ -77,10 +105,18 @@
       <h1 id="title">Title</h1>
       <div class="on-screen" id="onscreen"></div>
     </div>
-    <div class="counter" id="counter">01 / 18</div>
+    <div class="head-right">
+      <div class="counter" id="counter">01 / 18</div>
+      <div class="seg" id="mode-toggle" role="group" aria-label="Notes view mode">
+        <button type="button" data-mode="both" aria-pressed="true">Both</button>
+        <button type="button" data-mode="cues" aria-pressed="false">Cues</button>
+        <button type="button" data-mode="full" aria-pressed="false">Full script</button>
+      </div>
+    </div>
   </header>
   <main>
-    <div class="say"><span class="label">Say this</span><div id="say"></div></div>
+    <div class="cues"><span class="label">Live cues</span><div id="cues"></div></div>
+    <div class="say"><span class="label">Full script</span><div id="say"></div></div>
     <div id="bullets"></div>
     <div class="transition" id="transition"></div>
   </main>
@@ -90,13 +126,15 @@
       <button type="button" id="next">Next →</button>
     </div>
     <a class="deck-link" id="deck-link" href="ocfo-qbr-enablement-walkthrough.html" target="ocfo-qbr-enablement-main">Open main deck</a>
-    <span class="hint">Synced · ← → · Space</span>
+    <span class="hint">Synced · ← → · Space · M switches view</span>
   </footer>
 
   <script>
     (() => {
       const CHANNEL = 'ocfo-qbr-enablement-deck';
       const STORAGE_KEY = 'ocfo-qbr-enablement-slide';
+      const MODE_KEY = 'ocfo-qbr-enablement-notes-mode';
+      const MODES = ['both', 'cues', 'full'];
       const bc = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel(CHANNEL) : null;
       let index = 0;
       let applyingRemote = false;
@@ -107,6 +145,30 @@
           title: 'Selling to the Office of the CFO',
           onscreen: 'Title — HLS QBR, how finance actually buys, including SOX.',
           say: 'I’m Chris. Before Databricks I was a CPA — Deloitte public accounting, including SOX compliance and IT general controls testing — and I’ve done finance transformation work since. You’ve already heard the Office of the CFO play from Andrew, Princeton, Emma, Mike, Aaron, and Adam. I’m not replaying follow-the-money or another Genie product tour. For the next 45 minutes: how finance decides to trust you, how to handle the SOX conversation that kills otherwise-good deals, when to call them, how to demo so a controller doesn’t shut you down, and what each role does this week. There’s a short appendix after the close if you want the field-guide pillars and discovery banks.',
+          cues: [
+            ['Who I am', [
+              'Chris — CPA before Databricks',
+              'Deloitte public accounting: SOX compliance, IT general controls testing',
+              'Finance transformation work since',
+            ]],
+            ['You already have the play', [
+              'Andrew, Princeton, Emma, Mike, Aaron, Adam covered it',
+            ]],
+            ['Not doing today', [
+              'No follow-the-money replay',
+              'No Genie product tour',
+            ]],
+            ['Next 45 minutes', [
+              'How finance decides to trust you',
+              'The SOX conversation that kills good deals',
+              'When to call them',
+              'How to demo so a controller doesn’t shut you down',
+              'What each role does this week',
+            ]],
+            ['Housekeeping', [
+              'Short appendix after the close — field-guide pillars, discovery banks',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Establish authority and differentiate from Aug 5 in one breath.']],
             ['Frame', ['Audience already has the play — this hour is trust, SOX, timing, demo standard.']],
@@ -117,6 +179,23 @@
           title: 'Aug 5 vs this hour',
           onscreen: 'Before/after split — already covered vs this hour (SOX accented).',
           say: 'If you took CFO 101 and sat Aug 5, keep those assets. The gap isn’t “do we have a play.” It’s execution with people who close books — and with Internal Audit and Controllership who will ask “is this SOX?” and expect a precise answer. Wrong answer loses the deal in 30 seconds. We’ll give you the right one, then the rest of the motion: timing, demos, expansion.',
+          cues: [
+            ['Keep what you have', [
+              'CFO 101 and the Aug 5 assets still stand',
+            ]],
+            ['The real gap', [
+              'Not “do we have a play”',
+              'Execution with people who close the books',
+            ]],
+            ['Who shows up', [
+              'Internal Audit and Controllership',
+              'They ask: “is this SOX?” — and expect a precise answer',
+              'Wrong answer loses the deal in 30 seconds',
+            ]],
+            ['So this hour', [
+              'The right answer, then timing, demos, expansion',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Kill repeat fear; flag SOX as first-class.']],
             ['Point', ['Same discovery questions and Genie spaces — change how you run them.']],
@@ -127,6 +206,22 @@
           title: 'CPA would kill the Genie wow',
           onscreen: 'Four rejection labels — uncontrolled, no bridge, unexplainable path, SOX scope.',
           say: 'When I was in that seat — and especially when I was testing SOX ITGCs — “natural language on all your data” sounded like a control failure. Not because AI is scary. Because careers end on bad numbers, and audits end careers when you can’t produce IPE and change evidence. Adam’s stat: 80% of CFOs invest in AI, 10% trust the data. Part of that 90% is SOX anxiety. We’re going to make you fluent in it so Genie doesn’t die in Controllership.',
+          cues: [
+            ['From that seat', [
+              'Testing SOX ITGCs, “natural language on all your data” = control failure',
+            ]],
+            ['Why — not because AI is scary', [
+              'Careers end on bad numbers',
+              'Audits end careers when you can’t produce IPE and change evidence',
+            ]],
+            ['Adam’s stat', [
+              '80% of CFOs invest in AI · 10% trust the data',
+              'Part of that 90% is SOX anxiety',
+            ]],
+            ['Where we’re going', [
+              'Make you fluent so Genie doesn’t die in Controllership',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Hook + foreshadow SOX as the silent deal killer.']],
             ['Key nuance', ['Don’t dunk on Genie — raise the bar for how we present it.']],
@@ -138,6 +233,23 @@
           title: 'Seller language vs finance hear',
           onscreen: 'Four rows: we say → they hear; last row is SOX-language trap.',
           say: 'Memorize this. Self-serve becomes metric anarchy and segregation-of-duties risk. Live data becomes flash versus soft close versus locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll give you the exact substitute language in two slides. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.',
+          cues: [
+            ['Memorize this', [
+              'What we say vs what finance hears',
+            ]],
+            ['The translations', [
+              '“Self-serve” → metric anarchy, segregation-of-duties risk',
+              '“Live data” → flash vs soft close vs locked',
+              '“SOX certified” → you don’t know how SOX works for cloud platforms',
+            ]],
+            ['Promise', [
+              'Exact substitute language in two slides',
+            ]],
+            ['Win condition for meeting one', [
+              'They believe you can produce a number with a story for how it was produced',
+              'Definitions, lineage, access, change control',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Translation layer + plant the never-say-SOX-certified seed.']],
             ['Discovery', [
@@ -152,6 +264,23 @@
           title: 'Four trust proofs',
           onscreen: '2×2: Definition, Lineage, Reconciliation, Action + green Audit banner.',
           say: 'Definition, lineage, reconciliation, action. Mike and Srujan get you interesting answers. Your upgrade is proof three — the bridge. Controllers relax when you tie to last month’s pack. CFOs lean in when proof four is operational. And if Audit is in the room, proofs one through three are the SOX conversation in customer language — before you ever say the word SOX. Next: what to say when they say it out loud.',
+          cues: [
+            ['The four proofs', [
+              'Definition · Lineage · Reconciliation · Action',
+            ]],
+            ['Your upgrade is proof three', [
+              'Mike and Srujan get you interesting answers',
+              'The bridge is what makes them trustworthy',
+            ]],
+            ['Who reacts to what', [
+              'Controllers relax when you tie to last month’s pack',
+              'CFOs lean in when proof four is operational',
+            ]],
+            ['If Audit is in the room', [
+              'Proofs 1–3 are the SOX conversation in customer language',
+              'Before you ever say the word SOX',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Install framework; bridge into SOX block.']],
             ['Discovery', [
@@ -165,6 +294,30 @@
           title: 'SOX exact-answer facsimile',
           onscreen: 'Document facsimile of standard SOX response + never-say list.',
           say: 'This is the slide that saves deals. Commit it to memory. Short answer to “Is Databricks SOX compliant?”: We support SOX-compliant workloads, and customers run them on us today. Then immediately reframe: SOX is mostly about their change management, testing, access, and IPE — not a vendor sticker. We help them apply those practices on Databricks — Repos, cluster policies, Unity Catalog for governance, lineage, access. There is no SOX certification for cloud providers. If someone asks for our “SOX cert,” you say: there isn’t one for any CSP — here’s our SOC 2 Type II, and here’s how we design the workload so your controls operate. I have given this talk with Controllership and Audit in the room — QuidelOrtho is an example. Wrong words lose trust instantly. Right words make you the adult in the room.',
+          cues: [
+            ['This is the slide that saves deals', [
+              'Commit it to memory',
+            ]],
+            ['Short answer — “Is Databricks SOX compliant?”', [
+              '“We support SOX-compliant workloads, and customers run them on us today.”',
+            ]],
+            ['Then reframe immediately', [
+              'SOX is mostly their change management, testing, access, and IPE',
+              'Not a vendor sticker',
+              'We help them apply those practices on Databricks — Repos, cluster policies, Unity Catalog, lineage, access',
+            ]],
+            ['The hard line', [
+              'There is no SOX certification for cloud providers',
+              'If asked for our “SOX cert”: there isn’t one for any CSP — here’s SOC 2 Type II, and here’s how we design the workload so your controls operate',
+            ]],
+            ['Proof I’ve done this', [
+              'Given this talk with Controllership and Audit in the room — QuidelOrtho',
+            ]],
+            ['Stakes', [
+              'Wrong words lose trust instantly',
+              'Right words make you the adult in the room',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Install non-negotiable positioning for the whole room.']],
             ['Never say', [
@@ -185,6 +338,29 @@
           title: 'HIPAA vs SOX compare',
           onscreen: 'Hinge compare: HIPAA left, SOX right, shared dimensions down the spine.',
           say: 'You’re fluent in HIPAA. Protected health information, privacy and security buyers, BAAs, access and de-identification. SOX is a different animal. It protects the integrity of the reported number — IPE, ITGCs, change management — and the buyers are Controller, Internal Audit, and the CFO. There is no BAA equivalent. There is no CSP SOX certification. The deal-killer sentence on the left is “it’s encrypted so PHI is fine.” On the right it’s “Databricks is SOX certified.” Same platform, same Unity Catalog surface — different question, asked by people who have never been in your pipeline.',
+          cues: [
+            ['You’re already fluent in HIPAA', [
+              'Protected health information',
+              'Privacy and security buyers, BAAs, access and de-identification',
+            ]],
+            ['SOX is a different animal', [
+              'Protects the integrity of the reported number',
+              'IPE, ITGCs, change management',
+              'Buyers: Controller, Internal Audit, CFO',
+            ]],
+            ['What does not exist', [
+              'No BAA equivalent',
+              'No CSP SOX certification',
+            ]],
+            ['Deal-killer sentence each side', [
+              'HIPAA: “it’s encrypted so PHI is fine”',
+              'SOX: “Databricks is SOX certified”',
+            ]],
+            ['Punchline', [
+              'Same platform, same Unity Catalog surface',
+              'Different question — asked by people who have never been in your pipeline',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Teach HLS sellers the delta without re-teaching HIPAA.']],
             ['Point', ['PHI vs financial reporting integrity; BAA vs no cert; privacy/access vs change/SoD/recon/lineage.']],
@@ -195,6 +371,31 @@
           title: 'SOX meeting playbook',
           onscreen: 'Control-need → Databricks pattern matrix + SoD chain + room list.',
           say: 'When SOX comes up, don’t argue product. Run this playbook. One: reframe — we’re not claiming a cert; we’re showing how their control environment runs on Databricks. Two: put Unity Catalog in the center — lineage, access, audit logs — and pair with Repos, cluster policies, CI/CD. That’s what I walked Controllership through at QuidelOrtho. Three: get Audit in the workshop. A Genie pilot that skips Audit becomes a Genie ban later. Bottom strip — segregation of duties. In large enterprises access is Requestor, Approver, Grantor, Auditor — often via SailPoint or an in-house EMS. Your discovery question: how do you grant warehouse access today, and which system owns SoD? If you can’t answer that, you’re not ready to put finance gold in Genie.',
+          cues: [
+            ['When SOX comes up', [
+              'Don’t argue product — run this playbook',
+            ]],
+            ['1 · Reframe', [
+              'We’re not claiming a cert',
+              'We’re showing how their control environment runs on Databricks',
+            ]],
+            ['2 · Unity Catalog in the center', [
+              'Lineage, access, audit logs',
+              'Paired with Repos, cluster policies, CI/CD',
+              'This is what I walked Controllership through at QuidelOrtho',
+            ]],
+            ['3 · Get Audit in the workshop', [
+              'A Genie pilot that skips Audit becomes a Genie ban later',
+            ]],
+            ['Bottom strip — segregation of duties', [
+              'Requestor · Approver · Grantor · Auditor',
+              'Often SailPoint or an in-house EMS',
+            ]],
+            ['Your discovery question', [
+              '“How do you grant warehouse access today, and which system owns SoD?”',
+              'If they can’t answer, they’re not ready to put finance gold in Genie',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Turn positioning into a meeting plan SAs/AEs can run.']],
             ['Discovery', [
@@ -209,6 +410,38 @@
           title: 'Interactive finance calendar',
           onscreen: 'Selectable Close / Forecast / Board / Audit with opener and avoid line.',
           say: 'Andrew gave us the prospecting motion and the assets — prospecting day, the outreach sequences, the finance-persona targeting, the pitch and demo gems, the workshop progression. This next part is mine: a finance-calendar overlay for when and how to use them. Same office, four doors. Watch me click all four — opener and avoid line change with the week.',
+          cues: [
+            ['Credit first', [
+              'Andrew gave the prospecting motion and assets — prospecting day, sequences, finance-persona targeting, pitch and demo gems, workshops',
+            ]],
+            ['This part is mine', [
+              'A finance-calendar overlay for when and how to use them',
+              'Same office, four doors',
+            ]],
+            ['Click all four — stop talking while you click', [
+              'Close → Forecast → Board → Audit; read the panel, then talk',
+            ]],
+            ['1 · Close week — Controller / FinTrans', [
+              'Recon latency, pack assembly, days to close',
+              'Avoid: “ask anything in plain language”',
+            ]],
+            ['2 · Flash / forecast — FP&A', [
+              'Which driver moved margin — price, volume, mix',
+              'Avoid: architecture primers, “self-serve for everyone”',
+            ]],
+            ['3 · Board pack — CFO / Chief of Staff', [
+              'The one unexplained variance that becomes a slide with no owner',
+              'Avoid: lakehouse 101, Genie wow',
+            ]],
+            ['4 · Audit season — Internal Audit + Controller', [
+              'How peers design SOX-compliant finance workloads',
+              'Avoid: “we’re SOX certified,” “AI assistant,” “don’t worry about Audit”',
+              'Leave it on Audit',
+            ]],
+            ['Room check', [
+              '“What week is your top account in right now — close, forecast, board, or audit?”',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Point Andrew’s sequences and gems at the right week + add SOX timing.']],
             ['Attribution', ['Andrew’s Aug 5 session covered Q3 activation — prospecting day, sequences, personas, pitch/demo assets, workshops, webinars, UCO tracking. The four-cycle calendar is my overlay on top of it, not something he presented.']],
@@ -253,6 +486,23 @@
           title: 'Champion path',
           onscreen: 'Solid path FinTrans → Controller → CFO, with a dashed branch from Controller up through Internal Audit and back down into the CFO.',
           say: 'FinTrans is the champion. Controller is the exam — including SOX. CFO is the mandate. Follow the dashed line: it leaves the Controller, goes through Internal Audit, and only then reaches the CFO. That is not optional routing — when SOX is live the Controller pulls Audit in whether you invited them or not. So invite them early. Skipping them is how Genie gets parked for two quarters.',
+          cues: [
+            ['Three seats', [
+              'FinTrans is the champion',
+              'Controller is the exam — including SOX',
+              'CFO is the mandate',
+            ]],
+            ['Follow the dashed line', [
+              'Leaves the Controller → Internal Audit → only then the CFO',
+            ]],
+            ['Why it’s not optional', [
+              'When SOX is live the Controller pulls Audit in whether you invited them or not',
+            ]],
+            ['So', [
+              'Invite them early',
+              'Skipping them is how Genie gets parked for two quarters',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Operationalize FinTrans path with Audit inserted when needed.']],
             ['Point', ['Land the seat that gets promoted for killing Excel — then pass Controllership.']],
@@ -264,6 +514,28 @@
           title: 'Demo contract + choreography',
           onscreen: 'Selectable Surface / Explain / Prove / Act rail. Each card states the standard; the stage shows the screen and sentence.',
           say: 'This is both the contract and the run — one slide, no repeat. Every OCFO demo hits these four beats in order. I’ll click Surface, Explain, Prove, Act. The card on the left is what that beat must land; the right side is what appears and the sentence to use. On Prove, slow down: name the definition owner, lineage, bridge to the signed pack, and how access is governed. If Audit is not in the room, you are still auditioning for them. Then Act: one change, one owner, before period end. DSAs can use the same choreography for post-sale finance-gold expansion.',
+          cues: [
+            ['One slide, no repeat', [
+              'This is both the contract and the run',
+            ]],
+            ['Four beats, in order — click each', [
+              'Surface → Explain → Prove → Act',
+              'Left card = what the beat must land; right = what appears and the sentence to use',
+            ]],
+            ['Slow down on Prove', [
+              'Name the definition owner',
+              'Lineage',
+              'Bridge to the signed pack',
+              'How access is governed',
+              'If Audit is not in the room, you are still auditioning for them',
+            ]],
+            ['Act', [
+              'One change, one owner, before period end',
+            ]],
+            ['DSAs', [
+              'Same choreography for post-sale finance-gold expansion',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Teach the non-negotiable standard and the live execution together.']],
             ['How to demo live', ['Click Surface → Explain → Prove → Act. Read each standard, then point to the screen cue and land the sentence.']],
@@ -276,6 +548,29 @@
           title: 'Finance-platform positioning matrix',
           onscreen: 'Interactive 2×2 matrix. X: protect their process → become their truth layer. Y: Databricks consumption low → high. Click a tool to load its detail panel.',
           say: 'This is not a compete chart. Two axes. Left to right is how we sit with the tool: on the left we protect their process — we leave the close, the recon, the statutory consolidation alone. On the right we become their truth layer — we own and feed the governed operational and semantic inputs the tool consumes, and platform consumption lands underneath. Bottom to top is Databricks consumption opportunity. The top-right box is where the money is: high consumption once we are the truth layer beneath a planning or CPM tool. Watch where each lands — most sit right-ish, and almost none is a rip-and-replace fight.',
+          cues: [
+            ['Set expectation', [
+              'This is not a compete chart',
+            ]],
+            ['X axis — how we sit with the tool', [
+              'Left: protect their process — leave the close, recon, statutory consolidation alone',
+              'Right: become their truth layer — own and feed the governed inputs the tool consumes',
+            ]],
+            ['Y axis — Databricks consumption', [
+              'Bottom low → top high',
+            ]],
+            ['Where the money is', [
+              'Top-right: high consumption once we’re the truth layer beneath a planning or CPM tool',
+            ]],
+            ['Click a few, not all eight', [
+              'Open on a planning tool in Feed the gold',
+              'Contrast with BlackLine on the protect side',
+              'Name the axes out loud once, then let the panel carry the detail',
+            ]],
+            ['Punchline', [
+              'Most sit right-ish, and almost none is a rip-and-replace fight',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Replace the old spectrum with a real positioning matrix and teach net-new substance on each tool.']],
             ['How to read the axes', [
@@ -318,6 +613,30 @@
           title: 'LOB → OCFO worksheet (click to reveal)',
           onscreen: 'Four worksheet boxes, empty until clicked. Revealing all four assembles the meeting ask at the bottom.',
           say: 'Four boxes you fill before outreach — I’ll build one live. Box one, the win you already have: a commercial Genie space the brand team already trusts. Box two, the lever it moves: gross-to-net leakage, argued every close with no agreed driver. Box three, the seat: FP&A with the Controller — and Internal Audit the moment that number lands in the reported pack. Box four, the bridge sentence: same truth, one definition owner, finance gold in a governed Unity Catalog space, not a side copy. Put those together and the ask writes itself — that is the last line on the page, and that is your email. Not “got 30 minutes for Genie?”',
+          cues: [
+            ['Four boxes you fill before outreach', [
+              'I’ll build one live',
+            ]],
+            ['01 · The win you already have', [
+              'A commercial Genie space the brand team already trusts',
+            ]],
+            ['02 · The lever it moves', [
+              'Gross-to-net leakage — argued every close, no agreed driver',
+            ]],
+            ['03 · The seat', [
+              'FP&A with the Controller',
+              'Internal Audit the moment that number lands in the reported pack',
+            ]],
+            ['04 · The bridge sentence', [
+              'Same truth, one definition owner',
+              'Finance gold in a governed Unity Catalog space — not a side copy',
+            ]],
+            ['Payoff', [
+              'Put those together and the ask writes itself',
+              'That last line on the page is your email',
+              'Not “got 30 minutes for Genie?”',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Expansion one-pager built live; SOX posture flagged when finance-facing.']],
             ['Click-through script', [
@@ -341,6 +660,24 @@
           title: 'Close / four standards',
           onscreen: 'Four standards — trust, SOX without the myth, calendar, demo contract.',
           say: 'Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread — or flip into the appendix for pillars, vocabulary, and the discovery bank. Thank you.',
+          cues: [
+            ['Four standards', [
+              'Trust before wow',
+              'SOX without the myth',
+              'Their calendar',
+              'Demo the contract',
+            ]],
+            ['The ask', [
+              'Take Aug 5 materials, put these on top, go get the meetings',
+            ]],
+            ['Offer', [
+              'Stay after if you want help on a live SOX thread',
+              'Or flip into the appendix — pillars, vocabulary, discovery bank',
+            ]],
+            ['Close', [
+              'Thank you',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['End on standards including SOX; roles live here, not on-slide.']],
             ['BDR this week', ['15 contacts × close-calendar openers; include Audit/Controller in audit season.']],
@@ -356,6 +693,22 @@
           title: 'Appendix · Three pillars',
           onscreen: 'Compress / Multiply / Defend — three rule blocks.',
           say: 'This is reference, not a second pitch. Hayley’s field guide organizes finance outcomes under three verbs: compress the cycle, multiply visibility, defend the margin. Map every Genie space and LOB win to one of these before you write outreach. Pillar three — defend — is where revenue recognition, EBIT attribution, and AI investment ROI meet the trust proofs and SOX language you already practiced.',
+          cues: [
+            ['Frame', [
+              'This is reference, not a second pitch',
+            ]],
+            ['Hayley’s field guide — three verbs', [
+              'Compress the cycle',
+              'Multiply visibility',
+              'Defend the margin',
+            ]],
+            ['The rule', [
+              'Map every Genie space and LOB win to one of these before you write outreach',
+            ]],
+            ['Why pillar three matters most here', [
+              'Defend is where rev rec, EBIT attribution, and AI investment ROI meet the trust proofs and SOX language you just practiced',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Give AEs/SAs a use-case spine after the live hour.']],
             ['Source', ['Selling to CFOs Field Guide v2.0 — Hayley Horn, 2026-05-03.']],
@@ -369,6 +722,21 @@
           title: 'Appendix · CFO vocabulary',
           onscreen: 'Glossary grid: DSO, DPO, CCC, EBIT, bps, run-rate + AI-yes-with-controls frame.',
           say: 'If your sentence cannot land on days, dollars, or basis points, it is not ready. DSO and working capital are how O2C analytics become a balance-sheet conversation. Run-rate is how a quarterly win becomes a board number. And the framing that threads the CEO’s AI mandate with Controllership anxiety is simple: AI yes, with controls. Lead with the offset the board asked for — not “AI for finance.”',
+          cues: [
+            ['The test', [
+              'If your sentence can’t land on days, dollars, or basis points, it isn’t ready',
+            ]],
+            ['Two that do the work', [
+              'DSO and working capital — how O2C analytics become a balance-sheet conversation',
+              'Run-rate — how a quarterly win becomes a board number',
+            ]],
+            ['The framing that threads CEO mandate and Controllership anxiety', [
+              'AI yes, with controls',
+            ]],
+            ['Opener discipline', [
+              'Lead with the offset the board asked for — not “AI for finance”',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Scorecard language cheat card.']],
             ['Daniel framing', [
@@ -384,6 +752,22 @@
           title: 'Appendix · Discovery bank',
           onscreen: 'Six selectable banks: Close, Forecast, Cash, Spend, Controls, Wins.',
           say: 'Six banks from the field guide. I’m going to click through them quickly — pick two questions per meeting, not twelve. Close and Controls banks pair with the SOX block. Cash and Forecast pair with mid-month and board-pack timing. Wins is the BDR opener set when you don’t know the cycle yet.',
+          cues: [
+            ['What this is', [
+              'Six banks from the field guide — click through them quickly',
+            ]],
+            ['The rule', [
+              'Pick two questions per meeting, not twelve',
+            ]],
+            ['How they pair', [
+              'Close + Controls → the SOX block',
+              'Cash + Forecast → mid-month and board-pack timing',
+              'Wins → the BDR opener set when you don’t know the cycle yet',
+            ]],
+            ['Live', [
+              'Toggle all six, pause on Controls: ask two, then listen',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Monday-morning usable discovery without dumping on one slide.']],
             ['How to demo live', ['Toggle all six banks. Pause on Controls. Remind room: ask two, then listen.']],
@@ -395,6 +779,26 @@
           title: 'Appendix · Stack stays',
           onscreen: 'Three blocks: ERP of record · Planning & close tools · Regulated function.',
           say: 'This pairs with the compete/cooperate spectrum. ERP stays — it records the event; we are the intelligence layer across systems. Planning and close tools stay — Anaplan, Adaptive, Planful, BlackLine, FloQast, OneStream, Excel — feed them. And when they say finance is regulated and they can’t experiment, that’s your opening for Unity Catalog, lineage, and audit logs — architecture, not an add-on. When they ask for hard ROI, translate to days and working capital, then bring customer proof.',
+          cues: [
+            ['Pairs with', [
+              'The compete/cooperate spectrum',
+            ]],
+            ['ERP stays', [
+              'It records the event',
+              'We’re the intelligence layer across systems',
+            ]],
+            ['Planning and close tools stay', [
+              'Anaplan, Adaptive, Planful, BlackLine, FloQast, OneStream, Excel',
+              'Feed them',
+            ]],
+            ['“Finance is regulated — we can’t experiment”', [
+              'That’s your opening: Unity Catalog, lineage, audit logs',
+              'Architecture, not an add-on',
+            ]],
+            ['“What’s the hard ROI?”', [
+              'Translate to days and working capital, then bring customer proof',
+            ]],
+          ],
           bullets: [
             ['Purpose', ['Field-guide cooperate lines without on-slide “objection” language.']],
             ['ROI anchors (illustrative benchmarks — not a quote)', [
@@ -412,10 +816,25 @@
         title: document.getElementById('title'),
         counter: document.getElementById('counter'),
         onscreen: document.getElementById('onscreen'),
+        cues: document.getElementById('cues'),
         say: document.getElementById('say'),
         bullets: document.getElementById('bullets'),
         transition: document.getElementById('transition'),
+        modeToggle: document.getElementById('mode-toggle'),
       };
+
+      let mode = 'both';
+
+      function applyMode(next, opts = {}) {
+        mode = MODES.includes(next) ? next : 'both';
+        document.body.dataset.mode = mode;
+        els.modeToggle.querySelectorAll('button').forEach((btn) => {
+          btn.setAttribute('aria-pressed', String(btn.dataset.mode === mode));
+        });
+        if (!opts.silent) {
+          try { localStorage.setItem(MODE_KEY, mode); } catch (_) {}
+        }
+      }
 
       function broadcastSlide(i) {
         try { localStorage.setItem(STORAGE_KEY, String(i)); } catch (_) {}
@@ -431,6 +850,12 @@
         els.onscreen.textContent = note.onscreen;
         els.say.textContent = note.say;
         els.transition.textContent = note.transition;
+        els.cues.innerHTML = (note.cues || []).map(([heading, items]) => `
+          <div class="cue-group">
+            <h3>${heading}</h3>
+            <ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>
+          </div>
+        `).join('');
         els.bullets.innerHTML = (note.bullets || []).map(([heading, items]) => `
           <div class="block">
             <h2>${heading}</h2>
@@ -443,6 +868,7 @@
       function show(next, opts = {}) {
         index = Math.max(0, Math.min(NOTES.length - 1, next));
         render();
+        document.querySelector('main').scrollTop = 0;
         history.replaceState(null, '', `#${index + 1}`);
         if (!opts.silent && !applyingRemote) broadcastSlide(index);
       }
@@ -461,8 +887,15 @@
         };
       }
       window.addEventListener('storage', (event) => {
-        if (event.key !== STORAGE_KEY || event.newValue == null) return;
+        if (event.newValue == null) return;
+        if (event.key === MODE_KEY) { applyMode(event.newValue, { silent: true }); return; }
+        if (event.key !== STORAGE_KEY) return;
         applyRemote(Number(event.newValue));
+      });
+
+      els.modeToggle.addEventListener('click', (event) => {
+        const btn = event.target.closest('button[data-mode]');
+        if (btn) applyMode(btn.dataset.mode);
       });
 
       document.getElementById('prev').addEventListener('click', () => show(index - 1));
@@ -482,7 +915,14 @@
         else if (['ArrowLeft', 'PageUp'].includes(event.key)) show(index - 1);
         else if (event.key === 'Home') show(0);
         else if (event.key === 'End') show(NOTES.length - 1);
+        else if (event.key === 'm' || event.key === 'M') {
+          applyMode(MODES[(MODES.indexOf(mode) + 1) % MODES.length]);
+        }
       });
+
+      let savedMode = null;
+      try { savedMode = localStorage.getItem(MODE_KEY); } catch (_) {}
+      applyMode(savedMode || 'both', { silent: true });
 
       let start = Number(location.hash.slice(1)) - 1;
       if (!Number.isFinite(start) || start < 0) {
