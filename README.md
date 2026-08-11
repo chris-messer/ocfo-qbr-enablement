@@ -16,10 +16,12 @@ Arrow keys / Space navigate. Notes stay in sync with the deck.
 
 ## Live
 
-- Work: https://christopher-messer_data.github.io/ocfo-qbr-enablement/
-- Personal: https://chris-messer.github.io/ocfo-qbr-enablement/
+| Account | Repo | Pages |
+|---------|------|-------|
+| Personal (`chris-messer`) | https://github.com/chris-messer/ocfo-qbr-enablement | https://chris-messer.github.io/ocfo-qbr-enablement/ |
+| Work (`christopher-messer_data`) | https://github.com/christopher-messer_data/ocfo-qbr-enablement | *(not available — EMU account cannot create public repos; private repos on this plan do not support GitHub Pages)* |
 
-If an underscore org resolves differently, use the Pages URL returned by GitHub Settings → Pages.
+Speaker notes on Pages: https://chris-messer.github.io/ocfo-qbr-enablement/speaker-notes.html
 
 ## Contents
 
@@ -33,3 +35,11 @@ If an underscore org resolves differently, use the Pages URL returned by GitHub 
 | `appendix-sources.md` | Field Guide attribution |
 
 **18 slides** (14 main + 4 appendix). Internal enablement — not a customer-facing pitch.
+
+## Remotes
+
+```bash
+git remote -v
+# origin   → christopher-messer_data/ocfo-qbr-enablement  (private)
+# personal → chris-messer/ocfo-qbr-enablement             (public + Pages)
+```
