@@ -110,7 +110,7 @@
       <div class="on-screen" id="onscreen"></div>
     </div>
     <div class="head-right">
-      <div class="counter" id="counter">01 / 18</div>
+      <div class="counter" id="counter">01 / 19</div>
       <div class="seg" id="mode-toggle" role="group" aria-label="Notes view mode">
         <button type="button" data-mode="both" aria-pressed="true">Both</button>
         <button type="button" data-mode="cues" aria-pressed="false">Cues</button>
@@ -236,7 +236,7 @@
         {
           title: 'Seller language vs finance hear',
           onscreen: 'Four rows: we say → they hear; last row is SOX-language trap.',
-          say: 'Memorize this. Self-serve becomes metric anarchy and segregation-of-duties risk. Live data becomes flash versus soft close versus locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll give you the exact substitute language in two slides. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.',
+          say: 'Memorize this. Self-serve becomes metric anarchy and segregation-of-duties risk. Live data becomes flash versus soft close versus locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll ground what SOX is, contrast it with HIPAA, then give you the exact substitute language. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.',
           cues: [
             ['Memorize this', [
               'What we say vs what finance hears',
@@ -247,7 +247,7 @@
               '“SOX certified” → you don’t know how SOX works for cloud platforms',
             ]],
             ['Promise', [
-              'Exact substitute language in two slides',
+              'Ground SOX, contrast with HIPAA, then exact language',
             ]],
             ['Win condition for meeting one', [
               'They believe you can produce a number with a story for how it was produced',
@@ -292,7 +292,72 @@
               'Where does reconciliation break today — timing, definitions, or source systems?',
             ]],
           ],
-          transition: 'Transition: “The deal killer. Exact words.”'
+          transition: 'Transition: “Before the exact words — what SOX even is.”'
+        },
+        {
+          title: 'SOX primer — Enron framing',
+          onscreen: 'Three beats: Enron → controls not stickers → Controller / Audit / CFO in your deal.',
+          say: 'Quick show of hands — who has heard of Enron? Yeah. Controllers and CFOs want to make sure you never hear of their company for the same reason you know Enron. That is why Sarbanes-Oxley exists. 2002 US law: public-company executives are personally accountable for the integrity of the numbers they report. It is not a vendor sticker. It is change management, access, testing, and evidence — including the systems that produce the number. In your deals, Controller, Internal Audit, and the CFO will ask whether Genie and the lakehouse sit inside that control environment. Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud. Next we contrast the two, then we give you the exact words.',
+          cues: [
+            ['Opener', [
+              'Who has heard of Enron?',
+              'Controllers and CFOs want to make sure you never hear of their company for that same reason',
+            ]],
+            ['What SOX is', [
+              '2002 US federal law',
+              'Personal accountability for the integrity of reported numbers',
+            ]],
+            ['What it is not', [
+              'Not a vendor sticker',
+              'Controls: change management, access, testing, evidence — including IT systems',
+            ]],
+            ['Who asks in your deal', [
+              'Controller · Internal Audit · CFO',
+              'Is Genie / lakehouse inside that control environment?',
+            ]],
+            ['Bridge for HLS sellers', [
+              'You already sell HIPAA fluency',
+              'SOX is the finance cousin most AEs and SAs have never named out loud',
+            ]],
+          ],
+          bullets: [
+            ['Purpose', ['Give non-finance sellers a one-minute mental model of SOX before the compare and the answer.']],
+            ['Key nuance', ['Keep Enron to a tight opener — educational, not a comedy bit. Then move to controls and deal owners.']],
+          ],
+          transition: 'Transition: “You already know HIPAA. Here’s how SOX is a different question.”'
+        },
+        {
+          title: 'HIPAA vs SOX compare',
+          onscreen: 'Hinge compare: HIPAA left, SOX right, shared dimensions down the spine.',
+          say: 'You’re fluent in HIPAA. Protected health information, privacy and security buyers, BAAs, access and de-identification. SOX is a different animal. It protects the integrity of the reported number — IPE, ITGCs, change management — and the buyers are Controller, Internal Audit, and the CFO. There is no BAA equivalent. There is no CSP SOX certification. The deal-killer sentence on the left is “it’s encrypted so PHI is fine.” On the right it’s “Databricks is SOX certified.” Same platform, same Unity Catalog surface — different question, asked by people who have never been in your pipeline.',
+          cues: [
+            ['You’re already fluent in HIPAA', [
+              'Protected health information',
+              'Privacy and security buyers, BAAs, access and de-identification',
+            ]],
+            ['SOX is a different animal', [
+              'Protects the integrity of the reported number',
+              'IPE, ITGCs, change management',
+              'Buyers: Controller, Internal Audit, CFO',
+            ]],
+            ['What does not exist', [
+              'No BAA equivalent',
+              'No CSP SOX certification',
+            ]],
+            ['Deal-killer sentence each side', [
+              'HIPAA: “it’s encrypted so PHI is fine”',
+              'SOX: “Databricks is SOX certified”',
+            ]],
+            ['Punchline', [
+              'Same platform, same Unity Catalog surface',
+              'Different question — asked by people who have never been in your pipeline',
+            ]],
+          ],
+          bullets: [
+            ['Purpose', ['Teach HLS sellers the delta without re-teaching HIPAA.']],
+            ['Point', ['PHI vs financial reporting integrity; BAA vs no cert; privacy/access vs change/SoD/recon/lineage.']],
+          ],
+          transition: 'Transition: “Now the exact words when they ask if Databricks is SOX compliant.”'
         },
         {
           title: 'SOX exact-answer facsimile',
@@ -335,39 +400,6 @@
               'For review of Databricks itself, consult SOC 2 Type II controls for change, release, and access management.',
             ]],
             ['Key nuance', ['“SOX Ready” on marketing maps ≠ “SOX certified.” Don’t blur those. Offer to bring Audit into the workshop.']],
-          ],
-          transition: 'Transition: “You already know HIPAA. Here’s how SOX is a different question.”'
-        },
-        {
-          title: 'HIPAA vs SOX compare',
-          onscreen: 'Hinge compare: HIPAA left, SOX right, shared dimensions down the spine.',
-          say: 'You’re fluent in HIPAA. Protected health information, privacy and security buyers, BAAs, access and de-identification. SOX is a different animal. It protects the integrity of the reported number — IPE, ITGCs, change management — and the buyers are Controller, Internal Audit, and the CFO. There is no BAA equivalent. There is no CSP SOX certification. The deal-killer sentence on the left is “it’s encrypted so PHI is fine.” On the right it’s “Databricks is SOX certified.” Same platform, same Unity Catalog surface — different question, asked by people who have never been in your pipeline.',
-          cues: [
-            ['You’re already fluent in HIPAA', [
-              'Protected health information',
-              'Privacy and security buyers, BAAs, access and de-identification',
-            ]],
-            ['SOX is a different animal', [
-              'Protects the integrity of the reported number',
-              'IPE, ITGCs, change management',
-              'Buyers: Controller, Internal Audit, CFO',
-            ]],
-            ['What does not exist', [
-              'No BAA equivalent',
-              'No CSP SOX certification',
-            ]],
-            ['Deal-killer sentence each side', [
-              'HIPAA: “it’s encrypted so PHI is fine”',
-              'SOX: “Databricks is SOX certified”',
-            ]],
-            ['Punchline', [
-              'Same platform, same Unity Catalog surface',
-              'Different question — asked by people who have never been in your pipeline',
-            ]],
-          ],
-          bullets: [
-            ['Purpose', ['Teach HLS sellers the delta without re-teaching HIPAA.']],
-            ['Point', ['PHI vs financial reporting integrity; BAA vs no cert; privacy/access vs change/SoD/recon/lineage.']],
           ],
           transition: 'Transition: “Saying the words isn’t enough — how you run the meeting.”'
         },
@@ -812,7 +844,7 @@
             ]],
             ['Failed DW history', ['Start with one use case — treasury, spend, or close — expand after value.']],
           ],
-          transition: 'End of appendix. Return to slide 14 for Q&A, or stay after for SOX rehearsal.'
+          transition: 'End of appendix. Return to slide 15 for Q&A, or stay after for SOX rehearsal.'
         },
       ];
 

@@ -18,13 +18,13 @@
 |-----|--------|--------|
 | 0–3 | 1–2 | Frame |
 | 3–11 | 3–5 | Trust (CPA lens) |
-| 11–19 | 6–7 | **SOX deal-killer talk track** |
-| 19–26 | 8–10 | Prospecting |
-| 26–35 | 11–12 | Demo contract |
-| 35–41 | 13–14 | Other objections + expansion |
-| 41–45 | 15–16 | Roles + close |
+| 11–21 | 6–9 | **SOX education** (primer → HIPAA vs SOX → exact answer → playbook) |
+| 21–27 | 10–11 | Prospecting / champion |
+| 27–35 | 12–13 | Demo + tools |
+| 35–41 | 14 | Expansion worksheet |
+| 41–45 | 15 | Close (+ appendix if needed) |
 
-**Pacing rule:** Never cut Slides 5–7 or 11. If over time, cut Slide 14 first, then compress Slide 12 to storyboard-only (no live clicks).
+**Pacing rule:** Never cut Slides 6–9 or the demo contract. If over time, cut expansion first, then compress interactive clicks.
 
 ---
 
@@ -144,7 +144,7 @@ Table; last row highlighted — the SOX language trap.
 **Purpose:** Translation layer + plant the “never say SOX certified” seed.
 
 **Say this:**  
-Memorize this. Self-serve → metric anarchy and segregation-of-duties risk. Live data → flash vs soft close vs locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll give you the exact substitute language in two slides. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.
+Memorize this. Self-serve → metric anarchy and segregation-of-duties risk. Live data → flash vs soft close vs locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll ground what SOX is, contrast it with HIPAA, then give you the exact substitute language. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.
 
 **Discovery questions:**  
 - “When a variance shows up in the pack, how many systems before you trust the why?”  
@@ -179,20 +179,73 @@ Memorize this. Self-serve → metric anarchy and segregation-of-duties risk. Liv
 **Purpose:** Install framework; bridge into SOX block.
 
 **Say this:**  
-Definition, lineage, reconciliation, action. Mike and Srujan get you interesting answers. Your upgrade is proof three — the bridge. Controllers relax when you tie to last month’s pack. CFOs lean in when proof four is operational. And if Audit is in the room, proofs one through three *are* the SOX conversation in customer language — before you ever say the word SOX. Next: what to say when they say it out loud.
+Definition, lineage, reconciliation, action. Mike and Srujan get you interesting answers. Your upgrade is proof three — the bridge. Controllers relax when you tie to last month’s pack. CFOs lean in when proof four is operational. And if Audit is in the room, proofs one through three *are* the SOX conversation in customer language — before you ever say the word SOX. Next: what SOX even is, how it differs from HIPAA, then the exact words.
 
-**Transition:** The deal killer. Exact words.
+**Transition:** Before the exact words — what SOX even is.
 
 ---
 
-## Slide 6 — SOX: the exact answer
+## Slide 6 — What SOX is (Enron framing)
+
+**Time:** ~2 min  
+**Layout:** Three origin beats (Why it exists · What it requires · Who asks in your deal)
+
+### On-slide content
+**Headline:** Sarbanes-Oxley exists so Controllers and CFOs never become the next Enron headline
+
+**Lead:** A 2002 US federal law that makes public-company executives personally accountable for the integrity of the numbers they report.
+
+**Three beats:**
+1. **Enron** — Cooked books. Collapsed trust. Controllers and CFOs spend their careers making sure you never hear their company name that way.
+2. **Controls, not stickers** — Documented change management, access, testing, and evidence that the reported number can be defended — including the systems that produce it.
+3. **Controller · Audit · CFO** — They will ask whether Genie and the lakehouse sit inside that control environment. Wrong answer stalls the deal.
+
+**Stamp:** You already sell HIPAA fluency. SOX is the finance cousin most AEs and SAs have never been asked to name out loud.
+
+### Speaker notes
+**Purpose:** Give non-finance sellers a one-minute mental model of SOX before the compare and the answer.
+
+**Say this:**  
+Quick show of hands — who has heard of Enron? Yeah. Controllers and CFOs want to make sure you never hear of their company for the same reason you know Enron. That is why Sarbanes-Oxley exists. 2002 US law: public-company executives are personally accountable for the integrity of the numbers they report. It is not a vendor sticker. It is change management, access, testing, and evidence — including the systems that produce the number. In your deals, Controller, Internal Audit, and the CFO will ask whether Genie and the lakehouse sit inside that control environment. Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud. Next we contrast the two, then we give you the exact words.
+
+**Key nuance:** Keep Enron to a tight opener — educational, not a comedy bit.
+
+**Transition:** You already know HIPAA. Here’s how SOX is a different question.
+
+---
+
+## Slide 7 — HIPAA vs SOX
+
+**Time:** ~2.5 min  
+**Layout:** Two halves with central hinge
+
+### On-slide content
+**Headline:** HIPAA protects the record; SOX protects the integrity of the reported number
+
+**Lead:** You are already fluent in the left column. The right column has different owners, different evidence, and no certificate.
+
+Compare rows: what it protects · who owns the question · paperwork · control focus · ends-the-meeting sentence. Spelling on-slide is always **HIPAA** (not “HIPPA”).
+
+**Stamp:** Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.
+
+### Speaker notes
+**Purpose:** Teach HLS sellers the delta without re-teaching HIPAA.
+
+**Say this:**  
+You’re fluent in HIPAA. Protected health information, privacy and security buyers, BAAs, access and de-identification. SOX is a different animal. It protects the integrity of the reported number — IPE, ITGCs, change management — and the buyers are Controller, Internal Audit, and the CFO. There is no BAA equivalent. There is no CSP SOX certification. The deal-killer sentence on the left is “it’s encrypted so PHI is fine.” On the right it’s “Databricks is SOX certified.” Same platform, same Unity Catalog surface — different question, asked by people who have never been in your pipeline.
+
+**Transition:** Now the exact words when they ask if Databricks is SOX compliant.
+
+---
+
+## Slide 8 — SOX: the exact answer
 
 **Time:** ~4 min  
-**Layout:** Do / Don’t split + verbiage block  
+**Layout:** Document facsimile + never-say list  
 **Source:** Chris’s standard SOX slide (QuidelOrtho deck appendix)
 
 ### On-slide content
-**Headline:** Can Databricks be used with SOX compliance?
+**Headline:** Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification
 
 **DO say (primary answer — keep on slide, scannable):**  
 - Databricks **can support a SOX-compliant workload**  
@@ -209,9 +262,6 @@ Definition, lineage, reconciliation, action. Mike and Srujan get you interesting
 **Green callout (exact framing):**  
 There is **no official SOX certification or validation** for cloud service providers. Databricks is a general-purpose, data-agnostic compute platform — not directly subject to SOX and not audited *for* SOX. We support customers’ compliance needs; point them to SOC 2 Type II for our controls.
 
-### Visual
-Top: question as headline. Left “Say this” in clean bullets. Right “Never say” in muted/struck style. Bottom green callout matching the source slide’s emphasis. Do **not** paste the full paragraph wall — keep scannable; full text lives in notes + handout.
-
 ### Speaker notes
 **Purpose:** Install non-negotiable legal/positioning accuracy for the whole room.
 
@@ -227,37 +277,18 @@ This is the slide that saves deals. Commit it to memory. Short answer to “Is D
 
 ---
 
-## Slide 7 — How to run the SOX conversation
+## Slide 9 — How to run the SOX conversation
 
 **Time:** ~4 min  
-**Layout:** 3-column playbook + SoD strip
+**Layout:** Control-need → Databricks pattern matrix + SoD strip
 
 ### On-slide content
-**Headline:** How to run the SOX conversation (without a cert)
+**Headline:** Run SOX as their control environment on Unity Catalog, with Audit in the room
 
-**Column 1 — Reframe**  
-SOX ≠ vendor badge  
-SOX = *their* control environment on *our* platform  
+**Control map:** Change mgmt · Access / SoD · Evidence trail · Config lock-down → Repos/CI/CD, UC entitlements, UC audit/lineage, cluster policies.
 
-**Column 2 — Show the control map** (Unity Catalog front-and-center)  
-| Control need | Databricks pattern |
-|---|---|
-| Change mgmt | Repos + CI/CD + approvals |
-| Access / SoD | UC RBAC + entitlement workflow |
-| Audit trail | UC audit logs + lineage |
-| Config lock-down | Cluster policies / DBR allowlists |
-| Data quality | Expectations / monitoring |
-
-**Column 3 — Who must be in the room**  
-Controller · Internal Audit · FinTrans · Platform/IT  
-→ Workshop, not a stealth Genie pilot
-
-**Bottom SoD strip:**  
-`Requestor → Approver → Grantor → Auditor`  
-SOX requires segregation across these. Discover their EMS (SailPoint, etc.) — don’t invent access granting in Genie demos.
-
-### Visual
-Three columns + SoD chain along bottom. UC called out as the spine. Reference: QuidelOrtho deck best-practices + SoD slide.
+**Bottom SoD strip:** `Requestor → Approver → Grantor → Auditor`  
+**Room:** Controller · Internal Audit · FinTrans · Platform/IT — workshop, not a stealth Genie pilot.
 
 ### Speaker notes
 **Purpose:** Turn positioning into a meeting plan SAs/AEs can run.
@@ -271,6 +302,8 @@ When SOX comes up, don’t argue product. Run this playbook. One: reframe — we
 - Is lakehouse / Genie already in SOX scope, or will OneERP / finance models pull it in?
 
 **Transition:** Trust and SOX get you through the meeting. Timing gets you the meeting.
+
+> **Walkthrough sync:** In `ocfo-qbr-enablement-walkthrough.html` this SOX block is display slides **06–09** (0-based indices 5–8): Primer → HIPAA vs SOX → Exact answer → Playbook. Later sections in this guide are source narrative and are not 1:1 with the shipped 19-slide HTML deck — see `DECK-BUILD-PLAN.md` for the composition map.
 
 ---
 
@@ -325,7 +358,7 @@ Clean table; Audit row + Bad opener column emphasized.
 **Purpose:** Monday-morning usable openers including SOX-safe language.
 
 **Say this:**  
-BDRs — calendar-aware subject lines. In audit season, “how peer HLS companies design SOX-compliant finance workloads on Databricks” beats “transform finance with AI.” AEs — don’t cold-book CFO in close week. SAs — close week = recon and lineage; audit season = Slide 6 language + UC story, not ontology poetry.
+BDRs — calendar-aware subject lines. In audit season, “how peer HLS companies design SOX-compliant finance workloads on Databricks” beats “transform finance with AI.” AEs — don’t cold-book CFO in close week. SAs — close week = recon and lineage; audit season = Slide 8 language + UC story, not ontology poetry.
 
 **Transition:** Who to land first.
 
@@ -438,7 +471,7 @@ Choreography over product. Panel three — slow down. Show SQL, lineage, bridge,
 **Card C — “We tried self-serve BI; it failed”**  
 → Agree. BI without ontology + recon + access control = more Excel. Show proofs 1–3.
 
-**Pointer bar:** SOX / “are you certified?” → **Slides 6–7. Do not freestyle.**
+**Pointer bar:** SOX / “are you certified?” → **Slides 6–9. Do not freestyle.**
 
 ### Visual
 Three cards + sticky pointer bar to SOX slides.
@@ -496,7 +529,7 @@ Fill the four boxes before outreach. If finance will consume it, box four includ
 |---|---|
 | **BDR** | 15 contacts × close-calendar openers; include Audit/Controller for audit-season accounts |
 | **AE** | 3 accounts → champion path + worksheet; if SOX raised, schedule Audit into workshop |
-| **SA** | Rehearse demo contract **and** Slide 6 SOX answer out loud; pre-write bridge + access sentences |
+| **SA** | Rehearse demo contract **and** Slide 8 SOX answer out loud; pre-write bridge + access sentences |
 | **DSA** | Finance gold gaps; UC + metric views + Genie curation; map SoD/entitlement owners |
 
 **Leader line:** Deal review asks: bridge sentence? Controller champion? SOX language correct?
@@ -560,7 +593,7 @@ Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take 
 
 ### Room energy
 - Slide 2: hands for “who was on Aug 5?”  
-- Slide 6: ask “who has lost a deal or stalled on SOX?” — validate, then give language  
+- Slide 8: ask “who has lost a deal or stalled on SOX?” — validate, then give language  
 - Slide 9: one AE — “what week is your top account in?”
 
 ### If short on time (cut order)
@@ -570,7 +603,7 @@ Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take 
 4. **Never cut** Slides 5, 6–7, 11, 15  
 
 ### If long (add)
-- 60-sec role-play: AE says “we’re SOX certified” → room corrects using Slide 6  
+- 60-sec role-play: AE says “we’re SOX certified” → room corrects using Slide 8  
 - Live Genie on Slide 12 with access sentence  
 
 ### Handouts (optional)
@@ -584,7 +617,7 @@ Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take 
 - [ ] Stage Genie space + bridge + **access** sentences for Slide 12  
 - [ ] Confirm SOC 2 Type II request path (how customers obtain the report)  
 - [ ] Decide live vs storyboard  
-- [ ] Optional: one screenshot from QuidelOrtho SoD slide for Slide 7  
+- [ ] Optional: one screenshot from QuidelOrtho SoD slide for Slide 9  
 
 ---
 
@@ -597,9 +630,11 @@ Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take 
 | 3 | I would have killed this deal | 2.5 |
 | 4 | Unsigned numbers | 2.5 |
 | 5 | Four trust proofs | 3 |
-| 6 | **SOX: the exact answer** | 4 |
-| 7 | **How to run the SOX conversation** | 4 |
-| 8 | Prospecting = their calendar | 2.5 |
+| 6 | **What SOX is (Enron)** | 2 |
+| 7 | **HIPAA vs SOX** | 2.5 |
+| 8 | **SOX: the exact answer** | 4 |
+| 9 | **How to run the SOX conversation** | 4 |
+| 10 | Prospecting = their calendar | 2.5 |
 | 9 | Close-calendar openers | 3 |
 | 10 | Champion path | 2 |
 | 11 | Demo contract | 2.5 |
