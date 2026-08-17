@@ -161,54 +161,57 @@ Memorize this. Self-serve → metric anarchy and segregation-of-duties risk. Liv
 **Layout:** 2×2 grid
 
 ### On-slide content
-**Headline:** Four proofs every OCFO demo must land
+**Headline:** Every OCFO demo must prove the number is defined, traceable, reconciled, and controlled
 
 1. **Definition** — Named metric owner + semantic / metric view  
 2. **Lineage** — Source → gold → answer (show the path)  
 3. **Reconciliation** — Bridge to a believed number (GL / board KPI / prior close)  
-4. **Action** — What changes before period end  
+4. **Control** — Who can see / change / use it, with evidence  
 
-**SOX callout (thin banner):** Proofs 1–3 are also what Internal Audit will ask for. Genie without them is a control conversation waiting to fail.
+**Boundary callout (thin banner):** The customer decides what action to take. The demo proves the governed information they will act on.
 
 **Footer:** No proof #3 = interesting dashboard. With #3 = finance tool.
 
 ### Visual
-2×2 + thin SOX banner under grid. Flow: Define → Trace → Bridge → Act.
+2×2 + thin boundary banner under grid. Flow: Define → Trace → Bridge → Control.
 
 ### Speaker notes
 **Purpose:** Install framework; bridge into SOX block.
 
 **Say this:**  
-Definition, lineage, reconciliation, action. Mike and Srujan get you interesting answers. Your upgrade is proof three — the bridge. Controllers relax when you tie to last month’s pack. CFOs lean in when proof four is operational. And if Audit is in the room, proofs one through three *are* the SOX conversation in customer language — before you ever say the word SOX. Next: what SOX even is, how it differs from HIPAA, then the exact words.
+Definition, lineage, reconciliation, control. Those are four proofs Databricks can credibly demonstrate: one governed meaning with a named owner; the visible source-to-answer path; a bridge to a number finance already trusts; and who can see, change, and use it, with evidence. Action still matters to the CFO, but it is the customer’s decision — Databricks does not take or own the business action. Our demo proves trusted, governed information they can act on. Next: what SOX even is, how it differs from HIPAA, then the exact words.
 
 **Transition:** Before the exact words — what SOX even is.
 
 ---
 
-## Slide 6 — What SOX is (Enron framing)
+## Slide 6 — Why SOX exists (Enron framing)
 
 **Time:** ~2 min  
-**Layout:** Three origin beats (Why it exists · What it requires · Who asks in your deal)
+**Layout:** Broadsheet clipping facsimile + four-step cause/effect arc
 
 ### On-slide content
-**Headline:** Sarbanes-Oxley exists so Controllers and CFOs never become the next Enron headline
+**Headline:** Why SOX exists
 
-**Lead:** A 2002 US federal law that makes public-company executives personally accountable for the integrity of the numbers they report.
+**Clipping (stylized, illustrative — never presented as a real publication):** masthead line `Front page · illustrative facsimile` · `December 2001` · headline **Enron collapses** · subdeck “Accounting fraud. Restated results. Numbers no one could trust.” · greeked columns · caption naming it an illustration.
 
-**Three beats:**
-1. **Enron** — Cooked books. Collapsed trust. Controllers and CFOs spend their careers making sure you never hear their company name that way.
-2. **Controls, not stickers** — Documented change management, access, testing, and evidence that the reported number can be defended — including the systems that produce it.
-3. **Controller · Audit · CFO** — They will ask whether Genie and the lakehouse sit inside that control environment. Wrong answer stalls the deal.
+**Arc (four steps, labels + short phrases only):**
+1. **2001 · Fraud exposed** — The reported numbers were false.
+2. **2002 · Sarbanes-Oxley** — US federal law, enforced by the SEC.
+3. **Since · Controls, not stickers** — Executives personally certify the numbers.
+4. **Your deal · Controller · Audit · CFO** — “Is this inside our control environment?”
 
-**Stamp:** You already sell HIPAA fluency. SOX is the finance cousin most AEs and SAs have never been asked to name out loud.
+No lead paragraph, no stamp: the clipping carries the story and the explanation lives in the notes.
 
 ### Speaker notes
-**Purpose:** Give non-finance sellers a one-minute mental model of SOX before the compare and the answer.
+**Purpose:** Give non-finance sellers a one-minute mental model of SOX before the compare and the answer — carried by the visual, not by slide copy.
 
 **Say this:**  
-Quick show of hands — who has heard of Enron? Yeah. Controllers and CFOs want to make sure you never hear of their company for the same reason you know Enron. That is why Sarbanes-Oxley exists. 2002 US law: public-company executives are personally accountable for the integrity of the numbers they report. It is not a vendor sticker. It is change management, access, testing, and evidence — including the systems that produce the number. In your deals, Controller, Internal Audit, and the CFO will ask whether Genie and the lakehouse sit inside that control environment. Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud. Next we contrast the two, then we give you the exact words.
+Quick show of hands — who has heard of Enron? Yeah. This is the front page every Controller and CFO spends a career avoiding — and the clipping is illustrative, not a real paper. Enron collapsed in 2001 because the reported numbers were false, and investors, employees, and auditors all found out too late. Congress answered in 2002 with Sarbanes-Oxley: a US federal law, enforced by the SEC, that makes public-company executives personally accountable for the integrity of the numbers they report. They sign. Their name is on it. So SOX is not a vendor sticker — it is documented change management, access, testing, and evidence that a reported number can be defended, including evidence about the systems that produced it. That is why the last step matters to you. In your deals the Controller, Internal Audit, and the CFO are asking one question about Genie and the lakehouse: is this inside our control environment? Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud.
 
 **Key nuance:** Keep Enron to a tight opener — educational, not a comedy bit.
+
+**Accuracy:** Enron’s 2001 collapse and SOX passing in 2002 are factual. The clipping is stylized — no fake publication name, no attributed quote. No Databricks compliance claims here; those live on the exact-answer slide.
 
 **Transition:** You already know HIPAA. Here’s how SOX is a different question.
 
@@ -400,20 +403,20 @@ FinTrans is the champion. Controller is the exam — including SOX. CFO is the m
 
 1. **Surface a variance** they care about  
 2. **Drill to the driver** (why)  
-3. **Prove it** — definition + lineage + bridge + *who can access / change this*  
-4. **Name the action** before period end  
+3. **Reconcile it** — definition + lineage + bridge to a trusted number  
+4. **Govern it** — inspect who can see / change / use it, with evidence  
 
-**Stamp:** Step 3 is the Controller exam *and* the SOX exam.  
+**Stamp:** Steps 3–4 are the Controller exam *and* the SOX exam.  
 **Footer:** Same Genie spaces. New standard.
 
 ### Visual
-1–4 flow; gate on step 3 with “trust + SOX” label.
+1–4 flow; distinct gates on steps 3–4 for reconciliation and control.
 
 ### Speaker notes
-**Purpose:** Upgrade demo standard with access/change as part of prove.
+**Purpose:** Upgrade demo standard with separate reconciliation and control proofs.
 
 **Say this:**  
-Every OCFO demo hits these four beats. On step three, say out loud: here’s the definition owner, here’s lineage, here’s the bridge to the pack — and here’s how access is controlled so this isn’t metric anarchy. That last clause is what keeps Audit from killing Genie after you leave. Then step four: what changes before period end.
+Every OCFO demo hits these four demonstrable beats. On step three, say out loud: here’s the definition owner, here’s lineage, and here’s the bridge to the pack. On step four, inspect who can see, change, and use the information, plus the Unity Catalog and entitlement evidence behind that posture. Then stop. The customer decides what happens next; Databricks has proved trusted, governed information they can act on, not taken or owned their business action.
 
 **Transition:** Choreography you can copy.
 
@@ -432,21 +435,21 @@ Every OCFO demo hits these four beats. On step three, say out loud: here’s the
 **Four panels:**
 1. **Ask:** Where is [KPI] off plan by segment?  
 2. **Why:** What’s driving the worst segment?  
-3. **Prove:** SQL / lineage · bridge sentence · “Access is governed via UC / entitlement flow — not open chat on prod.”  
-4. **Act:** Before period end we’d…
+3. **Reconcile:** Definition owner · SQL / lineage · bridge to a trusted number  
+4. **Govern:** Inspect access · entitlement flow · audit evidence  
 
 **SA callout:** Pre-write bridge *and* access sentence. Never invent recon or SoD live.
 
 ### Visual
-4-panel storyboard; panel 3 heaviest.
+4-panel storyboard; panels 3–4 are distinct reconciliation and control gates.
 
 ### Speaker notes
 **Purpose:** Muscle memory including SOX-aware prove step.
 
 **Say this:**  
-Choreography over product. Panel three — slow down. Show SQL, lineage, bridge, and one sentence on governed access. If Audit isn’t in the room, you’re still auditioning for them. Prep is: which pack KPI, who owns the definition, how access is granted. DSAs — same script for post-sale finance gold expansion.
+Choreography over product. Panel three — slow down. Show the definition owner, SQL, lineage, and bridge. Panel four — inspect access, the entitlement flow, and audit evidence. If Audit isn’t in the room, you’re still auditioning for them. Prep is: which pack KPI, who owns the definition, how access is granted. The customer owns the decision or next action; our proof is the trusted, governed information. DSAs — same script for post-sale finance gold expansion.
 
-**How to demo live:** Variance → why → SQL/lineage → bridge + access sentence → action. Stop. No extra prompts.
+**How to demo live:** Surface → explain → reconcile → govern. Stop. Let the customer name the decision or next action.
 
 **Key nuance:** If live fails, stay on storyboard.
 
@@ -469,7 +472,7 @@ Choreography over product. Panel three — slow down. Show SQL, lineage, bridge,
 → IT owns pipes. Finance owns definitions. Workshop co-owns — Andrew’s CTA.
 
 **Card C — “We tried self-serve BI; it failed”**  
-→ Agree. BI without ontology + recon + access control = more Excel. Show proofs 1–3.
+→ Agree. BI without ontology + recon + access control = more Excel. Show all four proofs.
 
 **Pointer bar:** SOX / “are you certified?” → **Slides 6–9. Do not freestyle.**
 
@@ -558,7 +561,7 @@ Leaders — ask for the bridge sentence, Controller champion, and whether anyone
 1. **Trust before wow** — four proofs  
 2. **SOX without the myth** — support workloads · no CSP cert · SOC 2 + UC/Repos/policies  
 3. **Prospect on their calendar**  
-4. **Demo the contract** — variance → why → prove (incl. access) → act  
+4. **Demo the contract** — surface → explain → reconcile → govern  
 
 **Resources (small):** go/cfo · Aug 5 assets · [SOX discussion deck](https://docs.google.com/presentation/d/1JAVS2T27MtwEZh8NKTyBm_rKcwxf-HqF94z-IW1Y1Ak) · workshop CTA  
 
@@ -571,7 +574,7 @@ Sparse close. Four standards.
 **Purpose:** End on standards including SOX.
 
 **Say this:**  
-Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread. Thank you.
+Trust before wow. SOX without the myth. Their calendar. Demo the contract. Remember the boundary: Databricks proves definition, lineage, reconciliation, and control; the customer owns the decision and business action. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread. Thank you.
 
 **Key nuance:** Q&A priority = SOX language, then demo contract.
 

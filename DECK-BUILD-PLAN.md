@@ -15,7 +15,8 @@
 ## Density rules
 
 - On-slide: headline + one lead + visual. **No paragraph walls.**
-- SOX exact language: **document facsimile**
+- SOX exact language: **memo/page facsimile** (slide 7)
+- SOX primer: **broadsheet clipping facsimile + four-step arc** (slide 5) — short section-primer title, visual carries the point; differentiated from the slide 7 memo facsimile and never adjacent to it
 - Calendar / demo / tools / discovery: **interactive selectable states** with fixed geometry
 - Visible slides: no `talk track` / `objection` / `ask them` / presenter meta
 - Compete / cooperate / augment language on tool posture slides — not “objection handling”
@@ -30,15 +31,15 @@
 | 1 | August 5 gave you the play; this hour is how finance decides to buy it | Framing | Before/after split |
 | 2 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Rule-block grid (4) |
 | 3 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Side-by-side comparison |
-| 4 | Every Office of the CFO demo must land definition, lineage, reconciliation, and action | Framing | Proof / status grid |
-| 5 | Sarbanes-Oxley exists so Controllers and CFOs never become the next Enron headline | Vocabulary | Multi-beat origin (3) |
+| 4 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
+| 5 | Why SOX exists | Vocabulary | Newspaper-clipping facsimile + cause/effect arc |
 | 6 | HIPAA protects the record; SOX protects the integrity of the reported number | Vocabulary | Two halves with central hinge |
 | 7 | Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification | Client need | Document facsimile |
-| 8 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Boundary / parameter matrix |
+| 8 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Numbered sequence + reference panel + SoD strip (static) |
 | 9 | Finance opens four different doors a month: close, forecast, board, and audit | Framing | Persistent visual, selectable states |
 | 10 | Land Finance Transformation, pass the Controller’s exam, then earn the CFO mandate | Options | Architecture flow |
 | 11 | One four-beat demo contract you can run tomorrow on margin or PMPM | Recommendation | Selectable standard cards + stage cues |
-| 12 | Planning and close platforms stay; we feed the governed truth they never see | Options | Persistent visual, selectable states |
+| 12 | Where to feed the finance stack, and where to leave the workflow alone | Options | Persistent visual, selectable states |
 | 13 | Translate a line-of-business win you already have into an Office of the CFO ask | Recommendation | Document facsimile, click-to-reveal boxes |
 | 14 | Trust before wow. SOX without the myth. Their calendar. The demo contract. | — | Minimal close |
 | 15 | Finance outcomes organize as compress, multiply, and defend | Appendix | Rule-block grid (3) |
@@ -76,7 +77,7 @@ const OUTLINE = [
 | Slide | States | Pinned |
 |---|---|---|
 | 9 Calendar | close · forecast · board · audit | timeline + detail panel height |
-| 11 Demo | Surface · Explain · Prove · Act | standard card rail + 288/168 screen/sentence stage tracks |
+| 11 Demo | Surface · Explain · Reconcile · Govern | standard card rail + 288/168 screen/sentence stage tracks |
 | 12 Tools | BlackLine · FloQast · Adaptive · Anaplan · Planful · OneStream · Oracle EPM · HFM | 2×2 matrix (protect↔truth-layer × consumption) + fixed detail panel |
 | 13 Worksheet | 4 boxes reveal on click (+ Reveal all / Reset) | 132px box min-height; 82px meeting-ask strip |
 | 17 Discovery | Close · Forecast · Cash · Spend · Controls · Wins | 320px panel; Q count from data |
@@ -88,6 +89,9 @@ const OUTLINE = [
 - Port say / purpose / transition / discovery from `slide-guide-ocfo-qbr.md`
 - Slide 5 notes: Enron opener + one-minute SOX mental model for non-finance sellers
 - Slide 7 notes: full SOX never-say + verbatim highlights
+- Slide 4 notes: Databricks proves definition, lineage, reconciliation, and control; the customer owns the business action
+- Slide 8 notes: cue order 01–04 matches the on-slide numbered moves; the control map is reference for move two, the SoD strip is move four
+- Slide 11 notes: separate reconciliation evidence from governed-access evidence; stop before claiming the customer action
 - Slide 14 notes: BDR / AE / SA / DSA week actions + leader deal-review asks
 - Appendix notes: Field Guide attribution + expanded banks / ROI anchors
 - Discovery distributed across main notes (3, 4, 8, 9, 13) + full bank on slide 17

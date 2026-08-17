@@ -266,22 +266,25 @@
         },
         {
           title: 'Four trust proofs',
-          onscreen: '2×2: Definition, Lineage, Reconciliation, Action + green Audit banner.',
-          say: 'Definition, lineage, reconciliation, action. Mike and Srujan get you interesting answers. Your upgrade is proof three — the bridge. Controllers relax when you tie to last month’s pack. CFOs lean in when proof four is operational. And if Audit is in the room, proofs one through three are the SOX conversation in customer language — before you ever say the word SOX. Next: what to say when they say it out loud.',
+          onscreen: '2×2: Definition, Lineage, Reconciliation, Control + green customer-decision banner.',
+          say: 'Definition, lineage, reconciliation, control. Those are four proofs Databricks can credibly demonstrate. Show one governed meaning with a named owner; the visible source-to-answer path; a bridge to a number finance already trusts; and who can see, change, and use it, with evidence. Action still matters to the CFO, but it is the customer’s decision — Databricks does not take or own the business action. Our demo proves trusted, governed information they can act on. Next: why that control posture matters when SOX enters the room.',
           cues: [
             ['The four proofs', [
-              'Definition · Lineage · Reconciliation · Action',
+              'Definition · Lineage · Reconciliation · Control',
             ]],
-            ['Your upgrade is proof three', [
-              'Mike and Srujan get you interesting answers',
-              'The bridge is what makes them trustworthy',
+            ['What Databricks demonstrates', [
+              'One governed meaning and a named metric owner',
+              'The visible source-to-answer path',
+              'A bridge to a number finance already trusts',
+              'Who can see, change, and use it — with evidence',
             ]],
-            ['Who reacts to what', [
-              'Controllers relax when you tie to last month’s pack',
-              'CFOs lean in when proof four is operational',
+            ['Draw the boundary clearly', [
+              'Action is meaningful to the CFO',
+              'The customer decides and owns the business action',
+              'Databricks proves trusted, governed information they can act on',
             ]],
             ['If Audit is in the room', [
-              'Proofs 1–3 are the SOX conversation in customer language',
+              'All four proofs support the control conversation in customer language',
               'Before you ever say the word SOX',
             ]],
           ],
@@ -296,24 +299,30 @@
         },
         {
           title: 'SOX primer — Enron framing',
-          onscreen: 'Three beats: Enron → controls not stickers → Controller / Audit / CFO in your deal.',
-          say: 'Quick show of hands — who has heard of Enron? Yeah. Controllers and CFOs want to make sure you never hear of their company for the same reason you know Enron. That is why Sarbanes-Oxley exists. 2002 US law: public-company executives are personally accountable for the integrity of the numbers they report. It is not a vendor sticker. It is change management, access, testing, and evidence — including the systems that produce the number. In your deals, Controller, Internal Audit, and the CFO will ask whether Genie and the lakehouse sit inside that control environment. Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud. Next we contrast the two, then we give you the exact words.',
+          onscreen: 'Broadsheet clipping facsimile — “Enron collapses,” December 2001 — beside a four-step arc: 2001 fraud exposed · 2002 Sarbanes-Oxley · Since, controls not stickers · Your deal, Controller / Audit / CFO. Almost no words on the slide; the story is yours to tell.',
+          say: 'Quick show of hands — who has heard of Enron? Yeah. This is the front page every Controller and CFO spends a career avoiding — and the clipping is illustrative, not a real paper. Enron collapsed in 2001 because the reported numbers were false, and investors, employees, and auditors all found out too late. Congress answered in 2002 with Sarbanes-Oxley: a US federal law, enforced by the SEC, that makes public-company executives personally accountable for the integrity of the numbers they report. They sign. Their name is on it. So SOX is not a vendor sticker — it is documented change management, access, testing, and evidence that a reported number can be defended, including evidence about the systems that produced it. That is why the last step matters to you. In your deals the Controller, Internal Audit, and the CFO are asking one question about Genie and the lakehouse: is this inside our control environment? Most of you sell HIPAA fluently. SOX is the finance cousin you may never have been asked to name out loud. Next we contrast the two, then we give you the exact words.',
           cues: [
-            ['Opener', [
+            ['Opener — hands up', [
               'Who has heard of Enron?',
-              'Controllers and CFOs want to make sure you never hear of their company for that same reason',
+              'The front page every Controller and CFO spends a career avoiding',
+              'Say it out loud: the clipping is illustrative, not a real paper',
             ]],
-            ['What SOX is', [
-              '2002 US federal law',
-              'Personal accountability for the integrity of reported numbers',
+            ['2001 · Fraud exposed', [
+              'Enron collapsed because the reported numbers were false',
+              'Investors, employees, and auditors found out too late',
             ]],
-            ['What it is not', [
-              'Not a vendor sticker',
-              'Controls: change management, access, testing, evidence — including IT systems',
+            ['2002 · Sarbanes-Oxley', [
+              'US federal law, enforced by the SEC',
+              'Executives personally accountable for the integrity of reported numbers',
             ]],
-            ['Who asks in your deal', [
-              'Controller · Internal Audit · CFO',
-              'Is Genie / lakehouse inside that control environment?',
+            ['Since · Controls, not stickers', [
+              'They sign — their name is on the number',
+              'Documented change management, access, testing, evidence',
+              'Including evidence about the systems that produced the number',
+            ]],
+            ['Your deal · Controller · Audit · CFO', [
+              'One question: is Genie / the lakehouse inside our control environment?',
+              'Wrong answer stalls the deal',
             ]],
             ['Bridge for HLS sellers', [
               'You already sell HIPAA fluency',
@@ -321,8 +330,9 @@
             ]],
           ],
           bullets: [
-            ['Purpose', ['Give non-finance sellers a one-minute mental model of SOX before the compare and the answer.']],
+            ['Purpose', ['Give non-finance sellers a one-minute mental model of SOX before the compare and the answer — carried by the visual, not by slide copy.']],
             ['Key nuance', ['Keep Enron to a tight opener — educational, not a comedy bit. Then move to controls and deal owners.']],
+            ['Accuracy', ['Enron’s 2001 collapse and SOX passing in 2002 are factual. The clipping is a stylized illustration — never present it as a real publication or quote. No Databricks compliance claims on this slide; those come two slides later.']],
           ],
           transition: 'Transition: “You already know HIPAA. Here’s how SOX is a different question.”'
         },
@@ -405,25 +415,28 @@
         },
         {
           title: 'SOX meeting playbook',
-          onscreen: 'Control-need → Databricks pattern matrix + SoD chain + room list.',
-          say: 'When SOX comes up, don’t argue product. Run this playbook. One: reframe — we’re not claiming a cert; we’re showing how their control environment runs on Databricks. Two: put Unity Catalog in the center — lineage, access, audit logs — and pair with Repos, cluster policies, CI/CD. That’s what I walked Controllership through at QuidelOrtho. Three: get Audit in the workshop. A Genie pilot that skips Audit becomes a Genie ban later. Bottom strip — segregation of duties. In large enterprises access is Requestor, Approver, Grantor, Auditor — often via SailPoint or an in-house EMS. Your discovery question: how do you grant warehouse access today, and which system owns SoD? If you can’t answer that, you’re not ready to put finance gold in Genie.',
+          onscreen: 'Four numbered moves down the left — Reframe · Map the controls · Fill the room · Trace the chain — with the control-need → Databricks pattern map on the right (Unity Catalog rows flagged in coral) and the SoD chain as a footer strip. Narrate the numbers in order; the map is the reference behind move two.',
+          say: 'When SOX comes up, don’t argue product. Run these four moves in order — they are numbered on the slide. One: reframe — we’re not claiming a cert; we’re showing how their control environment runs on Databricks. Two: map the controls, with Unity Catalog in the center — access, lineage, audit logs — paired with Repos, CI/CD, cluster policies, and data-quality expectations. That is the panel on the right, and it is what I walked Controllership through at QuidelOrtho. If they want to review our own controls, that is SOC 2 Type II — change, release, access. Three: fill the room — Controller, Internal Audit, Finance Transformation, Platform IT, as a workshop. A Genie pilot that skips Audit becomes a Genie ban later. Four: trace the chain along the bottom — in large enterprises access is Requestor, Approver, Grantor, Auditor, often through SailPoint or an in-house EMS. Your discovery question: how do you grant warehouse access today, and which system owns segregation of duties? If they can’t answer that, they’re not ready to put finance gold in Genie.',
           cues: [
             ['When SOX comes up', [
-              'Don’t argue product — run this playbook',
+              'Don’t argue product — run the four numbered moves in order',
             ]],
-            ['1 · Reframe', [
+            ['01 · Reframe', [
               'We’re not claiming a cert',
               'We’re showing how their control environment runs on Databricks',
             ]],
-            ['2 · Unity Catalog in the center', [
-              'Lineage, access, audit logs',
-              'Paired with Repos, cluster policies, CI/CD',
+            ['02 · Map the controls — point to the right panel', [
+              'Unity Catalog in the center: access, lineage, audit logs (the coral rows)',
+              'Paired with Repos, CI/CD, cluster policies, data-quality expectations',
               'This is what I walked Controllership through at QuidelOrtho',
+              'For our own controls: SOC 2 Type II — change, release, access',
             ]],
-            ['3 · Get Audit in the workshop', [
+            ['03 · Fill the room', [
+              'Controller · Internal Audit · Finance Transformation · Platform IT',
+              'A workshop, not a quiet pilot',
               'A Genie pilot that skips Audit becomes a Genie ban later',
             ]],
-            ['Bottom strip — segregation of duties', [
+            ['04 · Trace the chain — point to the footer strip', [
               'Requestor · Approver · Grantor · Auditor',
               'Often SailPoint or an in-house EMS',
             ]],
@@ -434,6 +447,7 @@
           ],
           bullets: [
             ['Purpose', ['Turn positioning into a meeting plan SAs/AEs can run.']],
+            ['Slide follows the script', ['Left column numbers 01–04 are these cues in the same order; the right panel is reference for move two; the chain strip is move four.']],
             ['Discovery', [
               'What is used for entitlement / access management? Who owns it?',
               'How does that process grant access to warehouses today?',
@@ -548,25 +562,29 @@
         },
         {
           title: 'Demo contract + choreography',
-          onscreen: 'Selectable Surface / Explain / Prove / Act rail. Each card states the standard; the stage shows the screen and sentence.',
-          say: 'This is both the contract and the run — one slide, no repeat. Every OCFO demo hits these four beats in order. I’ll click Surface, Explain, Prove, Act. The card on the left is what that beat must land; the right side is what appears and the sentence to use. On Prove, slow down: name the definition owner, lineage, bridge to the signed pack, and how access is governed. If Audit is not in the room, you are still auditioning for them. Then Act: one change, one owner, before period end. DSAs can use the same choreography for post-sale finance-gold expansion.',
+          onscreen: 'Selectable Surface / Explain / Reconcile / Govern rail. Each card states the standard; the stage shows the screen and sentence.',
+          say: 'This is both the contract and the run — one slide, no repeat. Every OCFO demo hits four demonstrable beats in order. I’ll click Surface, Explain, Reconcile, Govern. The card on the left is what that beat must land; the right side is what appears and the sentence to use. On Reconcile, slow down: name the definition owner, show lineage, and bridge to the signed pack. On Govern, inspect who can see, change, and use the information, plus the Unity Catalog and entitlement evidence behind that posture. If Audit is not in the room, you are still auditioning for them. Then stop: the customer decides what to do next. Databricks has proved the trusted, governed information they can act on; it has not taken or owned their business action. DSAs can use the same choreography for post-sale finance-gold expansion.',
           cues: [
             ['One slide, no repeat', [
               'This is both the contract and the run',
             ]],
             ['Four beats, in order — click each', [
-              'Surface → Explain → Prove → Act',
+              'Surface → Explain → Reconcile → Govern',
               'Left card = what the beat must land; right = what appears and the sentence to use',
             ]],
-            ['Slow down on Prove', [
+            ['Reconcile the answer', [
               'Name the definition owner',
-              'Lineage',
+              'Show lineage',
               'Bridge to the signed pack',
-              'How access is governed',
+            ]],
+            ['Govern the information', [
+              'Inspect who can see, change, and use it',
+              'Show Unity Catalog privileges, entitlement workflow, and audit evidence',
               'If Audit is not in the room, you are still auditioning for them',
             ]],
-            ['Act', [
-              'One change, one owner, before period end',
+            ['Customer action', [
+              'The customer decides and owns what happens next',
+              'Databricks proves trusted, governed information they can act on',
             ]],
             ['DSAs', [
               'Same choreography for post-sale finance-gold expansion',
@@ -574,55 +592,58 @@
           ],
           bullets: [
             ['Purpose', ['Teach the non-negotiable standard and the live execution together.']],
-            ['How to demo live', ['Click Surface → Explain → Prove → Act. Read each standard, then point to the screen cue and land the sentence.']],
-            ['Prove is the gate', ['Beat three is the Controller exam and audit exam: owner, lineage, bridge, access and change.']],
+            ['How to demo live', ['Click Surface → Explain → Reconcile → Govern. Read each standard, then point to the screen cue and land the sentence.']],
+            ['Trust gates', ['Beat three proves owner, lineage, and bridge; beat four proves governed access and control evidence.']],
             ['Key nuance', ['If a live Genie space isn’t staged, stay on this storyboard — never invent recon or SoD live.']],
           ],
           transition: 'Transition: “How we sit next to the planning and close stack.”'
         },
         {
           title: 'Finance-platform positioning matrix',
-          onscreen: 'Interactive 2×2 matrix. X: protect their process → become their truth layer. Y: Databricks consumption low → high. Click a tool to load its detail panel.',
-          say: 'This is not a compete chart. Two axes. Left to right is how we sit with the tool: on the left we protect their process — we leave the close, the recon, the statutory consolidation alone. On the right we become their truth layer — we own and feed the governed operational and semantic inputs the tool consumes, and platform consumption lands underneath. Bottom to top is Databricks consumption opportunity. The top-right box is where the money is: high consumption once we are the truth layer beneath a planning or CPM tool. Watch where each lands — most sit right-ish, and almost none is a rip-and-replace fight.',
+          onscreen: 'Interactive 2×2 matrix. X: leave their workflow alone → we become their source of truth. Y: our Databricks consumption, low → high. Quadrants are named as plays: Best expansion play (top-right) · Worth feeding (bottom-right) · Win the data layer (top-left) · Recognize it, don’t chase it (bottom-left). Click a tool to load its detail panel.',
+          say: 'This is not a compete chart. Two questions, one per axis. Left to right: do we become their source of truth? On the left we leave their workflow alone — the close, the reconciliation, the statutory consolidation stay exactly where they are. On the right we become the source of truth: we own and feed the governed operational and semantic inputs the tool consumes. Bottom to top is how much Databricks consumption the play carries for us. That gives you four plays, and each box tells you what to do. Top right, best expansion play: feed it first, biggest platform pull — that is where planning and CPM tools land. Bottom right, worth feeding: same play, smaller pull today. Top left, win the data layer: leave the tool alone and win the data underneath it, which is HFM while it retires. Bottom left, recognize it and do not chase it: no platform play there today. Watch where each tool lands — four of eight are the best expansion play, and none of this is a rip-and-replace fight.',
           cues: [
             ['Set expectation', [
-              'This is not a compete chart',
+              'This is not a compete chart — every box is a play, not a verdict on the tool',
             ]],
-            ['X axis — how we sit with the tool', [
-              'Left: protect their process — leave the close, recon, statutory consolidation alone',
-              'Right: become their truth layer — own and feed the governed inputs the tool consumes',
+            ['X axis — do we become their source of truth?', [
+              'Left: leave their workflow alone — close, recon, statutory consolidation stay',
+              'Right: we become their source of truth — own and feed the governed inputs the tool consumes',
             ]],
-            ['Y axis — Databricks consumption', [
+            ['Y axis — our Databricks consumption', [
               'Bottom low → top high',
             ]],
-            ['Where the money is', [
-              'Top-right: high consumption once we’re the truth layer beneath a planning or CPM tool',
+            ['The four plays', [
+              'Top-right · Best expansion play — feed it first, biggest platform pull',
+              'Bottom-right · Worth feeding — same play, smaller pull today',
+              'Top-left · Win the data layer — leave their workflow alone',
+              'Bottom-left · Recognize it, don’t chase it — no platform play here today',
             ]],
             ['Click a few, not all eight', [
-              'Open on a planning tool in Feed the gold',
-              'Contrast with BlackLine on the protect side',
-              'Name the axes out loud once, then let the panel carry the detail',
+              'Open on a planning tool in Best expansion play',
+              'Contrast with BlackLine, which we leave alone',
+              'Name the two axes out loud once, then let the panel carry the detail',
             ]],
             ['Punchline', [
-              'Most sit right-ish, and almost none is a rip-and-replace fight',
+              'Four of eight are the best expansion play, and none of this is a rip-and-replace fight',
             ]],
           ],
           bullets: [
             ['Purpose', ['Replace the old spectrum with a real positioning matrix and teach net-new substance on each tool.']],
             ['How to read the axes', [
-              'X — left = protect their process (leave the workflow alone); right = become their truth layer (feed governed inputs, land consumption underneath).',
-              'Y — bottom = low Databricks consumption; top = high.',
-              'Quadrants: Feed the gold (top-right, the money) · Feed it anyway (bottom-right) · Land underneath (top-left) · Protect, don’t chase (bottom-left).',
+              'X — left = leave their workflow alone; right = we become their source of truth (feed governed inputs, consumption lands underneath).',
+              'Y — bottom = low Databricks consumption for us; top = high.',
+              'Quadrants as plays: Best expansion play (top-right) · Worth feeding (bottom-right) · Win the data layer (top-left) · Recognize it, don’t chase it (bottom-left).',
             ]],
             ['Where most HLS accounts land', [
-              'Planning / FP&A / CPM (Anaplan, Adaptive, Planful, OneStream) → Feed the gold: become the truth layer, high consumption.',
-              'Oracle EPM / FCCS → truth layer, consumption builds over time (Feed it anyway today).',
-              'Close / recon (BlackLine, FloQast) → Protect, don’t chase: leave the close alone, feed complete populations.',
-              'HFM → Land underneath: protect statutory consolidation mid-audit, but real data-layer consumption as it retires.',
+              'Planning / FP&A / CPM (Anaplan, Adaptive, Planful, OneStream) → Best expansion play: we become the source of truth, biggest platform pull.',
+              'Oracle EPM / FCCS → Worth feeding: same play, consumption builds over time.',
+              'Close / recon (BlackLine, FloQast) → Recognize it, don’t chase it: leave the close alone, feed complete populations.',
+              'HFM → Win the data layer: protect statutory consolidation mid-audit, but real data-layer consumption as it retires.',
             ]],
             ['How to demo live', [
-              'Click a few, not all eight. Open on a planning tool in Feed the gold, then contrast with BlackLine on the protect side.',
-              'Name the axes out loud once, then let the detail panel carry what each tool does and who owns it.',
+              'Click a few, not all eight. Open on a planning tool in Best expansion play, then contrast with BlackLine, which we leave alone.',
+              'Name the two axes out loud once, then let the detail panel carry what each tool does and who owns it.',
               'Land the honesty: we are not displacing the close or statutory consolidation.',
             ]],
             ['Per-tool talk track', [
@@ -632,9 +653,9 @@
               'HFM — Corp Fin owns; protect statutory consolidation mid-audit; the data layer is genuinely open only when HFM is already retiring.',
             ]],
             ['Notes-only vocabulary (recognize, don’t crowd the grid)', [
-              'Cadency / Trintech — close & account recon peer to BlackLine / FloQast (Protect, don’t chase).',
-              'Pigment — FP&A / planning peer to Anaplan / Adaptive / Planful (Feed the gold).',
-              'SAP Analytics Cloud / BPC — SAP-heavy accounts; truth-layer posture; ask before leading with any displace.',
+              'Cadency / Trintech — close & account recon peer to BlackLine / FloQast (Recognize it, don’t chase it).',
+              'Pigment — FP&A / planning peer to Anaplan / Adaptive / Planful (Best expansion play).',
+              'SAP Analytics Cloud / BPC — SAP-heavy accounts; we become the source of truth; ask before leading with any displace.',
             ]],
             ['Discovery', [
               'What do you close in? What do you reconcile in?',
@@ -647,8 +668,8 @@
         },
         {
           title: 'LOB → OCFO worksheet (click to reveal)',
-          onscreen: 'Four worksheet boxes, empty until clicked. Revealing all four assembles the meeting ask at the bottom.',
-          say: 'Four boxes you fill before outreach — I’ll build one live. Box one, the win you already have: a commercial Genie space the brand team already trusts. Box two, the lever it moves: gross-to-net leakage, argued every close with no agreed driver. Box three, the seat: FP&A with the Controller — and Internal Audit the moment that number lands in the reported pack. Box four, the bridge sentence: same truth, one definition owner, finance gold in a governed Unity Catalog space, not a side copy. Put those together and the ask writes itself — that is the last line on the page, and that is your email. Not “got 30 minutes for Genie?”',
+          onscreen: 'Four worksheet boxes, empty until clicked, over an email block reserved at the bottom (To / Subject / body, greeked until filled). Revealing all four writes the actual outreach note.',
+          say: 'Four boxes you fill before outreach — I’ll build one live. Box one, the win you already have: a commercial Genie space the brand team already trusts. Box two, the lever it moves: gross-to-net leakage, argued every close with no agreed driver. Box three, the seat: FP&A with the Controller — and Internal Audit the moment that number lands in the reported pack. Box four, the bridge sentence: same truth, one definition owner, finance gold in a governed Unity Catalog space, not a side copy. Fill those four and the email writes itself — watch the bottom of the page. Here it is, and this is the tone: “Hi John — commercial has been getting a lot of mileage out of a Genie space on rebates and chargebacks. Would love 30 minutes to show how the same foundation can help your team on gross-to-net leakage: one agreed definition, the lineage behind it, and a bridge to the pack you already sign. No ask to rip out what you close or plan in today.” Three sentences, one lever, no threat to their close or their plan. Not “got 30 minutes for Genie?”',
           cues: [
             ['Four boxes you fill before outreach', [
               'I’ll build one live',
@@ -667,9 +688,10 @@
               'Same truth, one definition owner',
               'Finance gold in a governed Unity Catalog space — not a side copy',
             ]],
-            ['Payoff', [
-              'Put those together and the ask writes itself',
-              'That last line on the page is your email',
+            ['Payoff — the email at the bottom', [
+              'Fill the four boxes and the note writes itself',
+              'Read it out loud; it is the model outreach, not a template to admire',
+              'Three sentences · one lever · no threat to their close or plan',
               'Not “got 30 minutes for Genie?”',
             ]],
           ],
@@ -682,7 +704,11 @@
               '04 — “Bridge sentence and control posture in the same breath.”',
               'Reveal all / Reset if you would rather show the finished page or rerun it in a later session.',
             ]],
-            ['Closing line', ['Read the meeting ask verbatim: fifteen minutes with FP&A and Controllership on gross-to-net — definition, lineage, bridge to the signed pack, governed access — before the next forecast lock.']],
+            ['Read the email verbatim', [
+              'To: John, FP&A · copy the Controller. Subject: what commercial is getting out of one governed dataset.',
+              '“Hi John — commercial has been getting a lot of mileage out of a Genie space on rebates and chargebacks. Would love 30 minutes to show how the same foundation can help your team on gross-to-net leakage: one agreed definition, the lineage behind it, and a bridge to the pack you already sign. No ask to rip out what you close or plan in today.”',
+              'Why it works: their language, one lever, a named foundation, and an explicit promise not to touch the close or the plan.',
+            ]],
             ['Mike’s point', ['Do not over-rotate to finance and lose the LOB sponsor who got you in — the LOB win is the evidence, and that sponsor stays in the room.']],
             ['Discovery', [
               'Which LOB win already touches P&L, cash, or risk?',
@@ -695,7 +721,7 @@
         {
           title: 'Close / four standards',
           onscreen: 'Four standards — trust, SOX without the myth, calendar, demo contract.',
-          say: 'Trust before wow. SOX without the myth. Their calendar. Demo the contract. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread — or flip into the appendix for pillars, vocabulary, and the discovery bank. Thank you.',
+          say: 'Trust before wow. SOX without the myth. Their calendar. Demo the contract. Remember the boundary: Databricks proves definition, lineage, reconciliation, and control; the customer owns the decision and business action. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread — or flip into the appendix for pillars, vocabulary, and the discovery bank. Thank you.',
           cues: [
             ['Four standards', [
               'Trust before wow',
@@ -728,7 +754,7 @@
         {
           title: 'Appendix · Three pillars',
           onscreen: 'Compress / Multiply / Defend — three rule blocks.',
-          say: 'This is reference, not a second pitch. Hayley’s field guide organizes finance outcomes under three verbs: compress the cycle, multiply visibility, defend the margin. Map every Genie space and LOB win to one of these before you write outreach. Pillar three — defend — is where revenue recognition, EBIT attribution, and AI investment ROI meet the trust proofs and SOX language you already practiced.',
+          say: 'This is reference, not a second pitch. Hayley’s field guide organizes finance outcomes under three verbs: compress the cycle, multiply visibility, defend the margin. Map every Genie space and LOB win to one of these before you write outreach. The same four proofs apply under each pillar: definition, lineage, reconciliation, and control. Pillar three — defend — is where revenue recognition, EBIT attribution, and AI investment ROI meet those proofs and the SOX language you already practiced.',
           cues: [
             ['Frame', [
               'This is reference, not a second pitch',

@@ -143,33 +143,53 @@
     .side li { padding: 11px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(14px, 1.2vw, 19px); line-height: 1.32; }
     .side .ok { color: var(--green); border-bottom: 0; padding-top: 16px; }
 
-    /* 6 · SOX primer — three origin beats */
-    .origin {
+    /* 6 · SOX primer — broadsheet clipping facsimile + cause/effect arc */
+    .primer {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(22px, 3vw, 42px);
-      margin-top: 6px;
+      grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr);
+      gap: clamp(32px, 4.6vw, 78px);
+      align-items: center;
     }
-    .origin .beat {
-      border-top: 2px solid var(--line);
-      padding-top: 16px;
-      min-width: 0;
+    .clip { margin: 0; transform: rotate(-1.1deg); }
+    .clip .stack { position: relative; }
+    .clip .sheet { position: absolute; inset: 0; background: var(--panel); border: 1px solid var(--line); }
+    .clip .sheet.s1 { transform: rotate(1.9deg) translate(9px, 8px); opacity: .45; }
+    .clip .sheet.s2 { transform: rotate(.9deg) translate(4px, 4px); opacity: .74; }
+    .clip .paper {
+      position: relative; background: var(--panel); border: 1px solid var(--line);
+      padding: clamp(17px, 2vw, 30px) clamp(19px, 2.2vw, 33px) clamp(16px, 1.9vw, 27px);
+      box-shadow: 0 12px 28px rgba(27,49,57,.07);
     }
-    .origin .beat.hot { border-top-color: var(--signal); }
-    .origin .beat .tag { margin-bottom: 12px; color: var(--dim); }
-    .origin .beat.hot .tag { color: var(--signal); }
-    .origin .beat b {
-      display: block;
-      font: 700 clamp(22px, 2.1vw, 34px)/1.08 var(--display);
-      letter-spacing: -.02em;
-      margin-bottom: 12px;
+    .clip .masthead {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+      border-bottom: 3px double var(--ink); padding-bottom: 8px;
     }
-    .origin .beat p {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(15px, 1.3vw, 21px);
-      line-height: 1.38;
+    .clip .masthead b { font: 700 10px/1.1 var(--display); letter-spacing: .2em; text-transform: uppercase; }
+    .clip .masthead span { font: 400 10px/1 var(--mono); color: var(--dim); white-space: nowrap; }
+    .clip .hl {
+      font: 700 clamp(34px, 3.9vw, 64px)/.92 var(--display);
+      letter-spacing: -.035em; text-transform: uppercase;
+      margin: clamp(13px, 1.6vw, 22px) 0 clamp(11px, 1.2vw, 16px);
     }
+    .clip .subdeck {
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 9px 0;
+      color: var(--muted); font-size: clamp(12.5px, 1.05vw, 16.5px); line-height: 1.34;
+    }
+    .clip .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-top: clamp(13px, 1.4vw, 19px); }
+    .clip .cols span { display: grid; gap: 6px; align-content: start; }
+    .clip .cols i { display: block; height: 4px; border-radius: 2px; background: var(--oat-2); }
+    .clip figcaption { margin-top: 19px; color: var(--dim); font: 400 10.5px/1.35 var(--mono); }
+
+    .arc { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(15px, 2.1vh, 26px); }
+    .arc .step {
+      display: grid; grid-template-columns: clamp(58px, 5vw, 80px) minmax(0, 1fr); gap: clamp(14px, 1.4vw, 22px);
+      border-top: 1px solid var(--line); padding-top: 13px; min-width: 0;
+    }
+    .arc .step.hot { border-top: 2px solid var(--signal); }
+    .arc .yr { font: 700 clamp(13px, 1.1vw, 17px)/1.25 var(--display); letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+    .arc .step.hot .yr { color: var(--signal); }
+    .arc b { display: block; font: 700 clamp(19px, 1.75vw, 28px)/1.08 var(--display); letter-spacing: -.02em; margin-bottom: 7px; }
+    .arc p { margin: 0; color: var(--muted); font-size: clamp(13.5px, 1.12vw, 18px); line-height: 1.34; }
 
     /* 7 · hinge compare — one grid: HIPAA | dimension label | SOX, uniform row bands */
     .hinge {
@@ -202,6 +222,42 @@
     .hinge .h-cell.row-kill { font-style: italic; border-top: 2px solid rgba(152,16,42,.34); border-bottom-color: transparent; }
     .hinge .h-cell.col-hipaa.row-kill, .hinge .h-cell.col-sox.row-kill { color: var(--danger); }
     .hinge .h-cell.col-spine.row-kill { color: var(--danger); background: rgba(152,16,42,.08); font-style: normal; }
+
+    /* 9 · SOX playbook — numbered sequence (left) + control-map reference (right) + SoD strip */
+    .playbook { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 3.6vw, 62px); align-items: start; }
+    .steps { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: clamp(13px, 1.9vh, 24px); }
+    .steps::before {
+      content: ""; position: absolute; left: clamp(15px, 1.35vw, 19px); top: 8px; bottom: 8px; width: 1px;
+      background: linear-gradient(to bottom, var(--signal) 0 14%, var(--line) 32%, var(--line) 100%);
+    }
+    .steps li { position: relative; display: grid; grid-template-columns: clamp(32px, 2.8vw, 40px) minmax(0, 1fr); gap: clamp(13px, 1.3vw, 20px); align-items: start; }
+    .steps .sn {
+      position: relative; z-index: 1; width: clamp(30px, 2.7vw, 38px); height: clamp(30px, 2.7vw, 38px);
+      display: grid; place-items: center; border-radius: 50%; background: var(--panel);
+      border: 1px solid var(--line); font: 700 clamp(11px, .92vw, 13px)/1 var(--display); color: var(--muted);
+    }
+    .steps li:first-child .sn { border-color: var(--signal); color: var(--signal); }
+    .steps b { display: block; font: 700 clamp(18px, 1.65vw, 27px)/1.1 var(--display); letter-spacing: -.02em; margin: clamp(3px, .5vh, 7px) 0 6px; }
+    .steps p { margin: 0; color: var(--muted); font-size: clamp(13px, 1.08vw, 17.5px); line-height: 1.34; }
+
+    .ctrl-map { border: 1px solid var(--line); background: rgba(255,255,255,.72); border-radius: 4px; padding: clamp(13px, 1.5vw, 22px) clamp(15px, 1.7vw, 25px); }
+    .ctrl-map .cm-head,
+    .ctrl-map .cm-row { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(12px, 1.3vw, 20px); }
+    .ctrl-map .cm-head {
+      font: 700 clamp(9.5px, .76vw, 11px)/1.2 var(--display); letter-spacing: .14em; text-transform: uppercase;
+      color: var(--dim); border-bottom: 1px solid var(--line); padding-bottom: 9px;
+    }
+    .ctrl-map .cm-row {
+      padding: clamp(9px, 1.25vh, 14px) 0 clamp(9px, 1.25vh, 14px) 0;
+      border-bottom: 1px solid rgba(27,49,57,.08); font-size: clamp(12.5px, 1.06vw, 17px); line-height: 1.3;
+    }
+    .ctrl-map .cm-row span:first-child { font-weight: 600; }
+    .ctrl-map .cm-row span:last-child { color: var(--muted); }
+    .ctrl-map .cm-row.uc { box-shadow: inset 2px 0 0 var(--signal); padding-left: 12px; }
+    .ctrl-map .cm-foot {
+      margin-top: 12px; color: var(--dim); font-size: clamp(11.5px, .95vw, 14.5px); line-height: 1.35;
+    }
+    .sod { border-top: 1px solid var(--line); padding-top: clamp(12px, 1.6vh, 18px); }
 
     /* 7 · matrix + chain */
     .matrix { width: 100%; border-collapse: collapse; }
@@ -463,15 +519,26 @@
     }
     .work-all:hover { color: var(--signal); border-color: var(--signal); }
     .work-all:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    /* the payoff: the note an AE actually sends, reserved at a fixed height */
     .example {
       margin-top: 13px; border-top: 1px dashed var(--line); padding-top: 11px;
-      font: 400 clamp(12.5px,1.02vw,16px)/1.5 var(--mono); color: var(--muted);
-      min-height: 76px;
+      color: var(--muted); min-height: clamp(118px, 15.5vh, 138px);
     }
-    .example b { color: var(--ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px; display: block; margin-bottom: 6px; }
-    .ask-line { display: block; opacity: 0; transition: opacity .2s ease; }
-    .example.is-ready .ask-line { opacity: 1; color: var(--ink); }
-    .ask-stub { display: block; height: 5px; width: 62%; border-radius: 3px; background: var(--oat-2); margin-top: 7px; }
+    .example > b { color: var(--ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px; display: block; margin-bottom: 8px; }
+    .mail-head { display: grid; gap: 3px; border-bottom: 1px solid var(--line); padding-bottom: 7px; margin-bottom: 8px; }
+    .mh-row { display: grid; grid-template-columns: clamp(48px, 4.4vw, 62px) minmax(0, 1fr); gap: 10px; align-items: baseline; }
+    .mh-row i { font: 700 9.5px/1.5 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-style: normal; }
+    .mh-row b { font: 400 clamp(11px, .92vw, 13.5px)/1.5 var(--mono); color: var(--dim); min-height: 1.5em; }
+    .example.is-ready .mh-row b { color: var(--ink); }
+    .mail-body {
+      position: relative; margin: 0; min-height: clamp(52px, 6.6vh, 66px); overflow: hidden;
+      font-size: clamp(12.5px, 1.02vw, 16px); line-height: 1.45; color: var(--muted);
+      opacity: 0; transition: opacity .2s ease;
+    }
+    .example.is-ready .mail-body { opacity: 1; color: var(--ink); }
+    .mail-stub { display: grid; gap: 7px; margin-top: -46px; }
+    .mail-stub i { display: block; height: 5px; border-radius: 3px; background: var(--oat-2); }
+    .example.is-ready .mail-stub { visibility: hidden; }
     .example.is-ready .ask-stub { display: none; }
 
     /* 14 · close */
@@ -686,43 +753,50 @@
     <section class="slide" aria-label="Four trust proofs">
       <div class="eyebrow"><span class="num">05</span> Framing</div>
       <div class="content">
-        <h2>Every Office of the CFO demo must land definition, lineage, reconciliation, and action</h2>
-        <p class="lead">Interesting answers are the easy part. These four are what make it a finance tool.</p>
+        <h2>Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled</h2>
+        <p class="lead">Interesting answers are the easy part. These four proofs are what Databricks can credibly demonstrate.</p>
         <div class="proofs">
-          <div class="proof"><div class="n">01</div><div><h3>Definition</h3><p>A named metric owner and a semantic or metric view behind it.</p></div></div>
-          <div class="proof"><div class="n">02</div><div><h3>Lineage</h3><p>Source to gold to answer, shown as a path rather than asserted.</p></div></div>
-          <div class="proof"><div class="n">03</div><div><h3>Reconciliation</h3><p>A bridge to a number they already believe: ledger, board KPI, prior close.</p></div></div>
-          <div class="proof"><div class="n">04</div><div><h3>Action</h3><p>What changes before period end, and who owns that change.</p></div></div>
+          <div class="proof"><div class="n">01</div><div><h3>Definition</h3><p>One governed meaning, with a named metric owner.</p></div></div>
+          <div class="proof"><div class="n">02</div><div><h3>Lineage</h3><p>The source-to-answer path, visible and inspectable.</p></div></div>
+          <div class="proof"><div class="n">03</div><div><h3>Reconciliation</h3><p>A bridge to a number finance already trusts.</p></div></div>
+          <div class="proof"><div class="n">04</div><div><h3>Control</h3><p>Who can see, change, and use it — with evidence.</p></div></div>
         </div>
-        <div class="banner">Proofs one through three are also what Internal Audit asks for — in their language, long before anyone says the word SOX.</div>
+        <div class="banner">The customer decides what action to take. The demo proves the governed information they will act on.</div>
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 19</span></div>
     </section>
 
     <!-- 06 · SOX primer -->
-    <section class="slide" aria-label="What SOX is and why it exists">
+    <section class="slide" aria-label="Why SOX exists">
       <div class="eyebrow"><span class="num">06</span> Vocabulary</div>
       <div class="content">
-        <h2>Sarbanes-Oxley exists so Controllers and CFOs never become the next Enron headline</h2>
-        <p class="lead">A 2002 US federal law that makes public-company executives personally accountable for the integrity of the numbers they report.</p>
-        <div class="origin">
-          <div class="beat">
-            <div class="tag">Why it exists</div>
-            <b>Enron</b>
-            <p>Cooked books. Collapsed trust. Controllers and CFOs spend their careers making sure you never hear their company name that way.</p>
-          </div>
-          <div class="beat">
-            <div class="tag">What it requires</div>
-            <b>Controls, not stickers</b>
-            <p>Documented change management, access, testing, and evidence that the reported number can be defended — including the systems that produce it.</p>
-          </div>
-          <div class="beat hot">
-            <div class="tag">Who asks in your deal</div>
-            <b>Controller · Audit · CFO</b>
-            <p>They will ask whether Genie and the lakehouse sit inside that control environment. Wrong answer stalls the deal.</p>
-          </div>
+        <h2>Why SOX exists</h2>
+        <div class="primer">
+          <figure class="clip">
+            <div class="stack">
+              <div class="sheet s1" aria-hidden="true"></div>
+              <div class="sheet s2" aria-hidden="true"></div>
+              <div class="paper">
+                <div class="fold" aria-hidden="true"></div>
+                <div class="masthead"><b>Front page · illustrative facsimile</b><span>December 2001</span></div>
+                <div class="hl">Enron collapses</div>
+                <div class="subdeck">Accounting fraud. Restated results. Numbers no one could trust.</div>
+                <div class="cols" aria-hidden="true">
+                  <span><i></i><i></i><i style="width:72%"></i><i></i><i style="width:88%"></i></span>
+                  <span><i></i><i style="width:81%"></i><i></i><i style="width:64%"></i></span>
+                  <span><i style="width:92%"></i><i></i><i style="width:57%"></i></span>
+                </div>
+              </div>
+            </div>
+            <figcaption>Stylized illustration — not a reproduction of any publication.</figcaption>
+          </figure>
+          <ol class="arc">
+            <li class="step"><span class="yr">2001</span><div><b>Fraud exposed</b><p>The reported numbers were false.</p></div></li>
+            <li class="step"><span class="yr">2002</span><div><b>Sarbanes-Oxley</b><p>US federal law, enforced by the SEC.</p></div></li>
+            <li class="step"><span class="yr">Since</span><div><b>Controls, not stickers</b><p>Executives personally certify the numbers.</p></div></li>
+            <li class="step hot"><span class="yr">Your deal</span><div><b>Controller · Audit · CFO</b><p>“Is this inside our control environment?”</p></div></li>
+          </ol>
         </div>
-        <div class="stamp">You already sell HIPAA fluency. SOX is the finance cousin most AEs and SAs have never been asked to name out loud.</div>
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 19</span></div>
     </section>
@@ -802,24 +876,31 @@
       <div class="eyebrow"><span class="num">09</span> Recommendation</div>
       <div class="content">
         <h2>Run SOX as their control environment on Unity Catalog, with Audit in the room</h2>
-        <p class="lead">Not a product argument. A control map they recognise, paired with the platform pattern that carries it.</p>
-        <table class="matrix">
-          <thead><tr><th>Control need they must satisfy</th><th>Pattern on Databricks</th></tr></thead>
-          <tbody>
-            <tr><td>Change management</td><td>Repos with CI/CD and approval gates</td></tr>
-            <tr><td>Access and segregation of duties</td><td>Unity Catalog privileges driven by their entitlement system</td></tr>
-            <tr><td>Evidence trail</td><td>Unity Catalog audit logs and lineage</td></tr>
-            <tr><td>Configuration lock-down</td><td>Cluster policies and runtime allowlists</td></tr>
-          </tbody>
-        </table>
-        <div class="chain">
+        <p class="lead">Four moves, in order — and the control map that answers move two.</p>
+        <div class="playbook">
+          <ol class="steps">
+            <li><span class="sn">01</span><div><b>Reframe</b><p>No vendor certificate. Their control environment, running on our platform.</p></div></li>
+            <li><span class="sn">02</span><div><b>Map the controls</b><p>Unity Catalog at the center: access, lineage, audit evidence.</p></div></li>
+            <li><span class="sn">03</span><div><b>Fill the room</b><p>Controller · Internal Audit · Finance Transformation · Platform IT — a workshop, not a quiet pilot.</p></div></li>
+            <li><span class="sn">04</span><div><b>Trace the chain</b><p>Which system owns segregation of duties and grants warehouse access today?</p></div></li>
+          </ol>
+          <div class="ctrl-map">
+            <div class="cm-head"><span>Control need</span><span>Pattern on Databricks</span></div>
+            <div class="cm-row uc"><span>Access and segregation of duties</span><span>Unity Catalog privileges, driven by their entitlement workflow</span></div>
+            <div class="cm-row uc"><span>Evidence trail</span><span>Unity Catalog audit logs and lineage</span></div>
+            <div class="cm-row"><span>Change management</span><span>Repos, CI/CD, approval gates</span></div>
+            <div class="cm-row"><span>Configuration lock-down</span><span>Cluster policies and runtime allowlists</span></div>
+            <div class="cm-row"><span>Data quality</span><span>Expectations and monitoring</span></div>
+            <div class="cm-foot">Their controls, on our platform. For our own: SOC 2 Type II — change, release, access.</div>
+          </div>
+        </div>
+        <div class="chain sod">
           <span class="node">Requestor</span><i>&rarr;</i>
           <span class="node">Approver</span><i>&rarr;</i>
           <span class="node">Grantor</span><i>&rarr;</i>
           <span class="node">Auditor</span>
-          <span class="cap">Separation is required across all four. Find the system that owns it before finance gold lands in a Genie space.</span>
+          <span class="cap">Separation across all four — find the system that owns it before finance gold lands in a Genie space.</span>
         </div>
-        <div class="room">In the room: <b>Controller · Internal Audit · Finance Transformation · Platform IT</b> — a workshop, not a quiet pilot that Audit discovers later.</div>
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 19</span></div>
     </section>
@@ -906,8 +987,8 @@
     <section class="slide" aria-label="Posture toward finance platforms">
       <div class="eyebrow"><span class="num">13</span> Options</div>
       <div class="content">
-        <h2>Planning and close platforms stay; we feed the governed truth they never see</h2>
-        <p class="lead" style="margin-bottom:16px">How we sit with each tool, and the Databricks consumption underneath it.</p>
+        <h2>Where to feed the finance stack, and where to leave the workflow alone</h2>
+        <p class="lead" style="margin-bottom:16px">Two questions per tool: do we become their source of truth, and how much Databricks consumption follows?</p>
         <div class="stack-map">
           <div class="stack-chips chips" role="group" aria-label="Select a platform"></div>
           <div class="stack-plot gfx" role="img" aria-label="Positioning matrix of finance platforms"></div>
@@ -919,8 +1000,8 @@
             </div>
             <div class="stack-row does"><span class="tag">What it does</span><p></p></div>
             <div class="stack-row owner"><span class="tag">Who owns it</span><p></p></div>
-            <div class="stack-row coop"><span class="tag">Cooperate · augment</span><p></p></div>
-            <div class="stack-row comp"><span class="tag">Compete</span><p></p></div>
+            <div class="stack-row coop"><span class="tag">How we help it</span><p></p></div>
+            <div class="stack-row comp"><span class="tag">Where competing is honest</span><p></p></div>
           </div>
         </div>
       </div>
@@ -943,7 +1024,15 @@
               <span>one page · before outreach<button type="button" class="work-all">Reveal all</button></span>
             </div>
             <div class="work" role="group" aria-label="Worksheet boxes — select to reveal the worked example"></div>
-            <div class="example" aria-live="polite"><b>Meeting ask</b><span class="ask-line"></span><i class="ask-stub"></i></div>
+            <div class="example" aria-live="polite">
+              <b>The note you send</b>
+              <div class="mail-head">
+                <span class="mh-row"><i>To</i><b class="mail-to"></b></span>
+                <span class="mh-row"><i>Subject</i><b class="mail-subject"></b></span>
+              </div>
+              <p class="mail-body"></p>
+              <div class="mail-stub" aria-hidden="true"><i style="width:88%"></i><i style="width:94%"></i><i style="width:61%"></i></div>
+            </div>
           </div>
         </div>
       </div>
@@ -957,10 +1046,10 @@
         <div class="overline" style="color:var(--signal);font:700 14px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px">Leave with four standards</div>
         <h2 style="font-size:clamp(38px,4.2vw,64px);margin-bottom:32px">Trust before wow. SOX without the myth. Their calendar. The demo contract.</h2>
         <ul class="standards">
-          <li><span class="n">01</span><div><b>Trust before wow</b><span>Definition, lineage, reconciliation, action — every time.</span></div></li>
+          <li><span class="n">01</span><div><b>Trust before wow</b><span>Definition, lineage, reconciliation, control — every time.</span></div></li>
           <li><span class="n">02</span><div><b>SOX without the myth</b><span>We support SOX-compliant workloads. No cloud provider is SOX certified. SOC 2 Type II covers our controls; Repos, cluster policies and Unity Catalog carry theirs.</span></div></li>
           <li><span class="n">03</span><div><b>Prospect on their calendar</b><span>Close, forecast, board, audit — four doors, four openers.</span></div></li>
-          <li><span class="n">04</span><div><b>Demo the contract</b><span>Variance, driver, proof including access, action before period end.</span></div></li>
+          <li><span class="n">04</span><div><b>Demo the contract</b><span>Surface, explain, reconcile, govern — then let the customer decide.</span></div></li>
         </ul>
         <div class="stamp">Resources: go/cfo · the August 5 assets · the SOX discussion deck · the finance workshop CTA · appendix after this slide</div>
       </div>
@@ -1122,12 +1211,12 @@
         { id: 'why', name: 'Explain', card: 'What is driving the worst segment?',
           screen: 'Driver breakdown for that one segment, largest contributor on top.',
           say: '“So the variance is concentrated in one driver, not spread across the book.”' },
-        { id: 'prove', name: 'Prove', card: 'Definition, lineage, bridge, access',
-          screen: 'The metric definition and its owner, the lineage path, the bridge to last month’s pack, and the access model.',
-          say: '“Here is who owns this definition, here is the path the number took, here is how it ties to the pack you signed — and access is granted through Unity Catalog and your entitlement process, not open chat on production.”' },
-        { id: 'act', name: 'Act', card: 'What changes before period end',
-          screen: 'One action, one owner, one date inside the current period.',
-          say: '“Before period end, this is the one thing that changes — and this is the person who owns it.”' },
+        { id: 'reconcile', name: 'Reconcile', card: 'Definition, lineage, bridge',
+          screen: 'The metric owner, source-to-answer path, and bridge to last month’s trusted pack.',
+          say: '“Here is who owns the definition, here is the path the number took, and here is how it ties to the pack you signed.”' },
+        { id: 'govern', name: 'Govern', card: 'Inspect access and control evidence',
+          screen: 'Unity Catalog privileges, the entitlement workflow, and an auditable access trail.',
+          say: '“Here is who can see, change, and use this information — and the evidence behind that control posture.”' },
       ];
 
       // Worksheet boxes reveal one worked example, one box at a time.
@@ -1142,36 +1231,52 @@
         { id: 'bridge', title: 'Bridge sentence, and the control posture if finance will consume it',
           fill: '“Same truth, one definition owner; finance gold sits in a governed Unity Catalog space, not a side copy.”' },
       ];
-      const MEETING_ASK = 'Fifteen minutes with FP&A and Controllership on gross-to-net: one agreed definition, '
-        + 'the lineage behind it, the bridge to last month’s signed pack, and how access is governed — '
-        + 'before the next forecast lock.';
+      // The four answers above assemble into the note that actually gets sent.
+      const MEETING_EMAIL = {
+        to: 'John, FP&A · copy the Controller',
+        subject: 'What commercial is getting out of one governed dataset',
+        body: 'Hi John — commercial has been getting a lot of mileage out of a Genie space on rebates and '
+          + 'chargebacks. Would love 30 minutes to show how the same foundation can help your team on '
+          + 'gross-to-net leakage: one agreed definition, the lineage behind it, and a bridge to the pack you '
+          + 'already sign. No ask to rip out what you close or plan in today.',
+      };
 
       // Positioning matrix:
-      //   x = 0 protect their process  →  1 become their truth layer
+      //   x = 0 leave their workflow alone  →  1 we become their source of truth
       //   y = 0 low Databricks consumption  →  1 high
       // Positions are pre-solved so nothing relies on force simulation.
-      // Quadrant assignment and every caption count derive from this array only.
+      // Quadrant names, sub-lines, and every caption count derive from these two
+      // structures only — nothing on the slide is hand-typed.
+      const AXES = {
+        xLow: 'Leave their workflow alone',
+        xHigh: 'We become their source of truth',
+        y: 'Our Databricks consumption',
+      };
       const QUADRANTS = {
-        gold:     { id: 'gold',     name: 'Feed the gold',     truth: true  },
-        feed:     { id: 'feed',     name: 'Feed it anyway',    truth: true  },
-        land:     { id: 'land',     name: 'Land underneath',   truth: false },
-        protect:  { id: 'protect',  name: 'Protect, don’t chase', truth: false },
+        best:      { id: 'best',      truth: true,  name: 'Best expansion play',
+                     sub: 'Feed it first — biggest platform pull' },
+        feed:      { id: 'feed',      truth: true,  name: 'Worth feeding',
+                     sub: 'Same play, smaller platform pull' },
+        dataLayer: { id: 'dataLayer', truth: false, name: 'Win the data layer',
+                     sub: 'Leave their workflow alone' },
+        recognize: { id: 'recognize', truth: false, name: 'Recognize it, don’t chase it',
+                     sub: 'No platform play here today' },
       };
       function toolQuadrant(t) {
         const truth = t.x >= 0.5;
         const high = t.y >= 0.5;
-        if (truth && high) return QUADRANTS.gold;
+        if (truth && high) return QUADRANTS.best;
         if (truth && !high) return QUADRANTS.feed;
-        if (!truth && high) return QUADRANTS.land;
-        return QUADRANTS.protect;
+        if (!truth && high) return QUADRANTS.dataLayer;
+        return QUADRANTS.recognize;
       }
       const TOOLS = [
         { id: 'anaplan', name: 'Anaplan', short: 'Anaplan',
           does: 'Enterprise planning and modelling — budgets, forecasts, and driver-based scenarios FP&A runs the business on.',
           owner: 'FP&A · Finance Transformation',
-          coop: 'Become the truth layer beneath it: feed governed actuals and reusable driver definitions, own the actuals-to-plan bridge.',
+          coop: 'Become their source of truth: feed governed actuals and reusable driver definitions, own the actuals-to-plan bridge.',
           compete: 'Only where the model has become a warehouse — extract sprawl, model bloat, no lineage to a named source.',
-          x: 0.82, y: 0.90, lx: 0, ly: 15, anchor: 'middle' },
+          x: 0.80, y: 0.80, lx: 0, ly: 21, anchor: 'middle' },
         { id: 'adaptive', name: 'Workday Adaptive', short: 'Adaptive',
           does: 'Workday Adaptive Planning — FP&A budgeting, forecasting, and workforce / expense planning on Workday.',
           owner: 'FP&A · Workday admin co-owns',
@@ -1626,7 +1731,7 @@
             label('Concentrated in one driver, not spread across the book', 262);
           }
 
-          if (state === 'prove') {
+          if (state === 'reconcile') {
             const rows = [
               ['Definition', 'Owner named in the metric view'],
               ['Lineage', 'source → silver → gold → answer'],
@@ -1641,33 +1746,25 @@
               }, k2.toUpperCase());
               add(svg, 'text', { x: padL + 130, y: y0 + 23, 'font-family': BODY, 'font-size': 14.5, fill: C.ink }, v);
             });
-            const chips = ['Unity Catalog privileges', 'Their entitlement workflow', 'Audit log'];
-            let cx = padL;
-            chips.forEach(t => {
-              const w = 22 + t.length * 7.4;
-              add(svg, 'rect', { x: cx, y: 224, width: w, height: 30, rx: 15, fill: 'rgba(0,169,114,.09)', stroke: C.green });
-              add(svg, 'text', { x: cx + 11, y: 243, 'font-family': BODY, 'font-size': 13, fill: C.ink }, t);
-              cx += w + 10;
-            });
-            label('Access is governed, and you say so out loud', 274, C.muted);
+            label('Tie the answer to a number finance already trusts', 274, C.muted);
           }
 
-          if (state === 'act') {
-            add(svg, 'rect', { x: padL, y: bodyTop, width: stripW, height: 92, rx: 5, fill: C.panel, stroke: C.signal });
-            add(svg, 'text', {
-              x: padL + 20, y: bodyTop + 38, 'font-family': DISPLAY, 'font-size': 21, 'font-weight': 700, fill: C.ink
-            }, 'One action, inside the current period');
-            add(svg, 'text', { x: padL + 20, y: bodyTop + 68, 'font-family': BODY, 'font-size': 15, fill: C.muted },
-              'Named owner · agreed by close · reviewed in the next pack');
-            ['Owner', 'Date', 'Where it shows up'].forEach((t, j) => {
-              add(svg, 'rect', { x: padL + j * 268, y: 204, width: 246, height: 46, rx: 4, fill: 'rgba(27,49,57,.04)', stroke: C.line });
+          if (state === 'govern') {
+            const rows = [
+              ['SEE', 'Unity Catalog privileges'],
+              ['CHANGE', 'Their approved entitlement workflow'],
+              ['USE', 'Auditable access and query evidence'],
+            ];
+            rows.forEach(([k2, v], j) => {
+              const y0 = bodyTop - 8 + j * 46;
+              add(svg, 'rect', { x: padL, y: y0, width: stripW, height: 36, rx: 4, fill: C.panel, stroke: C.line });
               add(svg, 'text', {
-                x: padL + j * 268 + 14, y: 224, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700,
-                'letter-spacing': '1.4', fill: C.dim
-              }, t.toUpperCase());
-              add(svg, 'rect', { x: padL + j * 268 + 14, y: 232, width: 150, height: 5, rx: 3, fill: C.oat2 });
+                x: padL + 14, y: y0 + 23, 'font-family': DISPLAY, 'font-size': 11.5, 'font-weight': 700,
+                'letter-spacing': '1.4', fill: C.green
+              }, k2);
+              add(svg, 'text', { x: padL + 130, y: y0 + 23, 'font-family': BODY, 'font-size': 14.5, fill: C.ink }, v);
             });
-            label('The beat most demos skip', 276, C.muted);
+            label('Show the control posture and its evidence', 274, C.muted);
           }
 
           screenP.textContent = beat.screen;
@@ -1700,7 +1797,11 @@
           paint();
         });
 
-        const goldCount = TOOLS.filter(t => toolQuadrant(t).id === 'gold').length;
+        // Counts and caption come from the data, so re-plotting a tool rewrites both.
+        const bestCount = TOOLS.filter(t => toolQuadrant(t).id === QUADRANTS.best.id).length;
+        const leaveCount = TOOLS.filter(t => !toolQuadrant(t).truth).length;
+        const CAPTION = `${bestCount} of ${TOOLS.length} are a “${QUADRANTS.best.name}” — feed those first. `
+          + `${leaveCount} of ${TOOLS.length} keep their workflow untouched.`;
 
         function paint() {
           [...chips.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tool === state)));
@@ -1712,7 +1813,7 @@
           const py = v => y1 - v * (y1 - y0);
           const midX = px(0.5), midY = py(0.5);
 
-          // money quadrant wash (become truth layer + high consumption)
+          // wash behind the best expansion play (source of truth + high consumption)
           add(svg, 'rect', { x: midX, y: y0, width: x1 - midX, height: midY - y0, fill: 'rgba(0,169,114,.06)' });
 
           // plot frame + quadrant dividers
@@ -1720,29 +1821,34 @@
           add(svg, 'line', { x1: midX, y1: y0, x2: midX, y2: y1, stroke: C.faint, 'stroke-width': 1, 'stroke-dasharray': '4 5' });
           add(svg, 'line', { x1: x0, y1: midY, x2: x1, y2: midY, stroke: C.faint, 'stroke-width': 1, 'stroke-dasharray': '4 5' });
 
-          // quadrant labels — names derived from QUADRANTS, positioned per corner
-          const qLabel = (text, cx, cy, anchor, hot) => add(svg, 'text', {
-            x: cx, y: cy, 'text-anchor': anchor, 'font-family': DISPLAY, 'font-size': 12.5,
-            'font-weight': 700, 'letter-spacing': '.9', fill: hot ? C.green : C.dim
-          }, text.toUpperCase());
-          qLabel(QUADRANTS.land.name, x0 + 12, y0 + 22, 'start', false);
-          qLabel(QUADRANTS.gold.name, x1 - 12, y0 + 22, 'end', true);
-          qLabel(QUADRANTS.protect.name, x0 + 12, y1 - 12, 'start', false);
-          qLabel(QUADRANTS.feed.name, x1 - 12, y1 - 12, 'end', false);
+          // quadrant labels — play name over a plain-language sub-line, both from QUADRANTS
+          const qLabel = (quad, cx, cy, anchor, hot) => {
+            add(svg, 'text', {
+              x: cx, y: cy, 'text-anchor': anchor, 'font-family': DISPLAY, 'font-size': 12.5,
+              'font-weight': 700, 'letter-spacing': '.9', fill: hot ? C.green : C.muted
+            }, quad.name.toUpperCase());
+            add(svg, 'text', {
+              x: cx, y: cy + 16, 'text-anchor': anchor, 'font-family': BODY, 'font-size': 11.5, fill: C.dim
+            }, quad.sub);
+          };
+          qLabel(QUADRANTS.dataLayer, x0 + 12, y0 + 20, 'start', false);
+          qLabel(QUADRANTS.best, x1 - 12, y0 + 20, 'end', true);
+          qLabel(QUADRANTS.recognize, x0 + 12, y1 - 26, 'start', false);
+          qLabel(QUADRANTS.feed, x1 - 12, y1 - 26, 'end', false);
 
-          // Y axis — consumption, LOW→HIGH
+          // Y axis — how much platform consumption a play carries
           add(svg, 'text', {
             x: 26, y: (y0 + y1) / 2, 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700,
             'letter-spacing': '1.4', fill: C.muted, 'text-anchor': 'middle',
             transform: `rotate(-90 26 ${(y0 + y1) / 2})`
-          }, 'DATABRICKS CONSUMPTION');
+          }, AXES.y.toUpperCase());
           add(svg, 'text', { x: 44, y: y0 + 12, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700, 'letter-spacing': '1', fill: C.dim, 'text-anchor': 'middle' }, 'HIGH');
           add(svg, 'text', { x: 44, y: y1 - 2, 'font-family': DISPLAY, 'font-size': 10.5, 'font-weight': 700, 'letter-spacing': '1', fill: C.dim, 'text-anchor': 'middle' }, 'LOW');
 
-          // X axis — protect ↔ truth layer
-          add(svg, 'text', { x: x0, y: y1 + 30, 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.muted }, 'PROTECT THEIR PROCESS');
-          add(svg, 'text', { x: x1, y: y1 + 30, 'text-anchor': 'end', 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.green }, 'BECOME THEIR TRUTH LAYER');
-          add(svg, 'text', { x: (x0 + x1) / 2, y: y1 + 52, 'text-anchor': 'middle', 'font-family': BODY, 'font-size': 12.5, fill: C.dim }, `${goldCount} of ${TOOLS.length} land in “Feed the gold” — high consumption once we become the truth layer beneath the tool.`);
+          // X axis — whose workflow we touch
+          add(svg, 'text', { x: x0, y: y1 + 30, 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.muted }, AXES.xLow.toUpperCase());
+          add(svg, 'text', { x: x1, y: y1 + 30, 'text-anchor': 'end', 'font-family': DISPLAY, 'font-size': 12, 'font-weight': 700, 'letter-spacing': '1', fill: C.green }, AXES.xHigh.toUpperCase());
+          add(svg, 'text', { x: (x0 + x1) / 2, y: y1 + 52, 'text-anchor': 'middle', 'font-family': BODY, 'font-size': 12.5, fill: C.dim }, CAPTION);
 
           // plotted tools — deterministic positions + per-tool label offsets
           TOOLS.forEach((t) => {
@@ -1762,8 +1868,8 @@
           const t = TOOLS.find(item => item.id === state);
           const q = toolQuadrant(t);
           idEl.textContent = t.name;
-          metaEl.textContent = q.name;
-          quadEl.textContent = q.truth ? 'Become their truth layer' : 'Protect their process';
+          metaEl.textContent = `${q.name} · ${q.sub}`;
+          quadEl.textContent = q.truth ? AXES.xHigh : AXES.xLow;
           quadEl.classList.toggle('is-compete', !q.truth);
           doesP.textContent = t.does;
           ownerP.textContent = t.owner;
@@ -1780,7 +1886,9 @@
       registerViz(13, (slide) => {
         const work = slide.querySelector('.work');
         const example = slide.querySelector('.example');
-        const askLine = slide.querySelector('.ask-line');
+        const mailTo = slide.querySelector('.mail-to');
+        const mailSubject = slide.querySelector('.mail-subject');
+        const mailBody = slide.querySelector('.mail-body');
         const revealAll = slide.querySelector('.work-all');
         const shown = new Set();
 
@@ -1811,7 +1919,9 @@
           [...work.children].forEach(b => b.setAttribute('aria-pressed', String(shown.has(b.dataset.box))));
           const complete = shown.size === WORKSHEET.length;
           example.classList.toggle('is-ready', complete);
-          askLine.textContent = complete ? MEETING_ASK : '';
+          mailTo.textContent = complete ? MEETING_EMAIL.to : '';
+          mailSubject.textContent = complete ? MEETING_EMAIL.subject : '';
+          mailBody.textContent = complete ? MEETING_EMAIL.body : '';
           revealAll.textContent = complete ? 'Reset' : 'Reveal all';
         }
 

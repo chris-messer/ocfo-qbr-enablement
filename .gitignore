@@ -23,3 +23,6 @@ dist/
 tmp/
 temp/
 *.log
+
+# Local verification screenshots / temp
+_verify/

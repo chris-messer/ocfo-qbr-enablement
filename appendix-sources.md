@@ -49,11 +49,11 @@
 Default posture unchanged: usually augment / feed governed truth; displace only when honest (HFM retirement path).
 
 **Slide 13 redesigned as a 2×2 positioning matrix** (presenter feedback: the spectrum "read as meaningless"). Axes:
-- X: **Protect their process** (left) ←→ **Become their truth layer** (right) — replaces the compete/cooperate axis.
-- Y: **Databricks consumption opportunity** — low (bottom) → high (top).
-- Quadrants (derived from the JS array, not hand-typed): **Feed the gold** (truth layer + high — the money), **Feed it anyway** (truth layer + low), **Land underneath** (protect + high), **Protect, don’t chase** (protect + low).
+- X: **Leave their workflow alone** (left) ←→ **We become their source of truth** (right) — replaces the compete/cooperate axis.
+- Y: **Our Databricks consumption** — low (bottom) → high (top).
+- Quadrants are named as plays, derived from the JS array rather than hand-typed: **Best expansion play** (source of truth + high, “feed it first — biggest platform pull”), **Worth feeding** (source of truth + low, “same play, smaller platform pull”), **Win the data layer** (leave the workflow + high, “leave their workflow alone”), **Recognize it, don’t chase it** (leave the workflow + low, “no platform play here today”).
 
-Placements: Anaplan / Adaptive / Planful / OneStream → Feed the gold; Oracle EPM/FCCS → Feed it anyway; HFM → Land underneath; BlackLine / FloQast → Protect, don’t chase. Detail panel adds net-new education per tool: what it does, who owns it, cooperate/augment line, honest compete note.
+Placements: Anaplan / Adaptive / Planful / OneStream → Best expansion play; Oracle EPM/FCCS → Worth feeding; HFM → Win the data layer; BlackLine / FloQast → Recognize it, don’t chase it. Detail panel adds net-new education per tool: what it does, who owns it, how we help it, and where competing is honest.
 
 ## Other primary sources (unchanged)
 
