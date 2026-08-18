@@ -711,6 +711,8 @@
 <body>
   <main class="deck" aria-live="polite">
 
+
+
     <!-- 01 · title -->
     <section class="slide title-slide active" aria-label="Selling to the Office of the CFO">
       <div></div>
@@ -722,6 +724,8 @@
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 19</span></div>
     </section>
+
+
 
     <!-- 02 · fork: already covered vs this hour -->
     <section class="slide" aria-label="What this hour adds">
@@ -742,8 +746,8 @@
           <div class="now">
             <div class="tag" style="color:var(--signal)">This hour</div>
             <ul>
-              <li>How finance decides to trust a number</li>
               <li class="hot">SOX: the exact language, and the myth to drop</li>
+              <li>How finance decides to trust a number</li>
               <li>Prospecting against the close calendar</li>
               <li>A demo standard a controller respects</li>
               <li>What each role does this week</li>
@@ -755,9 +759,158 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 19</span></div>
     </section>
 
-    <!-- 03 · CPA rejection -->
+
+
+    <!-- 03 · SOX primer -->
+    <section class="slide" aria-label="Why SOX exists">
+      <div class="eyebrow"><span class="num">03</span> Vocabulary</div>
+      <div class="content">
+        <h2>Why SOX exists</h2>
+        <div class="primer">
+          <figure class="clip">
+            <div class="stack">
+              <div class="sheet s1" aria-hidden="true"></div>
+              <div class="sheet s2" aria-hidden="true"></div>
+              <div class="paper">
+                <div class="fold" aria-hidden="true"></div>
+                <div class="masthead"><b>Front page · illustrative facsimile</b><span>December 2001</span></div>
+                <div class="hl">Enron collapses</div>
+                <div class="subdeck">Accounting fraud. Restated results. Numbers no one could trust.</div>
+                <div class="cols" aria-hidden="true">
+                  <span><i></i><i></i><i style="width:72%"></i><i></i><i style="width:88%"></i></span>
+                  <span><i></i><i style="width:81%"></i><i></i><i style="width:64%"></i></span>
+                  <span><i style="width:92%"></i><i></i><i style="width:57%"></i></span>
+                </div>
+              </div>
+            </div>
+            <figcaption>Stylized illustration — not a reproduction of any publication.</figcaption>
+          </figure>
+          <ol class="arc">
+            <li class="step"><span class="yr">2001</span><div><b>Fraud exposed</b><p>The reported numbers were false.</p></div></li>
+            <li class="step"><span class="yr">2002</span><div><b>Sarbanes-Oxley</b><p>US federal law, enforced by the SEC.</p></div></li>
+            <li class="step"><span class="yr">Since</span><div><b>Controls, not stickers</b><p>Executives personally certify the numbers.</p></div></li>
+            <li class="step hot"><span class="yr">Your deal</span><div><b>Controller · Audit · CFO</b><p>“Is this inside our control environment?”</p></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 19</span></div>
+    </section>
+
+
+
+    <!-- 04 · HIPAA vs SOX hinge -->
+    <section class="slide" aria-label="HIPAA compared with SOX">
+      <div class="eyebrow"><span class="num">04</span> Vocabulary</div>
+      <div class="content">
+        <h2>HIPAA protects the record; SOX protects the integrity of the reported number</h2>
+        <p class="lead">You are already fluent in the left column. The right column has different owners, different evidence, and no certificate.</p>
+        <div class="hinge">
+          <div class="h-head col-hipaa"><b>HIPAA</b><span>The conversation you already win</span></div>
+          <div class="h-head col-spine">&nbsp;</div>
+          <div class="h-head col-sox"><b>SOX</b><span>The conversation that stalls deals</span></div>
+
+          <div class="h-cell col-hipaa">PHI inside the record</div>
+          <div class="h-cell col-spine">What it protects</div>
+          <div class="h-cell col-sox">Integrity of the reported number, including IPE and ITGCs</div>
+
+          <div class="h-cell col-hipaa">Privacy, Security, Compliance</div>
+          <div class="h-cell col-spine">Who owns the question</div>
+          <div class="h-cell col-sox">Controller, Internal Audit, CFO</div>
+
+          <div class="h-cell col-hipaa">Signed BAA, framework alignment</div>
+          <div class="h-cell col-spine">The paperwork</div>
+          <div class="h-cell col-sox">No certification exists for any cloud provider; SOC 2 Type II covers our controls</div>
+
+          <div class="h-cell col-hipaa row-pre-kill">De-identification, access, breach response</div>
+          <div class="h-cell col-spine row-pre-kill">Control focus</div>
+          <div class="h-cell col-sox row-pre-kill">Change management, segregation of duties, reconciliation, lineage, source-control repos</div>
+
+          <div class="h-cell col-hipaa row-kill">“It is encrypted, so PHI is fine.”</div>
+          <div class="h-cell col-spine row-kill">Ends the meeting</div>
+          <div class="h-cell col-sox row-kill">“Databricks is SOX certified.”</div>
+        </div>
+        <div class="stamp">Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.</div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 19</span></div>
+    </section>
+
+
+
+    <!-- 05 · SOX facsimile -->
+    <section class="slide" aria-label="SOX positioning language">
+      <div class="eyebrow"><span class="num">05</span> Client need</div>
+      <div class="content">
+        <h2>Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification</h2>
+        <div class="doc-wrap">
+          <div class="doc">
+            <div class="sheet s1"></div>
+            <div class="sheet s2"></div>
+            <div class="page">
+              <div class="fold"></div>
+              <div class="letterhead"><b>Databricks · compliance positioning</b><span>standard response · verbatim</span></div>
+              <h3>Can Databricks be used with SOX compliance?</h3>
+              <p>The Sarbanes-Oxley Act of 2002 is a US federal law administered by the Securities and Exchange Commission. <mark>Databricks can support a SOX-compliant workload</mark>, and has customers running SOX-compliant workloads on the platform.</p>
+              <div class="greek"><div class="line" style="width:97%"></div><div class="line" style="width:91%"></div><div class="line" style="width:64%"></div></div>
+              <p>Most SOX requirements are about how customers maintain their source code and their testing processes — commonly Repos for source control and cluster policies for allowed instance types and runtime versions.</p>
+              <p><mark>When it comes to actual audits, there is no SOX certification or validation for cloud service providers.</mark> Databricks is a general-purpose, data-agnostic compute platform and is not audited for SOX. For review of Databricks itself, consult the controls within our <mark>SOC 2 Type II</mark> report covering change management, release management, and access management.</p>
+              <div class="greek"><div class="line" style="width:88%"></div><div class="line" style="width:42%"></div></div>
+            </div>
+          </div>
+          <div class="side">
+            <div class="tag">Loses credibility instantly</div>
+            <ul>
+              <li class="strike">“Databricks is SOX certified.”</li>
+              <li class="strike">“SOX does not apply to Genie.”</li>
+              <li class="strike">“Do not worry about Internal Audit.”</li>
+              <li class="ok">Ask for SOC 2 Type II when they want evidence about our controls — that request path is real and answerable.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 19</span></div>
+    </section>
+
+
+
+    <!-- 06 · SOX meeting playbook -->
+    <section class="slide" aria-label="Running the SOX conversation">
+      <div class="eyebrow"><span class="num">06</span> Recommendation</div>
+      <div class="content">
+        <h2>Run SOX as their control environment on Unity Catalog, with Audit in the room</h2>
+        <p class="lead">Four moves, in order — and the control map that answers move two.</p>
+        <div class="playbook">
+          <ol class="steps">
+            <li><span class="sn">01</span><div><b>Reframe</b><p>No vendor certificate. Their control environment, running on our platform.</p></div></li>
+            <li><span class="sn">02</span><div><b>Map the controls</b><p>Unity Catalog at the center: access, lineage, audit evidence.</p></div></li>
+            <li><span class="sn">03</span><div><b>Fill the room</b><p>Controller · Internal Audit · Finance Transformation · Platform IT — a workshop, not a quiet pilot.</p></div></li>
+            <li><span class="sn">04</span><div><b>Trace the chain</b><p>Which system owns segregation of duties and grants warehouse access today?</p></div></li>
+          </ol>
+          <div class="ctrl-map">
+            <div class="cm-head"><span>Control need</span><span>Pattern on Databricks</span></div>
+            <div class="cm-row uc"><span>Access and segregation of duties</span><span>Unity Catalog privileges, driven by their entitlement workflow</span></div>
+            <div class="cm-row uc"><span>Evidence trail</span><span>Unity Catalog audit logs and lineage</span></div>
+            <div class="cm-row"><span>Change management</span><span>Repos, CI/CD, approval gates</span></div>
+            <div class="cm-row"><span>Configuration lock-down</span><span>Cluster policies and runtime allowlists</span></div>
+            <div class="cm-row"><span>Data quality</span><span>Expectations and monitoring</span></div>
+            <div class="cm-foot">Their controls, on our platform. For our own: SOC 2 Type II — change, release, access.</div>
+          </div>
+        </div>
+        <div class="chain sod">
+          <span class="node">Requestor</span><i>&rarr;</i>
+          <span class="node">Approver</span><i>&rarr;</i>
+          <span class="node">Grantor</span><i>&rarr;</i>
+          <span class="node">Auditor</span>
+          <span class="cap">Separation across all four — find the system that owns it before finance gold lands in a Genie space.</span>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 19</span></div>
+    </section>
+
+
+
+    <!-- 07 · CPA rejection -->
     <section class="slide" aria-label="What a CPA hears">
-      <div class="eyebrow"><span class="num">03</span> Problem space</div>
+      <div class="eyebrow"><span class="num">07</span> Problem space</div>
       <div class="content">
         <h2>A CPA hears “ask anything in plain language” as a control failure</h2>
         <p class="lead">Four rejections, spoken in the room, before the demo reaches its second question.</p>
@@ -802,12 +955,14 @@
         </div>
         <div class="stamp">Speed without controls is a spreadsheet culture with a better interface. Careers end on unsupported numbers.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 19</span></div>
     </section>
 
-    <!-- 04 · vocabulary translation -->
+
+
+    <!-- 08 · vocabulary translation -->
     <section class="slide" aria-label="Seller language in finance dialect">
-      <div class="eyebrow"><span class="num">04</span> Vocabulary</div>
+      <div class="eyebrow"><span class="num">08</span> Vocabulary</div>
       <div class="content">
         <h2>Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy</h2>
         <p class="lead">They are not afraid of AI. They are afraid of a number nobody will sign.</p>
@@ -820,12 +975,14 @@
         </div>
         <div class="stamp">Meeting-one win: they believe you can produce a number <b>and</b> the story of how it was produced.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 19</span></div>
     </section>
 
-    <!-- 05 · four proofs -->
+
+
+    <!-- 09 · four proofs -->
     <section class="slide" aria-label="Four trust proofs">
-      <div class="eyebrow"><span class="num">05</span> Framing</div>
+      <div class="eyebrow"><span class="num">09</span> Framing</div>
       <div class="content">
         <h2>Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled</h2>
         <p class="lead">Interesting answers are the easy part. These four proofs are what Databricks can credibly demonstrate.</p>
@@ -837,147 +994,10 @@
         </div>
         <div class="banner">The customer decides what action to take. The demo proves the governed information they will act on.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 19</span></div>
-    </section>
-
-    <!-- 06 · SOX primer -->
-    <section class="slide" aria-label="Why SOX exists">
-      <div class="eyebrow"><span class="num">06</span> Vocabulary</div>
-      <div class="content">
-        <h2>Why SOX exists</h2>
-        <div class="primer">
-          <figure class="clip">
-            <div class="stack">
-              <div class="sheet s1" aria-hidden="true"></div>
-              <div class="sheet s2" aria-hidden="true"></div>
-              <div class="paper">
-                <div class="fold" aria-hidden="true"></div>
-                <div class="masthead"><b>Front page · illustrative facsimile</b><span>December 2001</span></div>
-                <div class="hl">Enron collapses</div>
-                <div class="subdeck">Accounting fraud. Restated results. Numbers no one could trust.</div>
-                <div class="cols" aria-hidden="true">
-                  <span><i></i><i></i><i style="width:72%"></i><i></i><i style="width:88%"></i></span>
-                  <span><i></i><i style="width:81%"></i><i></i><i style="width:64%"></i></span>
-                  <span><i style="width:92%"></i><i></i><i style="width:57%"></i></span>
-                </div>
-              </div>
-            </div>
-            <figcaption>Stylized illustration — not a reproduction of any publication.</figcaption>
-          </figure>
-          <ol class="arc">
-            <li class="step"><span class="yr">2001</span><div><b>Fraud exposed</b><p>The reported numbers were false.</p></div></li>
-            <li class="step"><span class="yr">2002</span><div><b>Sarbanes-Oxley</b><p>US federal law, enforced by the SEC.</p></div></li>
-            <li class="step"><span class="yr">Since</span><div><b>Controls, not stickers</b><p>Executives personally certify the numbers.</p></div></li>
-            <li class="step hot"><span class="yr">Your deal</span><div><b>Controller · Audit · CFO</b><p>“Is this inside our control environment?”</p></div></li>
-          </ol>
-        </div>
-      </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 19</span></div>
-    </section>
-
-    <!-- 07 · HIPAA vs SOX hinge -->
-    <section class="slide" aria-label="HIPAA compared with SOX">
-      <div class="eyebrow"><span class="num">07</span> Vocabulary</div>
-      <div class="content">
-        <h2>HIPAA protects the record; SOX protects the integrity of the reported number</h2>
-        <p class="lead">You are already fluent in the left column. The right column has different owners, different evidence, and no certificate.</p>
-        <div class="hinge">
-          <div class="h-head col-hipaa"><b>HIPAA</b><span>The conversation you already win</span></div>
-          <div class="h-head col-spine">&nbsp;</div>
-          <div class="h-head col-sox"><b>SOX</b><span>The conversation that stalls deals</span></div>
-
-          <div class="h-cell col-hipaa">PHI inside the record</div>
-          <div class="h-cell col-spine">What it protects</div>
-          <div class="h-cell col-sox">Integrity of the reported number, including IPE and ITGCs</div>
-
-          <div class="h-cell col-hipaa">Privacy, Security, Compliance</div>
-          <div class="h-cell col-spine">Who owns the question</div>
-          <div class="h-cell col-sox">Controller, Internal Audit, CFO</div>
-
-          <div class="h-cell col-hipaa">Signed BAA, framework alignment</div>
-          <div class="h-cell col-spine">The paperwork</div>
-          <div class="h-cell col-sox">No certification exists for any cloud provider; SOC 2 Type II covers our controls</div>
-
-          <div class="h-cell col-hipaa row-pre-kill">De-identification, access, breach response</div>
-          <div class="h-cell col-spine row-pre-kill">Control focus</div>
-          <div class="h-cell col-sox row-pre-kill">Change management, segregation of duties, reconciliation, lineage, source-control repos</div>
-
-          <div class="h-cell col-hipaa row-kill">“It is encrypted, so PHI is fine.”</div>
-          <div class="h-cell col-spine row-kill">Ends the meeting</div>
-          <div class="h-cell col-sox row-kill">“Databricks is SOX certified.”</div>
-        </div>
-        <div class="stamp">Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.</div>
-      </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 19</span></div>
-    </section>
-
-    <!-- 08 · SOX facsimile -->
-    <section class="slide" aria-label="SOX positioning language">
-      <div class="eyebrow"><span class="num">08</span> Client need</div>
-      <div class="content">
-        <h2>Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification</h2>
-        <div class="doc-wrap">
-          <div class="doc">
-            <div class="sheet s1"></div>
-            <div class="sheet s2"></div>
-            <div class="page">
-              <div class="fold"></div>
-              <div class="letterhead"><b>Databricks · compliance positioning</b><span>standard response · verbatim</span></div>
-              <h3>Can Databricks be used with SOX compliance?</h3>
-              <p>The Sarbanes-Oxley Act of 2002 is a US federal law administered by the Securities and Exchange Commission. <mark>Databricks can support a SOX-compliant workload</mark>, and has customers running SOX-compliant workloads on the platform.</p>
-              <div class="greek"><div class="line" style="width:97%"></div><div class="line" style="width:91%"></div><div class="line" style="width:64%"></div></div>
-              <p>Most SOX requirements are about how customers maintain their source code and their testing processes — commonly Repos for source control and cluster policies for allowed instance types and runtime versions.</p>
-              <p><mark>When it comes to actual audits, there is no SOX certification or validation for cloud service providers.</mark> Databricks is a general-purpose, data-agnostic compute platform and is not audited for SOX. For review of Databricks itself, consult the controls within our <mark>SOC 2 Type II</mark> report covering change management, release management, and access management.</p>
-              <div class="greek"><div class="line" style="width:88%"></div><div class="line" style="width:42%"></div></div>
-            </div>
-          </div>
-          <div class="side">
-            <div class="tag">Loses credibility instantly</div>
-            <ul>
-              <li class="strike">“Databricks is SOX certified.”</li>
-              <li class="strike">“SOX does not apply to Genie.”</li>
-              <li class="strike">“Do not worry about Internal Audit.”</li>
-              <li class="ok">Ask for SOC 2 Type II when they want evidence about our controls — that request path is real and answerable.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 19</span></div>
-    </section>
-
-    <!-- 09 · SOX meeting playbook -->
-    <section class="slide" aria-label="Running the SOX conversation">
-      <div class="eyebrow"><span class="num">09</span> Recommendation</div>
-      <div class="content">
-        <h2>Run SOX as their control environment on Unity Catalog, with Audit in the room</h2>
-        <p class="lead">Four moves, in order — and the control map that answers move two.</p>
-        <div class="playbook">
-          <ol class="steps">
-            <li><span class="sn">01</span><div><b>Reframe</b><p>No vendor certificate. Their control environment, running on our platform.</p></div></li>
-            <li><span class="sn">02</span><div><b>Map the controls</b><p>Unity Catalog at the center: access, lineage, audit evidence.</p></div></li>
-            <li><span class="sn">03</span><div><b>Fill the room</b><p>Controller · Internal Audit · Finance Transformation · Platform IT — a workshop, not a quiet pilot.</p></div></li>
-            <li><span class="sn">04</span><div><b>Trace the chain</b><p>Which system owns segregation of duties and grants warehouse access today?</p></div></li>
-          </ol>
-          <div class="ctrl-map">
-            <div class="cm-head"><span>Control need</span><span>Pattern on Databricks</span></div>
-            <div class="cm-row uc"><span>Access and segregation of duties</span><span>Unity Catalog privileges, driven by their entitlement workflow</span></div>
-            <div class="cm-row uc"><span>Evidence trail</span><span>Unity Catalog audit logs and lineage</span></div>
-            <div class="cm-row"><span>Change management</span><span>Repos, CI/CD, approval gates</span></div>
-            <div class="cm-row"><span>Configuration lock-down</span><span>Cluster policies and runtime allowlists</span></div>
-            <div class="cm-row"><span>Data quality</span><span>Expectations and monitoring</span></div>
-            <div class="cm-foot">Their controls, on our platform. For our own: SOC 2 Type II — change, release, access.</div>
-          </div>
-        </div>
-        <div class="chain sod">
-          <span class="node">Requestor</span><i>&rarr;</i>
-          <span class="node">Approver</span><i>&rarr;</i>
-          <span class="node">Grantor</span><i>&rarr;</i>
-          <span class="node">Auditor</span>
-          <span class="cap">Separation across all four — find the system that owns it before finance gold lands in a Genie space.</span>
-        </div>
-      </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 19</span></div>
     </section>
+
+
 
     <!-- 10 · calendar (interactive) -->
     <section class="slide" aria-label="The finance calendar">
@@ -995,6 +1015,8 @@
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 19</span></div>
     </section>
+
+
 
     <!-- 11 · champion path -->
     <section class="slide" aria-label="Champion path">
@@ -1037,6 +1059,8 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 19</span></div>
     </section>
 
+
+
     <!-- 12 · demo contract + choreography (interactive) -->
     <section class="slide" aria-label="Demo contract and choreography">
       <div class="eyebrow"><span class="num">12</span> Recommendation</div>
@@ -1056,6 +1080,8 @@
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 19</span></div>
     </section>
+
+
 
     <!-- 13 · compete / cooperate matrix (interactive) -->
     <section class="slide" aria-label="Posture toward finance platforms">
@@ -1081,6 +1107,8 @@
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 19</span></div>
     </section>
+
+
 
     <!-- 14 · worksheet facsimile -->
     <section class="slide worksheet" aria-label="LOB to Office of the CFO worksheet">
@@ -1113,6 +1141,8 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 19</span></div>
     </section>
 
+
+
     <!-- 15 · close -->
     <section class="slide opener" aria-label="Four standards">
       <div></div>
@@ -1130,6 +1160,8 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 19</span></div>
       <div class="ghost" aria-hidden="true">CFO</div>
     </section>
+
+
 
     <!-- 16 · appendix · three pillars -->
     <section class="slide" aria-label="Three finance pillars">
@@ -1156,6 +1188,8 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 19</span></div>
     </section>
 
+
+
     <!-- 17 · appendix · CFO vocabulary -->
     <section class="slide" aria-label="CFO vocabulary">
       <div class="eyebrow"><span class="num">17</span> Appendix</div>
@@ -1175,6 +1209,8 @@
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 19</span></div>
     </section>
 
+
+
     <!-- 18 · appendix · discovery bank (interactive) -->
     <section class="slide" aria-label="Discovery question bank">
       <div class="eyebrow"><span class="num">18</span> Appendix</div>
@@ -1188,6 +1224,8 @@
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 19</span></div>
     </section>
+
+
 
     <!-- 19 · appendix · stack cooperate cues -->
     <section class="slide" aria-label="Finance stack stays">
@@ -1460,6 +1498,12 @@
           slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
         });
         progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        slides.forEach((s, i) => {
+          const c = s.querySelector('.counter');
+          if (c) c.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+          const n = s.querySelector('.eyebrow .num');
+          if (n) n.textContent = String(i + 1).padStart(2, '0');
+        });
         paintRail(index);
         history.replaceState(null, '', `#${index + 1}`);
         if (!opts.silent && !applyingRemote) broadcastSlide(index);
@@ -1537,11 +1581,11 @@
          indices into the deck's .slide list. */
       const OUTLINE = [
         ['Frame',    [['Open',      [0, 1]]]],
-        ['Trust',    [['Buy',       [2, 3, 4]]]],
-        ['SOX',      [['Primer',    [5]],
-                      ['Contrast',  [6]],
-                      ['Answer',    [7]],
-                      ['Playbook',  [8]]]],
+        ['SOX',      [['Primer',    [2]],
+                      ['Contrast',  [3]],
+                      ['Answer',    [4]],
+                      ['Playbook',  [5]]]],
+        ['Trust',    [['Buy',       [6, 7, 8]]]],
         ['Land',     [['Timing',    [9]],
                       ['Champion',  [10]]]],
         ['Demo',     [['Contract + run', [11]]]],

@@ -17,14 +17,14 @@
 | Min | Slides | Block |
 |-----|--------|--------|
 | 0–3 | 1–2 | Frame |
-| 3–11 | 3–5 | Trust (CPA lens) |
-| 11–21 | 6–9 | **SOX education** (primer → HIPAA vs SOX → exact answer → playbook) |
+| 3–13 | 3–6 | **SOX education** (primer → HIPAA vs SOX → exact answer → playbook) |
+| 13–21 | 7–9 | Trust (CPA lens) |
 | 21–27 | 10–11 | Prospecting / champion |
 | 27–35 | 12–13 | Demo + tools |
 | 35–41 | 14 | Expansion worksheet |
 | 41–45 | 15 | Close (+ appendix if needed) |
 
-**Pacing rule:** Never cut Slides 6–9 or the demo contract. If over time, cut expansion first, then compress interactive clicks.
+**Pacing rule:** Never cut Slides 3–6 or the demo contract. If over time, cut expansion first, then compress interactive clicks.
 
 ---
 
@@ -306,7 +306,7 @@ When SOX comes up, don’t argue product. Run this playbook. One: reframe — we
 
 **Transition:** Trust and SOX get you through the meeting. Timing gets you the meeting.
 
-> **Walkthrough sync:** In `ocfo-qbr-enablement-walkthrough.html` this SOX block is display slides **06–09** (0-based indices 5–8): Primer → HIPAA vs SOX → Exact answer → Playbook. Later sections in this guide are source narrative and are not 1:1 with the shipped 19-slide HTML deck — see `DECK-BUILD-PLAN.md` for the composition map.
+> **Walkthrough sync:** In `ocfo-qbr-enablement-walkthrough.html` the SOX block is display slides **03–06** (0-based indices 2–5): Primer → HIPAA vs SOX → Exact answer → Playbook — immediately after Frame, before Trust. Later sections in this guide are source narrative and are not 1:1 with the shipped 19-slide HTML deck — see `DECK-BUILD-PLAN.md` for the composition map.
 
 ---
 

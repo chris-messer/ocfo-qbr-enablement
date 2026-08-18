@@ -15,8 +15,8 @@
 ## Density rules
 
 - On-slide: headline + one lead + visual. **No paragraph walls.**
-- SOX exact language: **memo/page facsimile** (slide 7)
-- SOX primer: **broadsheet clipping facsimile + four-step arc** (slide 5) — short section-primer title, visual carries the point; differentiated from the slide 7 memo facsimile and never adjacent to it
+- SOX exact language: **memo/page facsimile** (slide 4)
+- SOX primer: **broadsheet clipping facsimile + four-step arc** (slide 2) — short section-primer title, visual carries the point; differentiated from the slide 4 memo facsimile and never adjacent to it
 - Calendar / demo / tools / discovery: **interactive selectable states** with fixed geometry
 - Visible slides: no `talk track` / `objection` / `ask them` / presenter meta
 - Compete / cooperate / augment language on tool posture slides — not “objection handling”
@@ -29,13 +29,13 @@
 |---|------------------------------|---------|-------------|
 | 0 | Selling to the Office of the CFO | — | Minimal title |
 | 1 | August 5 gave you the play; this hour is how finance decides to buy it | Framing | Before/after split |
-| 2 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Persona quote bubbles (4, alternating sides) |
-| 3 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Side-by-side comparison |
-| 4 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
-| 5 | Why SOX exists | Vocabulary | Newspaper-clipping facsimile + cause/effect arc |
-| 6 | HIPAA protects the record; SOX protects the integrity of the reported number | Vocabulary | Two halves with central hinge |
-| 7 | Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification | Client need | Document facsimile |
-| 8 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Numbered sequence + reference panel + SoD strip (static) |
+| 2 | Why SOX exists | Vocabulary | Newspaper-clipping facsimile + cause/effect arc |
+| 3 | HIPAA protects the record; SOX protects the integrity of the reported number | Vocabulary | Two halves with central hinge |
+| 4 | Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification | Client need | Document facsimile |
+| 5 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Numbered sequence + reference panel + SoD strip (static) |
+| 6 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Persona quote bubbles (4, alternating sides) |
+| 7 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Side-by-side comparison |
+| 8 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
 | 9 | Finance opens four different doors a month: close, forecast, board, and audit | Framing | Persistent visual, selectable states |
 | 10 | Land Finance Transformation, pass the Controller’s exam, then earn the CFO mandate | Options | Architecture flow |
 | 11 | One four-beat demo contract you can run tomorrow on margin or PMPM | Recommendation | Selectable standard cards + stage cues |
@@ -49,8 +49,8 @@
 
 ### Required additions (shipped)
 
-- **A) SOX primer (Enron framing)** → slide 5 (main arc, opens SOX block)
-- **B) HIPAA vs SOX** → slide 6 (main arc, before exact answer)
+- **A) SOX primer (Enron framing)** → slide 2 (main arc, opens SOX block after Frame)
+- **B) HIPAA vs SOX** → slide 3 (main arc, before exact answer)
 - **C) Compete/coop EPM tools** → slide 12 (replaces plain pushbacks)
 - **Demo consolidation** → slide 11 combines the four-beat standard with live screen/sentence cues; the redundant poster slide was removed
 - **Field Guide appendix** → slides 15–18 (pillars, vocab, discovery bank, stack cooperate)
@@ -60,8 +60,8 @@
 ```js
 const OUTLINE = [
   ['Frame',    [['Open', [0, 1]]]],
-  ['Trust',    [['Buy', [2, 3, 4]]]],
-  ['SOX',      [['Primer', [5]], ['Contrast', [6]], ['Answer', [7]], ['Playbook', [8]]]],
+  ['SOX',      [['Primer', [2]], ['Contrast', [3]], ['Answer', [4]], ['Playbook', [5]]]],
+  ['Trust',    [['Buy', [6, 7, 8]]]],
   ['Land',     [['Timing', [9]], ['Champion', [10]]]],
   ['Demo',     [['Contract + run', [11]]]],
   ['Field',    [['Tools', [12]], ['Expand', [13]]]],
@@ -87,14 +87,14 @@ const OUTLINE = [
 ## Notes strategy
 
 - Port say / purpose / transition / discovery from `slide-guide-ocfo-qbr.md`
-- Slide 5 notes: Enron opener + one-minute SOX mental model for non-finance sellers
-- Slide 7 notes: full SOX never-say + verbatim highlights
-- Slide 4 notes: Databricks proves definition, lineage, reconciliation, and control; the customer owns the business action
-- Slide 8 notes: cue order 01–04 matches the on-slide numbered moves; the control map is reference for move two, the SoD strip is move four
+- Slide 2 notes: Enron opener + one-minute SOX mental model for non-finance sellers
+- Slide 4 notes: full SOX never-say + verbatim highlights
+- Slide 5 notes: cue order 01–04 matches the on-slide numbered moves; the control map is reference for move two, the SoD strip is move four
+- Slide 8 notes: Databricks proves definition, lineage, reconciliation, and control; the customer owns the business action
 - Slide 11 notes: separate reconciliation evidence from governed-access evidence; stop before claiming the customer action
 - Slide 14 notes: BDR / AE / SA / DSA week actions + leader deal-review asks
 - Appendix notes: Field Guide attribution + expanded banks / ROI anchors
-- Discovery distributed across main notes (3, 4, 8, 9, 13) + full bank on slide 17
+- Discovery distributed across main notes (5, 7, 8, 9, 13) + full bank on slide 17
 
 ---
 
@@ -106,4 +106,5 @@ const OUTLINE = [
 - [x] Composition map (≥6 layouts, no adjacent repeats in main arc)  
 - [x] Build deck + notes  
 - [x] SOX education reorder: primer → HIPAA vs SOX → exact answer → playbook  
+- [x] Section order: Frame → SOX → Trust → Land → Demo → Field → Close → Appendix  
 - [x] Validation: composition / language / titles / sync count  

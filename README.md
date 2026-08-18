@@ -1,6 +1,6 @@
 # OCFO QBR Enablement
 
-Internal HLS enablement deck for **Selling to the Office of the CFO** — AMER IND QBR walkthrough (~45 min). Trust proofs, SOX language, finance calendar, demo contract, and LOB→OCFO expansion.
+Internal HLS enablement deck for **Selling to the Office of the CFO** — AMER IND QBR walkthrough (~45 min). SOX language, trust proofs, finance calendar, demo contract, and LOB→OCFO expansion.
 
 ## Open locally
 
