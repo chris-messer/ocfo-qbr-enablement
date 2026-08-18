@@ -89,23 +89,23 @@ If you took CFO 101 and sat Aug 5, keep those assets. The gap isn’t “do we h
 ## Slide 3 — Cold open: I would have killed this deal
 
 **Time:** ~2.5 min  
-**Layout:** Power statement + 4 rejection cards
+**Layout:** Power statement + 4 persona quote bubbles
 
 ### On-slide content
 **Headline:** I would have killed this deal
 
 **Lead:** What a CPA / SOX tester hears when you say “ask anything in plain language”
 
-**Four cards:**
-1. **Uncontrolled answers** — Who owns the definition when Genie is wrong?
-2. **No recon bridge** — How does this tie to the GL I sign?
-3. **Black-box AI** — If audit asks “how did you get that,” what’s the story?
-4. **“Is it SOX?”** — If you say “we’re SOX certified,” you just lost credibility
+**Four spoken objections, attributed to the people who say them:**
+1. **Controller** — “Who owns the definition when it’s wrong?”
+2. **FP&A** — “Does this tie to the ledger?”
+3. **Internal Audit** — “How would I evidence that answer?”
+4. **CFO** — “Is this in SOX scope?” *(aside: one wrong sentence here ends the evaluation)*
 
 **Bottom stamp:** Speed without controls = another Excel cult with better UI
 
 ### Visual
-Big statement. Four compact cards; card 4 slightly emphasized (coral border).
+Big statement, then a conversation: four quote bubbles alternating left and right down the slide, each with a small line-drawn person avatar and a tiny role label, tails pointing back at the speaker. The CFO bubble at the bottom right is the only coral one.
 
 ### Speaker notes
 **Purpose:** Hook + foreshadow SOX as the silent deal killer.

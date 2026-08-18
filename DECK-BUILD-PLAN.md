@@ -29,7 +29,7 @@
 |---|------------------------------|---------|-------------|
 | 0 | Selling to the Office of the CFO | — | Minimal title |
 | 1 | August 5 gave you the play; this hour is how finance decides to buy it | Framing | Before/after split |
-| 2 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Rule-block grid (4) |
+| 2 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Persona quote bubbles (4, alternating sides) |
 | 3 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Side-by-side comparison |
 | 4 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
 | 5 | Why SOX exists | Vocabulary | Newspaper-clipping facsimile + cause/effect arc |
