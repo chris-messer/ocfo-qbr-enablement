@@ -20,9 +20,9 @@
 | 3–13 | 3–6 | **SOX education** (primer → HIPAA vs SOX → exact answer → playbook) |
 | 13–21 | 7–9 | Trust (CPA lens) |
 | 21–27 | 10–11 | Prospecting / champion |
-| 27–35 | 12–13 | Demo + tools |
-| 35–41 | 14 | Expansion worksheet |
-| 41–45 | 15 | Close (+ appendix if needed) |
+| 27–36 | 12–14 | Demo, why the variance is ours, tools |
+| 36–41 | 15 | Expansion worksheet |
+| 41–45 | 16 | Close (+ appendix if needed) |
 
 **Pacing rule:** Never cut Slides 3–6 or the demo contract. If over time, cut expansion first, then compress interactive clicks.
 

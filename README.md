@@ -34,7 +34,7 @@ Speaker notes on Pages: https://chris-messer.github.io/ocfo-qbr-enablement/speak
 | `slide-guide-ocfo-qbr.md` | Source narrative |
 | `appendix-sources.md` | Field Guide attribution |
 
-**20 slides** (15 main + 5 appendix, ending on the Q&A question cards). Internal enablement — not a customer-facing pitch.
+**21 slides** (16 main + 5 appendix, ending on the Q&A question cards). Internal enablement — not a customer-facing pitch.
 
 ## Remotes
 

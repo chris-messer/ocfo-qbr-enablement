@@ -25,10 +25,10 @@
 
 | Content | Treatment |
 |---|---|
-| Three pillars | **Appendix slide 16** (index 15) |
-| CFO vocabulary + Daniel framing | **Appendix slide 17** (index 16) |
-| Discovery banks | **Appendix slide 18** interactive (index 17); selected Qs also in main notes |
-| ERP / EPM / regulated cooperate lines | **Appendix slide 19** (index 18); echoes main compete/coop slide 13 |
+| Three pillars | **Appendix slide 17** (index 16) |
+| CFO vocabulary + Daniel framing | **Appendix slide 18** (index 17) |
+| Discovery banks | **Appendix slide 19** interactive (index 18); selected Qs also in main notes |
+| ERP / EPM / regulated cooperate lines | **Appendix slide 20** (index 19); echoes main compete/coop slide 14 |
 | ROI / DSO math | Notes only (illustrative benchmarks — not on-slide quotes) |
 | Pipeline DBU table | **Not used** (internal pipeline stats; not enablement-critical for this hour) |
 | Deep use-case KPI lists (80% touchless, etc.) | **Notes / skip** — too dense for sparse slides; available in source doc |
@@ -37,7 +37,7 @@
 
 **None required for pillars/vocab.** Trust, SOX exact language, HIPAA vs SOX, calendar, champion path, demo contract were already planned. Field Guide material filled **reference gaps** (pillars, vocab, discovery bank, stack cooperate) → appendix so the live ~45 min stays intact.
 
-**Compete / coop tool vocabulary (slide 13 interactive)** expanded beyond the Field Guide’s Anaplan/BlackLine/OneStream mentions so HLS hears the stack that actually shows up:
+**Compete / coop tool vocabulary (slide 14 interactive)** expanded beyond the Field Guide’s Anaplan/BlackLine/OneStream mentions so HLS hears the stack that actually shows up:
 
 | On-slide (8) | Notes-only |
 |---|---|

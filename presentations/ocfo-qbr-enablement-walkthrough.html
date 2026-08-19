@@ -377,6 +377,26 @@
     .lanes2 p { margin: 8px 0 0; font-size: clamp(13.5px, 1.15vw, 18px); line-height: 1.38; color: var(--ink); }
     .lanes2 .say p { color: var(--muted); font-style: italic; }
 
+    /* 12 · operational variance vs the planning model — three example cards
+       over one stage. The cards are always all rendered, so only their
+       selected styling changes; the stage box is declared, never content-sized. */
+    .varx { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 14px; height: min(452px, 59vh); }
+    .varx-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .varx-card {
+      appearance: none; text-align: left; border: 1px solid var(--line); background: rgba(255,255,255,.68);
+      border-radius: 9px; padding: 12px 15px; cursor: pointer; color: var(--ink); min-width: 0;
+      height: 112px; overflow: hidden; font-family: var(--body);
+      display: grid; grid-template-rows: auto auto 1fr; gap: 4px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .varx-card .vn { font: 700 10.5px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+    .varx-card b { display: block; font: 700 clamp(16px, 1.4vw, 21px)/1.1 var(--display); }
+    .varx-card .vd { display: block; color: var(--muted); font-size: clamp(12.5px, 1.02vw, 15.5px); line-height: 1.3; }
+    .varx-card[aria-pressed="true"] { border-color: var(--signal); background: #fff; box-shadow: inset 0 3px 0 var(--signal); }
+    .varx-card[aria-pressed="true"] .vn { color: var(--signal); }
+    .varx-card:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+    .varx-stage { border: 1px solid var(--line); background: rgba(255,255,255,.6); border-radius: 9px; }
+
     /* 10 · champion path — scoped so other slides keep their geometry.
        Text stays in grid cells; an SVG overlay draws the curved
        Controller → Internal Audit → CFO route without affecting layout. */
@@ -724,7 +744,7 @@
     .rail-sec:last-child .rail-sname::after, .rail-sec:last-child .rail-fill { display: none; }
 
     @media (prefers-reduced-motion: reduce) {
-      .slide, .rail-sname, .rail-uname, .rail-fill, .rail-pip i, .chip-btn, .beat-card { transition: none; }
+      .slide, .rail-sname, .rail-uname, .rail-fill, .rail-pip i, .chip-btn, .beat-card, .varx-card { transition: none; }
     }
     /* below this the fixed origin would land inside the eyebrow, so the rail
        keeps only the section spine — which is the same width on every slide. */
@@ -737,6 +757,9 @@
       .stack-map { height: auto; grid-template-columns: 1fr; grid-template-rows: 40px 280px auto; }
       .beat-rail, .stage { height: auto; }
       .stage { grid-template-rows: 240px auto; }
+      .varx { height: auto; grid-template-rows: auto 300px; }
+      .varx-cards { grid-template-columns: 1fr; }
+      .varx-card { height: auto; }
       .qa { height: auto; grid-template-columns: 1fr; }
       .q-rail { grid-template-rows: none; }
       .q-card { padding: 12px 14px; }
@@ -773,7 +796,7 @@
         <p class="subtitle">How finance people actually decide to trust you — including the SOX conversation that quietly kills good deals.</p>
         <div class="meta"><span>Prospecting &amp; plays</span><span>45 minutes</span><span>Chris Messer · ex-CPA · SOX / ITGC</span></div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 21</span></div>
     </section>
 
 
@@ -807,7 +830,7 @@
         </div>
         <div class="stamp">Same discovery questions. Same Genie spaces. Different way of running them.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 21</span></div>
     </section>
 
 
@@ -844,7 +867,7 @@
           </ol>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 21</span></div>
     </section>
 
 
@@ -882,7 +905,7 @@
         </div>
         <div class="stamp">Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 21</span></div>
     </section>
 
 
@@ -918,7 +941,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 21</span></div>
     </section>
 
 
@@ -946,7 +969,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 21</span></div>
     </section>
 
 
@@ -998,7 +1021,7 @@
         </div>
         <div class="stamp">Speed without controls is a spreadsheet culture with a better interface. Careers end on unsupported numbers.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 21</span></div>
     </section>
 
 
@@ -1018,7 +1041,7 @@
         </div>
         <div class="stamp">Meeting-one win: they believe you can produce a number <b>and</b> the story of how it was produced.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 21</span></div>
     </section>
 
 
@@ -1037,7 +1060,7 @@
         </div>
         <div class="banner">The customer decides what action to take. The demo proves the governed information they will act on.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 21</span></div>
     </section>
 
 
@@ -1056,7 +1079,7 @@
           <div class="cal-detail" aria-live="polite"></div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 21</span></div>
     </section>
 
 
@@ -1099,7 +1122,7 @@
           <div class="champ-note">Skip Audit and the Controller brings them anyway — two quarters later, with a parked pilot attached.</div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 21</span></div>
     </section>
 
 
@@ -1121,14 +1144,30 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 21</span></div>
     </section>
 
 
 
-    <!-- 13 · compete / cooperate matrix (interactive) -->
+    <!-- 13 · operational variance vs the planning model (interactive) -->
+    <section class="slide" aria-label="Operational variance and the planning model">
+      <div class="eyebrow"><span class="num">13</span> Problem space</div>
+      <div class="content">
+        <h2>Most finance variance is operational, and the planning model cannot reach that data</h2>
+        <p class="lead" style="margin-bottom:16px">Anaplan, Adaptive, OneStream, Oracle EPM hold the number; what moved it lives in operations. On the lakehouse that detail already sits beside the number, under one definition.</p>
+        <div class="varx">
+          <div class="varx-cards" role="group" aria-label="Select an example"></div>
+          <div class="varx-stage gfx" role="img" aria-label="The reported number and its plan-to-actual gap on the left; the operational detail that moved it on the right; a dashed boundary between them marking where the planning model stops, and one governed join along the bottom."></div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 21</span></div>
+    </section>
+
+
+
+    <!-- 14 · compete / cooperate matrix (interactive) -->
     <section class="slide" aria-label="Posture toward finance platforms">
-      <div class="eyebrow"><span class="num">13</span> Options</div>
+      <div class="eyebrow"><span class="num">14</span> Options</div>
       <div class="content">
         <h2>Where to feed the finance stack, and where to leave the workflow alone</h2>
         <p class="lead" style="margin-bottom:16px">Two questions per tool: do we become their source of truth, and how much Databricks consumption follows?</p>
@@ -1148,14 +1187,14 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 21</span></div>
     </section>
 
 
 
-    <!-- 14 · worksheet facsimile -->
+    <!-- 15 · worksheet facsimile -->
     <section class="slide worksheet" aria-label="LOB to Office of the CFO worksheet">
-      <div class="eyebrow"><span class="num">14</span> Recommendation</div>
+      <div class="eyebrow"><span class="num">15</span> Recommendation</div>
       <div class="content">
         <h2>Translate a line-of-business win you already have into an Office of the CFO ask</h2>
         <p class="lead">Do not cold-start the CFO, and do not abandon the LOB sponsor who got you in.</p>
@@ -1181,12 +1220,12 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 21</span></div>
     </section>
 
 
 
-    <!-- 15 · close -->
+    <!-- 16 · close -->
     <section class="slide opener" aria-label="Four standards">
       <div></div>
       <div class="content">
@@ -1200,15 +1239,15 @@
         </ul>
         <div class="stamp">Resources: go/cfo · the August 5 assets · the SOX discussion deck · the finance workshop CTA · appendix after this slide</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 21</span></div>
       <div class="ghost" aria-hidden="true">CFO</div>
     </section>
 
 
 
-    <!-- 16 · appendix · three pillars -->
+    <!-- 17 · appendix · three pillars -->
     <section class="slide" aria-label="Three finance pillars">
-      <div class="eyebrow"><span class="num">16</span> Appendix</div>
+      <div class="eyebrow"><span class="num">17</span> Appendix</div>
       <div class="content">
         <h2>Finance outcomes organize as compress, multiply, and defend</h2>
         <p class="lead">Field-guide spine for use-case mapping after the live hour — not a second pitch.</p>
@@ -1228,14 +1267,14 @@
         </div>
         <div class="stamp">Same four trust proofs apply under every pillar. Pillar three is where SOX language and the demo contract meet.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 21</span></div>
     </section>
 
 
 
-    <!-- 17 · appendix · CFO vocabulary -->
+    <!-- 18 · appendix · CFO vocabulary -->
     <section class="slide" aria-label="CFO vocabulary">
-      <div class="eyebrow"><span class="num">17</span> Appendix</div>
+      <div class="eyebrow"><span class="num">18</span> Appendix</div>
       <div class="content">
         <h2>Lead with scorecard units — days, dollars, basis points — not platform nouns</h2>
         <p class="lead">If the sentence cannot land on a P&amp;L or balance-sheet effect, it is not ready for this buyer.</p>
@@ -1249,14 +1288,14 @@
         </div>
         <div class="frame-line"><b>Framing that lands:</b> “AI yes, with controls.” The CEO already committed to AI; the CFO has to fund it, govern it, and defend it to the board — with attributable offsets, not a slide deck.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 21</span></div>
     </section>
 
 
 
-    <!-- 18 · appendix · discovery bank (interactive) -->
+    <!-- 19 · appendix · discovery bank (interactive) -->
     <section class="slide" aria-label="Discovery question bank">
-      <div class="eyebrow"><span class="num">18</span> Appendix</div>
+      <div class="eyebrow"><span class="num">19</span> Appendix</div>
       <div class="content">
         <h2>Discovery that maps to their scorecard, not our feature list</h2>
         <p class="lead">Six banks. Toggle the category; ask two questions, then shut up and listen.</p>
@@ -1265,14 +1304,14 @@
           <div class="disc-panel" aria-live="polite"></div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">19 / 21</span></div>
     </section>
 
 
 
-    <!-- 19 · appendix · stack cooperate cues -->
+    <!-- 20 · appendix · stack cooperate cues -->
     <section class="slide" aria-label="Finance stack stays">
-      <div class="eyebrow"><span class="num">19</span> Appendix</div>
+      <div class="eyebrow"><span class="num">20</span> Appendix</div>
       <div class="content">
         <h2>ERP and EPM stay as systems of record; Databricks is the governed intelligence layer</h2>
         <p class="lead">Field-guide posture that pairs with the compete / cooperate spectrum earlier in this deck.</p>
@@ -1292,14 +1331,14 @@
         </div>
         <div class="stamp">When they ask for hard ROI, translate to days and working capital — then bring the customer proof, not a feature tour.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">19 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">20 / 21</span></div>
     </section>
 
 
 
-    <!-- 20 · appendix · questions from the room (interactive) -->
+    <!-- 21 · appendix · questions from the room (interactive) -->
     <section class="slide" aria-label="Questions from the room">
-      <div class="eyebrow"><span class="num">20</span> Appendix · what the room asks</div>
+      <div class="eyebrow"><span class="num">21</span> Appendix · what the room asks</div>
       <div class="content">
         <h2>Eight questions this room asks after the hour, and the answers that hold up</h2>
         <p class="lead" style="margin-bottom:16px">Pick a question: the sentence to say, what follows it, and the line that costs the deal.</p>
@@ -1313,7 +1352,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">20 / 20</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">21 / 21</span></div>
     </section>
 
   </main>
@@ -1393,6 +1432,36 @@
         { id: 'govern', name: 'Govern', card: 'Inspect access and control evidence',
           screen: 'Unity Catalog privileges, the entitlement workflow, and an auditable access trail.',
           say: '“Here is who can see, change, and use this information — and the evidence behind that control posture.”' },
+      ];
+
+      // Slide 12 — the same argument told three ways. Plan and actual are the only
+      // numbers stored; the bars, the gap figure and its caption are all computed
+      // from them, so no label on the stage can drift from what is drawn.
+      const VARIANCE = [
+        { id: 'medtech', sector: 'Medtech', metric: 'Gross margin', reported: 'Gross margin %',
+          card: 'Yield, scrap, lot history and plant mix move COGS long before the model sees it.',
+          plan: 41.0, actual: 38.4,
+          fmt: v => `${v.toFixed(1)}%`,
+          gapFmt: d => `${d.toFixed(1)} pts of margin`,
+          ops: ['Line yield and scrap', 'Lot genealogy and rework', 'Plant and product mix', 'Purchase price variance and freight'],
+          home: 'manufacturing, quality and supply chain systems',
+          join: 'Lot and plant detail joined to the certified COGS definition' },
+        { id: 'payer', sector: 'Payers', metric: 'PMPM', reported: 'PMPM',
+          card: 'Utilisation, mix, unit cost and claims lag decide PMPM; the model sees the total.',
+          plan: 512.00, actual: 538.40,
+          fmt: v => `$${v.toFixed(2)}`,
+          gapFmt: d => `$${d.toFixed(2)} PMPM`,
+          ops: ['Utilisation per thousand', 'Member mix and risk score', 'Contracted unit cost', 'Claims lag and IBNR development'],
+          home: 'claims, authorisation and provider contract systems',
+          join: 'Claim-level detail joined to the certified PMPM definition' },
+        { id: 'pharma', sector: 'Pharma', metric: 'Gross-to-net', reported: 'Gross-to-net deduction',
+          card: 'Rebates, chargebacks, 340B and channel inventory set the reserve, not the model.',
+          plan: 34.0, actual: 37.2,
+          fmt: v => `${v.toFixed(1)}%`,
+          gapFmt: d => `${d.toFixed(1)} pts of gross`,
+          ops: ['Rebate and chargeback claims', '340B and Medicaid utilisation', 'Contract price and tier changes', 'Channel inventory and returns'],
+          home: 'contract, chargeback and distributor systems',
+          join: 'Contract and claim detail joined to the certified net revenue definition' },
       ];
 
       // Worksheet boxes reveal one worked example, one box at a time.
@@ -1698,14 +1767,15 @@
         ['Land',     [['Timing',    [9]],
                       ['Champion',  [10]]]],
         ['Demo',     [['Contract + run', [11]]]],
-        ['Field',    [['Tools',     [12]],
-                      ['Expand',    [13]]]],
-        ['Close',    [['Standards', [14]]]],
-        ['Appendix', [['Pillars',   [15]],
-                      ['Vocab',     [16]],
-                      ['Discover',  [17]],
-                      ['Stack',     [18]],
-                      ['Questions', [19]]]],
+        ['Field',    [['Variance',  [12]],
+                      ['Tools',     [13]],
+                      ['Expand',    [14]]]],
+        ['Close',    [['Standards', [15]]]],
+        ['Appendix', [['Pillars',   [16]],
+                      ['Vocab',     [17]],
+                      ['Discover',  [18]],
+                      ['Stack',     [19]],
+                      ['Questions', [20]]]],
       ];
 
       const rail = document.querySelector('.rail');
@@ -2002,8 +2072,110 @@
         return { enter() { paint(); requestAnimationFrame(paint); } };
       });
 
-      /* ───────── slide 12 · posture × consumption matrix, fixed geometry ───────── */
+      /* ───────── slide 12 · operational variance vs the planning model ─────────
+         One pinned stage read three ways: the reported number and its plan-to-actual
+         gap on the left, the operational detail that moved it on the right, the
+         boundary between them down the middle, the governed join along the bottom. */
       registerViz(12, (slide) => {
+        const cards = slide.querySelector('.varx-cards');
+        const host = slide.querySelector('.varx-stage');
+        let state = VARIANCE[0].id;
+
+        cards.innerHTML = VARIANCE.map(v =>
+          `<button type="button" class="varx-card" data-vx="${v.id}" aria-pressed="false">`
+          + `<span class="vn">${v.sector}</span>`
+          + `<b>${v.metric}</b>`
+          + `<span class="vd">${v.card}</span></button>`).join('');
+        cards.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-vx]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.vx;
+          paint();
+        });
+
+        function paint() {
+          [...cards.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.vx === state)));
+          const v = VARIANCE.find(item => item.id === state);
+          const W = 1280, H = 320;
+          const svg = newSvg(host, W, H);
+          const padL = 30, hinge = 540, rightX = 580, rightW = 670;
+
+          const label = (t, x, y, fill, size) => add(svg, 'text', {
+            x, y, 'font-family': DISPLAY, 'font-size': size || 11, 'font-weight': 700,
+            'letter-spacing': '1.5', fill: fill || C.dim
+          }, t);
+
+          // left — the number as finance reports it
+          label('THE NUMBER FINANCE REPORTS', padL, 24);
+          add(svg, 'text', {
+            x: padL, y: 56, 'font-family': DISPLAY, 'font-size': 23, 'font-weight': 700, fill: C.ink
+          }, v.reported);
+
+          const barX = 118, barW = 290, scale = Math.max(v.plan, v.actual);
+          [['PLAN', v.plan, 'rgba(27,49,57,.16)', C.muted], ['ACTUAL', v.actual, C.signal, C.ink]]
+            .forEach(([name, value, fill, textFill], j) => {
+              const y = 72 + j * 34;
+              label(name, padL, y + 16, C.dim, 10.5);
+              add(svg, 'rect', { x: barX, y, width: barW, height: 22, rx: 3, fill: 'rgba(27,49,57,.05)' });
+              add(svg, 'rect', { x: barX, y, width: barW * (value / scale), height: 22, rx: 3, fill });
+              add(svg, 'text', {
+                x: barX + barW + 12, y: y + 16, 'font-family': BODY, 'font-size': 15,
+                'font-weight': 600, fill: textFill
+              }, v.fmt(value));
+            });
+
+          // the gap figure is the difference between the two bars above it
+          add(svg, 'rect', {
+            x: padL, y: 148, width: 470, height: 60, rx: 6,
+            fill: 'rgba(255,54,33,.06)', stroke: 'rgba(255,54,33,.32)'
+          });
+          label('UNEXPLAINED WHEN THE REVIEW STARTS', padL + 16, 172, C.signal, 10.5);
+          add(svg, 'text', {
+            x: padL + 16, y: 198, 'font-family': DISPLAY, 'font-size': 21, 'font-weight': 700, fill: C.ink
+          }, v.gapFmt(Math.abs(v.actual - v.plan)));
+          add(svg, 'text', { x: padL, y: 238, 'font-family': BODY, 'font-size': 13.5, fill: C.dim },
+            'The model shows the miss. It cannot show what moved it.');
+
+          // the boundary — drawn in two segments so the rotated label sits in the break
+          const bound = (y1, y2) => add(svg, 'line', {
+            x1: hinge, y1, x2: hinge, y2,
+            stroke: 'rgba(255,54,33,.42)', 'stroke-width': 1.5, 'stroke-dasharray': '5 6'
+          });
+          bound(16, 46);
+          bound(244, 258);
+          add(svg, 'text', {
+            x: hinge, y: 145, 'text-anchor': 'middle', 'dominant-baseline': 'central',
+            'font-family': DISPLAY, 'font-size': 10, 'font-weight': 700, 'letter-spacing': '1.2',
+            fill: C.signal, transform: `rotate(-90 ${hinge} 145)`
+          }, 'OUTSIDE THE PLANNING MODEL');
+
+          // right — the operational detail that actually moved it
+          label('WHAT ACTUALLY MOVED IT', rightX, 24);
+          v.ops.forEach((op, j) => {
+            const y = 40 + j * 50;
+            add(svg, 'rect', { x: rightX, y, width: rightW, height: 42, rx: 5, fill: C.panel, stroke: C.line });
+            add(svg, 'rect', { x: rightX, y: y + 1, width: 3, height: 40, fill: C.signal });
+            add(svg, 'text', { x: rightX + 20, y: y + 27, 'font-family': BODY, 'font-size': 15, fill: C.ink }, op);
+          });
+          add(svg, 'text', { x: rightX, y: 254, 'font-family': BODY, 'font-size': 13.5, fill: C.dim },
+            `Lives in ${v.home}`);
+
+          // the one proof line
+          add(svg, 'rect', {
+            x: padL, y: 272, width: W - padL * 2, height: 40, rx: 6,
+            fill: 'rgba(0,169,114,.07)', stroke: 'rgba(0,169,114,.32)'
+          });
+          label('ONE PLACE', padL + 18, 297, C.green, 10.5);
+          add(svg, 'text', { x: padL + 120, y: 297, 'font-family': BODY, 'font-size': 15, fill: C.ink },
+            `${v.join}, with the lineage behind it.`);
+        }
+
+        return { enter() { paint(); requestAnimationFrame(paint); } };
+      });
+
+      /* ───────── slide 13 · posture × consumption matrix, fixed geometry ───────── */
+      registerViz(13, (slide) => {
         const host = slide.querySelector('.stack-plot');
         const chips = slide.querySelector('.stack-chips');
         const idEl = slide.querySelector('.stack-id h3');
@@ -2108,10 +2280,10 @@
         return { enter() { paint(); requestAnimationFrame(paint); } };
       });
 
-      /* ───────── slide 13 · LOB → OCFO worksheet, click to reveal ─────────
+      /* ───────── slide 14 · LOB → OCFO worksheet, click to reveal ─────────
          Revealed boxes are remembered, so leaving and returning redraws the
          same state. Heights are fixed in CSS, so revealing never reflows. */
-      registerViz(13, (slide) => {
+      registerViz(14, (slide) => {
         const work = slide.querySelector('.work');
         const example = slide.querySelector('.example');
         const mailTo = slide.querySelector('.mail-to');
@@ -2156,8 +2328,8 @@
         return { enter() { paint(); } };
       });
 
-      /* ───────── slide 18 · discovery banks (appendix), fixed panel height ───────── */
-      registerViz(17, (slide) => {
+      /* ───────── slide 19 · discovery banks (appendix), fixed panel height ───────── */
+      registerViz(18, (slide) => {
         const chips = slide.querySelector('.chips');
         const panel = slide.querySelector('.disc-panel');
         let state = BANKS[0].id;
@@ -2185,8 +2357,8 @@
         return { enter() { paint(); } };
       });
 
-      /* ───────── slide 20 · questions from the room (appendix), fixed panel ───────── */
-      registerViz(19, (slide) => {
+      /* ───────── slide 21 · questions from the room (appendix), fixed panel ───────── */
+      registerViz(20, (slide) => {
         const railHost = slide.querySelector('.q-rail');
         const headTag = slide.querySelector('.q-head .tag');
         const headQ = slide.querySelector('.q-head h3');

@@ -110,7 +110,7 @@
       <div class="on-screen" id="onscreen"></div>
     </div>
     <div class="head-right">
-      <div class="counter" id="counter">01 / 20</div>
+      <div class="counter" id="counter">01 / 21</div>
       <div class="seg" id="mode-toggle" role="group" aria-label="Notes view mode">
         <button type="button" data-mode="both" aria-pressed="true">Both</button>
         <button type="button" data-mode="cues" aria-pressed="false">Cues</button>
@@ -582,7 +582,55 @@
             ['Trust gates', ['Beat three proves owner, lineage, and bridge; beat four proves governed access and control evidence.']],
             ['Key nuance', ['If a live Genie space isn’t staged, stay on this storyboard — never invent recon or SoD live.']],
           ],
-          transition: 'Transition: “How we sit next to the planning and close stack.”'
+          transition: 'Transition: “And why that demo lands with finance and not with their planning tool.”'
+        },
+        {
+          title: 'Operational variance vs the planning model',
+          onscreen: 'Three example cards — Medtech gross margin, Payers PMPM, Pharma gross-to-net. Below them one stage: plan vs actual and the unexplained gap on the left, the operational drivers on the right, a dashed “outside the planning model” boundary between them, and the governed join along the bottom.',
+          say: 'Here is why that demo lands with finance and not with a planning tool. Almost every variance finance argues about is operational. The plan said one thing, the actual came in somewhere else, and the reason is yield, or utilisation, or a rebate accrual — not a modelling error. Anaplan, Adaptive, OneStream, Oracle EPM are good at holding the number and running the plan. What they cannot easily do is reach the operational data that explains the miss, because that data lives in manufacturing, claims, contracts and supply chain, and it never joins cleanly to the P&L. So finance ends up with a variance and a spreadsheet archaeology project. Three versions of the same story. Medtech, gross margin: yield, scrap, lot history and plant mix move COGS long before the model sees it. Payers, PMPM: utilisation, member mix, contracted unit cost and claims lag decide the number, and the model only sees the total. Pharma, gross-to-net: rebates, chargebacks, 340B and channel inventory set the reserve, and the reserve is argued from contracts and claims. Same shape every time — the number sits on one side of that dashed line and the explanation sits on the other. That line is the whole opening. On the lakehouse both sides are already in one place, under one definition, with the lineage behind it, so the join that explains the variance is a query rather than a project.',
+          cues: [
+            ['The claim', [
+              'Most finance variance is operational, not a modelling error',
+            ]],
+            ['Where the planning tool stops', [
+              'Anaplan / Adaptive / OneStream / Oracle EPM hold the number and run the plan',
+              'The data that explains the miss lives in manufacturing, claims, contracts, supply chain',
+              'It never joins cleanly to the P&L — so finance does spreadsheet archaeology',
+            ]],
+            ['Click all three', [
+              'Medtech · gross margin — yield, scrap, lot history, plant and product mix',
+              'Payers · PMPM — utilisation, member mix, contracted unit cost, claims lag',
+              'Pharma · gross-to-net — rebates, chargebacks, 340B, channel inventory',
+            ]],
+            ['Same shape every time', [
+              'The number is on one side of the dashed line, the explanation on the other',
+            ]],
+            ['Why this is ours', [
+              'Both sides already land in one place on the lakehouse',
+              'One definition, the lineage behind it',
+              'The join that explains the variance is a query, not a project',
+            ]],
+          ],
+          bullets: [
+            ['Purpose', ['Give the room one sentence for why a finance buyer needs us rather than another planning seat.']],
+            ['How to demo live', [
+              'Open on the vertical the account actually is, then click one more so the room sees the pattern repeat.',
+              'Point at the dashed line once and name it — that is the argument, not the card copy.',
+              'Land the bottom band last: one place, one definition, the lineage behind it. Stop there.',
+            ]],
+            ['Key nuance', [
+              'This is not a compete slide against EPM — the very next slide is where we feed those tools.',
+              'The plan and actual figures are illustrative shapes for the argument, not benchmarks. Don’t quote them as data.',
+              'Resist listing platform features here. One proof line is enough.',
+            ]],
+            ['Discovery', [
+              'When a variance shows up in the review, where does the explanation actually come from, and how long does it take?',
+              'Which operational systems does FP&A pull from by hand to explain a miss?',
+              'Who owns the definition when finance and operations disagree on the driver?',
+              'What is the last variance nobody could explain before the pack went out?',
+            ]],
+          ],
+          transition: 'Transition: “So where do we sit next to the planning and close stack?”'
         },
         {
           title: 'Finance-platform positioning matrix',
@@ -919,7 +967,7 @@
             ['Leaders in the room', ['If a leader asks what to inspect: the bridge sentence, a named Controller champion, and whether anyone on the team said “SOX certified” this quarter.']],
             ['Escalation', ['Live SOX thread on a real account — bring it to me directly rather than improvising language in a customer thread.']],
           ],
-          transition: 'End of appendix. Stay after for live SOX threads, or return to slide 15 for the four standards.'
+          transition: 'End of appendix. Stay after for live SOX threads, or return to slide 16 for the four standards.'
         }
       ];
 
