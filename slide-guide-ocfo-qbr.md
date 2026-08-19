@@ -318,7 +318,7 @@ When SOX comes up, don’t argue product. Run this playbook — three moves. One
 **Headline:** Stop prospecting on our quarter. Prospect on theirs.
 
 **Four cycle labels:**  
-`Close` → `Flash / Forecast` → `Board pack` → `Audit / controls`
+`Flash → close` → `Forecast` → `Board pack` → `Audit / controls`
 
 **Stamp:** Same persona, different pain, different opener — by week.  
 **Audit-season note:** SOX / IPE / access openers belong here — not “AI coworker.”
@@ -330,7 +330,7 @@ Horizontal month timeline; Audit zone slightly emphasized.
 **Purpose:** Tie daily prospecting routine to finance cycles + SOX timing.
 
 **Say this:**  
-Use Andrew’s sequences and gems. Add *when*. Close week → recon and days-to-close. Mid-month → drivers. Pre-board → one unexplained variance. Audit season → lineage, access, population testing, SOX workload design — *not* Genie wow. Same office, four doors.
+Use Andrew’s sequences and gems. Add *when*. Flash-to-close → flash firms into a locked close, recon and days-to-close. Mid-month → drivers. Pre-board → one unexplained variance. Audit season → lineage, access, population testing, SOX workload design — *not* Genie wow. Same office, four doors.
 
 **Transition:** Cheat sheet.
 
@@ -346,7 +346,7 @@ Use Andrew’s sequences and gems. Add *when*. Close week → recon and days-to-
 
 | Cycle | Best seat | Opener angle | Bad opener |
 |---|---|---|---|
-| **Close week** | Controller / FinTrans | Recon latency, pack assembly, days to close | Genie product tour |
+| **Flash → close** | Controller / FinTrans | Flash to a locked close; recon latency, pack assembly, days to close | Genie product tour |
 | **Mid-month** | FP&A | Driver variance / margin moving | Platform architecture |
 | **Pre-board** | CFO / CoS | One unexplained variance | Lakehouse 101 |
 | **Audit season** | Internal Audit / Controller | SOX workload design, lineage, SoD, SOC 2 pointer | “We’re SOX certified” / “AI assistant” |

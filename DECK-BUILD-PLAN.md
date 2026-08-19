@@ -36,7 +36,7 @@
 | 6 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Persona quote bubbles (4, alternating sides) |
 | 7 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Three-column say → hear → should-say |
 | 8 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
-| 9 | Finance opens four different doors a month: close, forecast, board, and audit | Framing | Persistent visual, selectable states |
+| 9 | Finance opens four different doors a month: flash-to-close, forecast, board, and audit | Framing | Persistent visual, selectable states |
 | 10 | Land Finance Transformation, pass the Controller’s exam, then earn the CFO mandate | Options | Architecture flow |
 | 11 | One four-beat demo contract you can run tomorrow on margin or PMPM | Recommendation | Selectable standard cards + stage cues |
 | 12 | Where to feed the finance stack, and where to leave the workflow alone | Options | Persistent visual, selectable states |
