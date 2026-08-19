@@ -32,9 +32,9 @@
 | 2 | Why SOX exists | Vocabulary | Newspaper-clipping facsimile + cause/effect arc |
 | 3 | HIPAA protects the record; SOX protects the integrity of the reported number | Vocabulary | Two halves with central hinge |
 | 4 | Databricks supports SOX-compliant workloads; no cloud provider holds a SOX certification | Client need | Document facsimile |
-| 5 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Numbered sequence + reference panel + SoD strip (static) |
+| 5 | Run SOX as their control environment on Unity Catalog, with Audit in the room | Recommendation | Numbered sequence (3) + reference panel (static) |
 | 6 | A CPA hears “ask anything in plain language” as a control failure | Problem space | Persona quote bubbles (4, alternating sides) |
-| 7 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Side-by-side comparison |
+| 7 | Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy | Vocabulary | Three-column say → hear → should-say |
 | 8 | Every Office of the CFO demo must prove the number is defined, traceable, reconciled, and controlled | Framing | Proof / status grid |
 | 9 | Finance opens four different doors a month: close, forecast, board, and audit | Framing | Persistent visual, selectable states |
 | 10 | Land Finance Transformation, pass the Controller’s exam, then earn the CFO mandate | Options | Architecture flow |
@@ -89,7 +89,7 @@ const OUTLINE = [
 - Port say / purpose / transition / discovery from `slide-guide-ocfo-qbr.md`
 - Slide 2 notes: Enron opener + one-minute SOX mental model for non-finance sellers
 - Slide 4 notes: full SOX never-say + verbatim highlights
-- Slide 5 notes: cue order 01–04 matches the on-slide numbered moves; the control map is reference for move two, the SoD strip is move four
+- Slide 5 notes: cue order 01–03 matches the on-slide numbered moves; the control map is reference for move two, and the SoD / warehouse-access question is asked inside move three
 - Slide 8 notes: Databricks proves definition, lineage, reconciliation, and control; the customer owns the business action
 - Slide 11 notes: separate reconciliation evidence from governed-access evidence; stop before claiming the customer action
 - Slide 14 notes: BDR / AE / SA / DSA week actions + leader deal-review asks

@@ -159,14 +159,26 @@
     .voice.hot .who .role { color: var(--signal); }
     .aside { margin: 0; color: var(--signal); font: 400 clamp(11px, .92vw, 14px)/1.3 var(--mono); }
 
-    /* 3 · row comparison */
+    /* 3 · row comparison — we say → they hear → you should say */
     .rows { border-top: 1px solid var(--line); }
-    .rows .head { display: grid; grid-template-columns: 1fr 46px 1fr; gap: 0 18px; padding: 12px 0 4px; }
-    .row { display: grid; grid-template-columns: 1fr 46px 1fr; align-items: center; gap: 0 18px; padding: 17px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(17px, 1.55vw, 25px); }
-    .row .arrow { color: var(--dim); text-align: center; font-size: 18px; }
+    .rows .head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.05fr) 28px minmax(0, 1.2fr);
+      gap: 0 10px; padding: 10px 0 4px; align-items: end;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.05fr) 28px minmax(0, 1.2fr);
+      align-items: center; gap: 0 10px; padding: 13px 0;
+      border-bottom: 1px solid rgba(27,49,57,.09);
+      font-size: clamp(14px, 1.22vw, 20px); line-height: 1.28;
+    }
+    .row .arrow { color: var(--dim); text-align: center; font-size: 15px; }
     .row .hear { color: var(--danger); }
+    .row .should { color: var(--green); font-weight: 600; }
     .row.hot { border-bottom-color: rgba(255,54,33,.4); }
     .row.hot .hear { color: var(--signal); font-weight: 600; }
+    .row.hot .should { color: var(--green); }
 
     /* 4 · proof grid */
     .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px clamp(30px, 4.5vw, 66px); }
@@ -275,12 +287,12 @@
     .hinge .h-cell.col-hipaa.row-kill, .hinge .h-cell.col-sox.row-kill { color: var(--danger); }
     .hinge .h-cell.col-spine.row-kill { color: var(--danger); background: rgba(152,16,42,.08); font-style: normal; }
 
-    /* 9 · SOX playbook — numbered sequence (left) + control-map reference (right) + SoD strip */
+    /* 9 · SOX playbook — numbered sequence (left) + control-map reference (right) */
     .playbook { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 3.6vw, 62px); align-items: start; }
     .steps { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: clamp(13px, 1.9vh, 24px); }
     .steps::before {
       content: ""; position: absolute; left: clamp(15px, 1.35vw, 19px); top: 8px; bottom: 8px; width: 1px;
-      background: linear-gradient(to bottom, var(--signal) 0 14%, var(--line) 32%, var(--line) 100%);
+      background: linear-gradient(to bottom, var(--signal) 0 19%, var(--line) 42%, var(--line) 100%);
     }
     .steps li { position: relative; display: grid; grid-template-columns: clamp(32px, 2.8vw, 40px) minmax(0, 1fr); gap: clamp(13px, 1.3vw, 20px); align-items: start; }
     .steps .sn {
@@ -309,18 +321,13 @@
     .ctrl-map .cm-foot {
       margin-top: 12px; color: var(--dim); font-size: clamp(11.5px, .95vw, 14.5px); line-height: 1.35;
     }
-    .sod { border-top: 1px solid var(--line); padding-top: clamp(12px, 1.6vh, 18px); }
 
-    /* 7 · matrix + chain */
+    /* 7 · matrix */
     .matrix { width: 100%; border-collapse: collapse; }
     .matrix th { text-align: left; font: 700 11px/1 var(--display); letter-spacing: .15em; text-transform: uppercase; color: var(--dim); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
     .matrix td { padding: 16px 0; border-bottom: 1px solid rgba(27,49,57,.09); font-size: clamp(15px, 1.4vw, 22px); vertical-align: top; }
     .matrix td:first-child { font-weight: 600; padding-right: 26px; width: 34%; }
     .matrix td:last-child { color: var(--muted); }
-    .chain { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-    .chain .node { border: 1px solid var(--line); background: var(--panel); padding: 9px 14px; font: 600 12.5px/1 var(--mono); letter-spacing: .02em; }
-    .chain i { color: var(--signal); font-style: normal; font-size: 15px; }
-    .chain .cap { color: var(--muted); font-size: clamp(13px, 1.05vw, 17px); margin-left: 6px; }
     .room { margin-top: 18px; color: var(--muted); font-size: clamp(13.5px, 1.15vw, 18px); }
     .room b { color: var(--ink); }
 
@@ -877,13 +884,12 @@
       <div class="eyebrow"><span class="num">06</span> Recommendation</div>
       <div class="content">
         <h2>Run SOX as their control environment on Unity Catalog, with Audit in the room</h2>
-        <p class="lead">Four moves, in order — and the control map that answers move two.</p>
+        <p class="lead">Three moves, in order — and the control map that answers move two.</p>
         <div class="playbook">
           <ol class="steps">
             <li><span class="sn">01</span><div><b>Reframe</b><p>No vendor certificate. Their control environment, running on our platform.</p></div></li>
             <li><span class="sn">02</span><div><b>Map the controls</b><p>Unity Catalog at the center: access, lineage, audit evidence.</p></div></li>
-            <li><span class="sn">03</span><div><b>Fill the room</b><p>Controller · Internal Audit · Finance Transformation · Platform IT — a workshop, not a quiet pilot.</p></div></li>
-            <li><span class="sn">04</span><div><b>Trace the chain</b><p>Which system owns segregation of duties and grants warehouse access today?</p></div></li>
+            <li><span class="sn">03</span><div><b>Fill the room</b><p>Controller · Internal Audit · Finance Transformation · Platform IT — a workshop, not a quiet pilot. Ask there which system owns segregation of duties and grants warehouse access today.</p></div></li>
           </ol>
           <div class="ctrl-map">
             <div class="cm-head"><span>Control need</span><span>Pattern on Databricks</span></div>
@@ -894,13 +900,6 @@
             <div class="cm-row"><span>Data quality</span><span>Expectations and monitoring</span></div>
             <div class="cm-foot">Their controls, on our platform. For our own: SOC 2 Type II — change, release, access.</div>
           </div>
-        </div>
-        <div class="chain sod">
-          <span class="node">Requestor</span><i>&rarr;</i>
-          <span class="node">Approver</span><i>&rarr;</i>
-          <span class="node">Grantor</span><i>&rarr;</i>
-          <span class="node">Auditor</span>
-          <span class="cap">Separation across all four — find the system that owns it before finance gold lands in a Genie space.</span>
         </div>
       </div>
       <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 19</span></div>
@@ -967,11 +966,11 @@
         <h2>Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy</h2>
         <p class="lead">They are not afraid of AI. They are afraid of a number nobody will sign.</p>
         <div class="rows">
-          <div class="head"><span class="tag">We say</span><span></span><span class="tag">They hear</span></div>
-          <div class="row"><span>Instant insights</span><span class="arrow">&rarr;</span><span class="hear">Unreviewed answers</span></div>
-          <div class="row"><span>Self-serve for everyone</span><span class="arrow">&rarr;</span><span class="hear">Metric anarchy and segregation-of-duties risk</span></div>
-          <div class="row"><span>Live data</span><span class="arrow">&rarr;</span><span class="hear">Which version of the close?</span></div>
-          <div class="row hot"><span>“A SOX compliant platform”</span><span class="arrow">&rarr;</span><span class="hear">This vendor does not understand SOX</span></div>
+          <div class="head"><span class="tag">We say</span><span></span><span class="tag">They hear</span><span></span><span class="tag">You should say</span></div>
+          <div class="row"><span>Instant insights</span><span class="arrow">&rarr;</span><span class="hear">Unreviewed answers</span><span class="arrow">&rarr;</span><span class="should">Ask against certified metrics Audit already trusts</span></div>
+          <div class="row"><span>Self-serve for everyone</span><span class="arrow">&rarr;</span><span class="hear">Metric anarchy and segregation-of-duties risk</span><span class="arrow">&rarr;</span><span class="should">Certified definitions the Controller can stand behind</span></div>
+          <div class="row"><span>Live data</span><span class="arrow">&rarr;</span><span class="hear">Which version of the close?</span><span class="arrow">&rarr;</span><span class="should">Numbers pinned to flash, soft, or locked close</span></div>
+          <div class="row hot"><span>“A SOX compliant platform”</span><span class="arrow">&rarr;</span><span class="hear">This vendor does not understand SOX</span><span class="arrow">&rarr;</span><span class="should">SOX-compliant workloads — no vendor is SOX certified</span></div>
         </div>
         <div class="stamp">Meeting-one win: they believe you can produce a number <b>and</b> the story of how it was produced.</div>
       </div>

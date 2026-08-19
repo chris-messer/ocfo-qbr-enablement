@@ -311,11 +311,11 @@
         },
         {
           title: 'SOX meeting playbook',
-          onscreen: 'Four numbered moves down the left — Reframe · Map the controls · Fill the room · Trace the chain — with the control-need → Databricks pattern map on the right (Unity Catalog rows flagged in coral) and the SoD chain as a footer strip. Narrate the numbers in order; the map is the reference behind move two.',
-          say: 'When SOX comes up, don’t argue product. Run these four moves in order — they are numbered on the slide. One: reframe — we’re not claiming a cert; we’re showing how their control environment runs on Databricks. Two: map the controls, with Unity Catalog in the center — access, lineage, audit logs — paired with Repos, CI/CD, cluster policies, and data-quality expectations. That is the panel on the right, and it is what I walked Controllership through at QuidelOrtho. If they want to review our own controls, that is SOC 2 Type II — change, release, access. Three: fill the room — Controller, Internal Audit, Finance Transformation, Platform IT, as a workshop. A Genie pilot that skips Audit becomes a Genie ban later. Four: trace the chain along the bottom — in large enterprises access is Requestor, Approver, Grantor, Auditor, often through SailPoint or an in-house EMS. Your discovery question: how do you grant warehouse access today, and which system owns segregation of duties? If they can’t answer that, they’re not ready to put finance gold in Genie.',
+          onscreen: 'Three numbered moves down the left — Reframe · Map the controls · Fill the room — with the control-need → Databricks pattern map on the right (Unity Catalog rows flagged in coral). Narrate the numbers in order; the map is the reference behind move two.',
+          say: 'When SOX comes up, don’t argue product. Run these three moves in order — they are numbered on the slide. One: reframe — we’re not claiming a cert; we’re showing how their control environment runs on Databricks. Two: map the controls, with Unity Catalog in the center — access, lineage, audit logs — paired with Repos, CI/CD, cluster policies, and data-quality expectations. That is the panel on the right, and it is what I walked Controllership through at QuidelOrtho. If they want to review our own controls, that is SOC 2 Type II — change, release, access. Three: fill the room — Controller, Internal Audit, Finance Transformation, Platform IT, as a workshop. A Genie pilot that skips Audit becomes a Genie ban later. And that room is where the access question lands: in large enterprises access runs Requestor, Approver, Grantor, Auditor, often through SailPoint or an in-house EMS. So ask it there — how do you grant warehouse access today, and which system owns segregation of duties? If they can’t answer that, they’re not ready to put finance gold in Genie.',
           cues: [
             ['When SOX comes up', [
-              'Don’t argue product — run the four numbered moves in order',
+              'Don’t argue product — run the three numbered moves in order',
             ]],
             ['01 · Reframe', [
               'We’re not claiming a cert',
@@ -331,10 +331,7 @@
               'Controller · Internal Audit · Finance Transformation · Platform IT',
               'A workshop, not a quiet pilot',
               'A Genie pilot that skips Audit becomes a Genie ban later',
-            ]],
-            ['04 · Trace the chain — point to the footer strip', [
-              'Requestor · Approver · Grantor · Auditor',
-              'Often SailPoint or an in-house EMS',
+              'Ask the access question in that room: Requestor · Approver · Grantor · Auditor — often SailPoint or an in-house EMS',
             ]],
             ['Your discovery question', [
               '“How do you grant warehouse access today, and which system owns SoD?”',
@@ -343,7 +340,7 @@
           ],
           bullets: [
             ['Purpose', ['Turn positioning into a meeting plan SAs/AEs can run.']],
-            ['Slide follows the script', ['Left column numbers 01–04 are these cues in the same order; the right panel is reference for move two; the chain strip is move four.']],
+            ['Slide follows the script', ['Left column numbers 01–03 are these cues in the same order; the right panel is reference for move two; the access question lands inside move three.']],
             ['Discovery', [
               'What is used for entitlement / access management? Who owns it?',
               'How does that process grant access to warehouses today?',
@@ -382,19 +379,20 @@
         },
         {
           title: 'Seller language vs finance hear',
-          onscreen: 'Four rows: we say → they hear; last row is SOX-language trap.',
-          say: 'Memorize this. Self-serve becomes metric anarchy and segregation-of-duties risk. Live data becomes flash versus soft close versus locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. You already have the exact SOX substitute language. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.',
+          onscreen: 'Four rows: we say → they hear → you should say; last row is the SOX-language trap with the substitute line in green.',
+          say: 'Memorize the middle column — that is what Controllership actually hears. Then walk the right column: that is what you say instead. Instant insights becomes ask against certified metrics Audit already trusts. Self-serve becomes certified definitions the Controller can stand behind. Live data becomes numbers pinned to flash, soft, or locked close. And “SOX compliant platform” becomes SOX-compliant workloads — no vendor is SOX certified. You already have the exact substitute language from the facsimile. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.',
           cues: [
             ['Memorize this', [
-              'What we say vs what finance hears',
+              'Left: seller dialect · Middle: what finance hears · Right: what you should say',
             ]],
-            ['The translations', [
-              '“Self-serve” → metric anarchy, segregation-of-duties risk',
-              '“Live data” → flash vs soft close vs locked',
-              '“SOX certified” → you don’t know how SOX works for cloud platforms',
+            ['Walk each row — hear, then should-say', [
+              '“Instant insights” → unreviewed answers → ask against certified metrics Audit already trusts',
+              '“Self-serve” → metric anarchy / SoD risk → certified definitions the Controller can stand behind',
+              '“Live data” → which close? → numbers pinned to flash, soft, or locked close',
+              '“SOX compliant platform” → vendor doesn’t understand SOX → SOX-compliant workloads — no vendor is SOX certified',
             ]],
             ['Bridge', [
-              'SOX exact language is already covered — use it when this row lights up',
+              'Right column on the hot row is the facsimile language you already practiced',
             ]],
             ['Win condition for meeting one', [
               'They believe you can produce a number with a story for how it was produced',
@@ -402,7 +400,7 @@
             ]],
           ],
           bullets: [
-            ['Purpose', ['Translation layer — reinforce the never-say-SOX-certified rule you just practiced.']],
+            ['Purpose', ['Translation layer — hear the risk, then give the substitute line sellers can actually use.']],
             ['Discovery', [
               'When a variance shows up in the pack, how many systems before you trust the why?',
               'Who can change a metric definition today?',

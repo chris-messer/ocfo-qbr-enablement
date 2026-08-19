@@ -122,29 +122,28 @@ When I was in that seat — and especially when I was testing SOX ITGCs — “n
 ## Slide 4 — The trust gap, in finance language
 
 **Time:** ~2.5 min  
-**Layout:** Two-column comparison
+**Layout:** Three-column say → hear → should-say
 
 ### On-slide content
-**Headline:** They don’t fear AI. They fear unsigned numbers.
+**Headline:** Seller vocabulary arrives in finance as unreviewed numbers and metric anarchy
 
-| What we often say | What they hear |
-|---|---|
-| Instant insights | Unreviewed answers |
-| Self-serve for everyone | Metric anarchy / SoD risk |
-| AI coworker | Who is accountable? |
-| Live data | Which close version? |
-| “SOX compliant platform” | Vendor doesn’t understand SOX |
+| What we say | What they hear | What you should say |
+|---|---|---|
+| Instant insights | Unreviewed answers | Ask against certified metrics Audit already trusts |
+| Self-serve for everyone | Metric anarchy / SoD risk | Certified definitions the Controller can stand behind |
+| Live data | Which close version? | Numbers pinned to flash, soft, or locked close |
+| “SOX compliant platform” | Vendor doesn’t understand SOX | SOX-compliant workloads — no vendor is SOX certified |
 
 **Punch line:** Meeting-one win = a number they’d put in front of the CFO *with a production story audit would accept*.
 
 ### Visual
-Table; last row highlighted — the SOX language trap.
+Three-column table; last row highlighted — the SOX language trap, with the substitute line in green.
 
 ### Speaker notes
-**Purpose:** Translation layer + plant the “never say SOX certified” seed.
+**Purpose:** Translation layer — hear the risk, then give the substitute line sellers can actually use.
 
 **Say this:**  
-Memorize this. Self-serve → metric anarchy and segregation-of-duties risk. Live data → flash vs soft close vs locked. And if you say “Databricks is SOX certified,” sophisticated buyers hear that you don’t know how SOX works for cloud platforms. We’ll ground what SOX is, contrast it with HIPAA, then give you the exact substitute language. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.
+Memorize the middle column — that is what Controllership actually hears. Then walk the right column. Instant insights → ask against certified metrics Audit already trusts. Self-serve → certified definitions the Controller can stand behind. Live data → numbers pinned to flash, soft, or locked close. “SOX compliant platform” → SOX-compliant workloads — no vendor is SOX certified. Win condition for meeting one: they believe you can produce a number with a story for how it was produced — definitions, lineage, access, change control.
 
 **Discovery questions:**  
 - “When a variance shows up in the pack, how many systems before you trust the why?”  
@@ -283,21 +282,21 @@ This is the slide that saves deals. Commit it to memory. Short answer to “Is D
 ## Slide 9 — How to run the SOX conversation
 
 **Time:** ~4 min  
-**Layout:** Control-need → Databricks pattern matrix + SoD strip
+**Layout:** Three numbered moves + control-need → Databricks pattern matrix
 
 ### On-slide content
 **Headline:** Run SOX as their control environment on Unity Catalog, with Audit in the room
 
 **Control map:** Change mgmt · Access / SoD · Evidence trail · Config lock-down → Repos/CI/CD, UC entitlements, UC audit/lineage, cluster policies.
 
-**Bottom SoD strip:** `Requestor → Approver → Grantor → Auditor`  
-**Room:** Controller · Internal Audit · FinTrans · Platform/IT — workshop, not a stealth Genie pilot.
+**Three moves:** 01 Reframe · 02 Map the controls · 03 Fill the room  
+**Room (move 03):** Controller · Internal Audit · FinTrans · Platform/IT — workshop, not a stealth Genie pilot. The SoD / warehouse-access question gets asked here.
 
 ### Speaker notes
 **Purpose:** Turn positioning into a meeting plan SAs/AEs can run.
 
 **Say this:**  
-When SOX comes up, don’t argue product. Run this playbook. One: reframe — we’re not claiming a cert; we’re showing how *their* control environment runs on Databricks. Two: put Unity Catalog in the center — lineage, access, audit logs — and pair with Repos, cluster policies, CI/CD. That’s what I walked Controllership through at QuidelOrtho. Three: get Audit in the workshop. A Genie pilot that skips Audit becomes a Genie ban later. Bottom strip — segregation of duties. In large enterprises access is Requestor, Approver, Grantor, Auditor — often via SailPoint or an in-house EMS. Your discovery question: *“How do you grant warehouse access today, and which system owns SoD?”* If you can’t answer that, you’re not ready to put finance gold in Genie.
+When SOX comes up, don’t argue product. Run this playbook — three moves. One: reframe — we’re not claiming a cert; we’re showing how *their* control environment runs on Databricks. Two: put Unity Catalog in the center — lineage, access, audit logs — and pair with Repos, cluster policies, CI/CD. That’s what I walked Controllership through at QuidelOrtho. Three: get Audit in the workshop. A Genie pilot that skips Audit becomes a Genie ban later — and that room is where you ask about segregation of duties. In large enterprises access is Requestor, Approver, Grantor, Auditor — often via SailPoint or an in-house EMS. Your discovery question: *“How do you grant warehouse access today, and which system owns SoD?”* If you can’t answer that, you’re not ready to put finance gold in Genie.
 
 **Discovery questions (teach aloud):**  
 - What is used for entitlement / access management? Who owns it?  
