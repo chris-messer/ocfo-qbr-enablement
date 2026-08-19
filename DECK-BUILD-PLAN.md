@@ -7,7 +7,7 @@
 **Slug / sync:** `ocfo-qbr-enablement`  
 **Ship to:** `hls/qbr-cfo-enablement/presentations/`  
 **Files:** `ocfo-qbr-enablement-walkthrough.html` + `ocfo-qbr-enablement-speaker-notes.html`  
-**Runtime:** ~45 min main narrative (slides 0–14) · **19 slides total** (15 main + 4 appendix)  
+**Runtime:** ~45 min main narrative (slides 0–14) · **20 slides total** (15 main + 5 appendix)  
 **Chrome:** Open speaker notes · navigation rail · keyboard nav · no live demo CTA · no calculator  
 
 ---
@@ -46,6 +46,7 @@
 | 16 | Lead with scorecard units — days, dollars, basis points — not platform nouns | Appendix | Boundary / glossary grid |
 | 17 | Discovery that maps to their scorecard, not our feature list | Appendix | Selectable states + fixed panel |
 | 18 | ERP and EPM stay as systems of record; Databricks is the governed intelligence layer | Appendix | Rule-block grid (3) |
+| 19 | Eight questions this room asks after the hour, and the answers that hold up | Appendix · what the room asks | Selectable question rail + fixed answer panel |
 
 ### Required additions (shipped)
 
@@ -54,6 +55,7 @@
 - **C) Compete/coop EPM tools** → slide 12 (replaces plain pushbacks)
 - **Demo consolidation** → slide 11 combines the four-beat standard with live screen/sentence cues; the redundant poster slide was removed
 - **Field Guide appendix** → slides 15–18 (pillars, vocab, discovery bank, stack cooperate)
+- **Q&A prep** → slide 19 closes the appendix: eight anticipated field questions with say / then / never lines; two overflow questions and the vertical variations live in the notes only
 
 ### Rail OUTLINE
 
@@ -66,7 +68,7 @@ const OUTLINE = [
   ['Demo',     [['Contract + run', [11]]]],
   ['Field',    [['Tools', [12]], ['Expand', [13]]]],
   ['Close',    [['Standards', [14]]]],
-  ['Appendix', [['Pillars', [15]], ['Vocab', [16]], ['Discover', [17]], ['Stack', [18]]]],
+  ['Appendix', [['Pillars', [15]], ['Vocab', [16]], ['Discover', [17]], ['Stack', [18]], ['Questions', [19]]]],
 ];
 ```
 
@@ -81,6 +83,7 @@ const OUTLINE = [
 | 12 Tools | BlackLine · FloQast · Adaptive · Anaplan · Planful · OneStream · Oracle EPM · HFM | 2×2 matrix (protect↔truth-layer × consumption) + fixed detail panel |
 | 13 Worksheet | 4 boxes reveal on click (+ Reveal all / Reset) | 132px box min-height; 82px meeting-ask strip |
 | 17 Discovery | Close · Forecast · Cash · Spend · Controls · Wins | 320px panel; Q count from data |
+| 19 Questions | 8 question cards (stack · SOX · Genie · seat · IT · demo · private · Audit) | 8-row rail at equal height; 96px head + 3 fixed answer rows |
 
 ---
 
@@ -94,6 +97,7 @@ const OUTLINE = [
 - Slide 11 notes: separate reconciliation evidence from governed-access evidence; stop before claiming the customer action
 - Slide 14 notes: BDR / AE / SA / DSA week actions + leader deal-review asks
 - Appendix notes: Field Guide attribution + expanded banks / ROI anchors
+- Slide 19 notes: one cue group per question plus the two overflow questions (Aug 5 differentiation, Salesforce / UCO tagging), provider vs payer vs biotech variation, and the “I don’t know — I’ll get you the exact language” fallback
 - Discovery distributed across main notes (5, 7, 8, 9, 13) + full bank on slide 17
 
 ---

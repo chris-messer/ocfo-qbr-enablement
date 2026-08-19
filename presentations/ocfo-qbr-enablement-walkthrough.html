@@ -621,6 +621,46 @@
     .disc-panel ol { margin: 12px 0 0; padding-left: 22px; }
     .disc-panel li { margin-bottom: 10px; color: var(--ink); font-size: clamp(15px, 1.3vw, 21px); line-height: 1.35; }
 
+    /* appendix · question rail + fixed answer panel.
+       Eight rows share the rail height and the panel rows are fixed, so picking
+       a different question can never move either column. */
+    .qa {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+      gap: clamp(20px, 2.6vw, 40px);
+      height: clamp(352px, 55vh, 452px);
+    }
+    .q-rail { display: grid; grid-template-rows: repeat(8, 1fr); gap: 7px; height: 100%; min-width: 0; }
+    .q-card {
+      appearance: none; text-align: left; cursor: pointer; font-family: var(--body); color: var(--ink);
+      border: 1px solid var(--line); background: rgba(255,255,255,.62); border-radius: 8px;
+      padding: 0 14px; min-width: 0; overflow: hidden;
+      display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: center; gap: 11px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .q-card .qn { font: 700 10.5px/1 var(--display); letter-spacing: .1em; color: var(--dim); }
+    .q-card .qt { font-size: clamp(12.5px, 1.04vw, 16.5px); line-height: 1.24; }
+    .q-card:hover { border-color: var(--dim); }
+    .q-card[aria-pressed="true"] { border-color: var(--signal); background: #fff; box-shadow: inset 3px 0 0 var(--signal); }
+    .q-card[aria-pressed="true"] .qn { color: var(--signal); }
+    .q-card:focus-visible { outline: 2px solid rgba(34,114,180,.45); outline-offset: 3px; }
+
+    .q-panel {
+      height: 100%; min-width: 0; overflow: hidden;
+      display: grid; grid-template-rows: 96px minmax(0, 1.18fr) minmax(0, 1fr) minmax(0, .92fr);
+    }
+    .q-panel .q-head { border-top: 2px solid var(--signal); padding-top: 11px; min-width: 0; overflow: hidden; }
+    .q-panel .q-head .tag { display: block; margin-bottom: 6px; }
+    .q-panel .q-head h3 { margin: 0; font-size: clamp(16px, 1.42vw, 24px); }
+    .q-panel .q-row { border-top: 1px solid var(--line); padding-top: 9px; margin-top: 9px; min-width: 0; overflow: hidden; }
+    .q-panel .q-row .tag { display: block; margin-bottom: 5px; }
+    .q-panel .q-row p { margin: 0; font-size: clamp(12.5px, 1.03vw, 16.5px); line-height: 1.35; color: var(--ink); }
+    .q-panel .q-row.say .tag { color: var(--signal); }
+    .q-panel .q-row.then .tag { color: var(--green); }
+    .q-panel .q-row.then p { color: var(--muted); }
+    .q-panel .q-row.never .tag { color: var(--danger); }
+    .q-panel .q-row.never p { color: var(--danger); }
+
     .nav-hint { position: fixed; right: 24px; bottom: 18px; z-index: 21; color: rgba(187,184,180,.65); font-size: 11px; letter-spacing: .08em; display: flex; gap: 14px; align-items: center; }
     .notes-link {
       appearance: none; border: 1px solid rgba(255,54,33,.35); background: rgba(255,255,255,.88);
@@ -697,6 +737,10 @@
       .stack-map { height: auto; grid-template-columns: 1fr; grid-template-rows: 40px 280px auto; }
       .beat-rail, .stage { height: auto; }
       .stage { grid-template-rows: 240px auto; }
+      .qa { height: auto; grid-template-columns: 1fr; }
+      .q-rail { grid-template-rows: none; }
+      .q-card { padding: 12px 14px; }
+      .q-panel { height: auto; grid-template-rows: auto; }
     }
     @media (max-width: 900px) {
       .slide { padding: 28px 30px 24px; overflow: auto; }
@@ -729,7 +773,7 @@
         <p class="subtitle">How finance people actually decide to trust you — including the SOX conversation that quietly kills good deals.</p>
         <div class="meta"><span>Prospecting &amp; plays</span><span>45 minutes</span><span>Chris Messer · ex-CPA · SOX / ITGC</span></div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">01 / 20</span></div>
     </section>
 
 
@@ -763,7 +807,7 @@
         </div>
         <div class="stamp">Same discovery questions. Same Genie spaces. Different way of running them.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">02 / 20</span></div>
     </section>
 
 
@@ -800,7 +844,7 @@
           </ol>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">03 / 20</span></div>
     </section>
 
 
@@ -838,7 +882,7 @@
         </div>
         <div class="stamp">Same platform, same governance surface — a different question, asked by people who have never been in your pipeline.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">04 / 20</span></div>
     </section>
 
 
@@ -874,7 +918,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">05 / 20</span></div>
     </section>
 
 
@@ -902,7 +946,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">06 / 20</span></div>
     </section>
 
 
@@ -954,7 +998,7 @@
         </div>
         <div class="stamp">Speed without controls is a spreadsheet culture with a better interface. Careers end on unsupported numbers.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">07 / 20</span></div>
     </section>
 
 
@@ -974,7 +1018,7 @@
         </div>
         <div class="stamp">Meeting-one win: they believe you can produce a number <b>and</b> the story of how it was produced.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">08 / 20</span></div>
     </section>
 
 
@@ -993,7 +1037,7 @@
         </div>
         <div class="banner">The customer decides what action to take. The demo proves the governed information they will act on.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">09 / 20</span></div>
     </section>
 
 
@@ -1012,7 +1056,7 @@
           <div class="cal-detail" aria-live="polite"></div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">10 / 20</span></div>
     </section>
 
 
@@ -1055,7 +1099,7 @@
           <div class="champ-note">Skip Audit and the Controller brings them anyway — two quarters later, with a parked pilot attached.</div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">11 / 20</span></div>
     </section>
 
 
@@ -1077,7 +1121,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">12 / 20</span></div>
     </section>
 
 
@@ -1104,7 +1148,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">13 / 20</span></div>
     </section>
 
 
@@ -1137,7 +1181,7 @@
           </div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">14 / 20</span></div>
     </section>
 
 
@@ -1156,7 +1200,7 @@
         </ul>
         <div class="stamp">Resources: go/cfo · the August 5 assets · the SOX discussion deck · the finance workshop CTA · appendix after this slide</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">15 / 20</span></div>
       <div class="ghost" aria-hidden="true">CFO</div>
     </section>
 
@@ -1184,7 +1228,7 @@
         </div>
         <div class="stamp">Same four trust proofs apply under every pillar. Pillar three is where SOX language and the demo contract meet.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">16 / 20</span></div>
     </section>
 
 
@@ -1205,7 +1249,7 @@
         </div>
         <div class="frame-line"><b>Framing that lands:</b> “AI yes, with controls.” The CEO already committed to AI; the CFO has to fund it, govern it, and defend it to the board — with attributable offsets, not a slide deck.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">17 / 20</span></div>
     </section>
 
 
@@ -1221,7 +1265,7 @@
           <div class="disc-panel" aria-live="polite"></div>
         </div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">18 / 20</span></div>
     </section>
 
 
@@ -1248,7 +1292,28 @@
         </div>
         <div class="stamp">When they ask for hard ROI, translate to days and working capital — then bring the customer proof, not a feature tour.</div>
       </div>
-      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">19 / 19</span></div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">19 / 20</span></div>
+    </section>
+
+
+
+    <!-- 20 · appendix · questions from the room (interactive) -->
+    <section class="slide" aria-label="Questions from the room">
+      <div class="eyebrow"><span class="num">20</span> Appendix · what the room asks</div>
+      <div class="content">
+        <h2>Eight questions this room asks after the hour, and the answers that hold up</h2>
+        <p class="lead" style="margin-bottom:16px">Pick a question: the sentence to say, what follows it, and the line that costs the deal.</p>
+        <div class="qa">
+          <div class="q-rail" role="group" aria-label="Select a question"></div>
+          <div class="q-panel" aria-live="polite">
+            <div class="q-head"><span class="tag"></span><h3></h3></div>
+            <div class="q-row say"><span class="tag">Say this</span><p></p></div>
+            <div class="q-row then"><span class="tag">Then</span><p></p></div>
+            <div class="q-row never"><span class="tag">Do not say</span><p></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span class="brand">Databricks HLS · Office of the CFO</span><span class="counter">20 / 20</span></div>
     </section>
 
   </main>
@@ -1478,6 +1543,51 @@
           ]},
       ];
 
+      // Appendix Q&A: one card per question, three fixed lines per answer.
+      // Card text, panel heading, and the counter all read from this list.
+      const QA = [
+        { id: 'stack', who: 'AEs',
+          q: 'Why aren’t we replacing Anaplan or BlackLine if we’re the source of truth?',
+          say: '“The close and the plan are control environments, not dashboards. Displacing them starts a two-year audit fight, and we don’t need to win that fight to win the account.”',
+          then: 'Feed them instead: governed actuals, complete populations, one definition owner. The consumption lands underneath a workflow that keeps its controls.',
+          never: '“We can replace that.” Compete only where a model or a reconciliation has already become a shadow warehouse in spreadsheets.' },
+        { id: 'sox', who: 'AEs and SAs',
+          q: 'What do I literally say when they ask if we’re SOX certified?',
+          say: '“We support SOX-compliant workloads, and customers run them on us today. There is no SOX certification for any cloud provider.”',
+          then: 'Offer SOC 2 Type II for our own controls, then map theirs: Unity Catalog for access and lineage, Repos and cluster policies for change management.',
+          never: 'Any version of yes. “SOX Ready” on a marketing map is not a certification, and the Controller in the room already knows that.' },
+        { id: 'genie', who: 'SAs',
+          q: 'Isn’t Genie just self-serve BI that creates the metric chaos we warned about?',
+          say: '“That is the right fear, so we don’t demo an open prompt box. We demo a curated space, a named metric owner, and a definition finance agreed to.”',
+          then: 'Genie earns finance trust the way a report does: defined, traceable, reconciled, controlled. No governed space, no finance demo.',
+          never: '“Ask it anything.” That sentence is what makes a CPA close the laptop.' },
+        { id: 'seat', who: 'AEs and BDRs',
+          q: 'Do I lead with the CFO or with Finance Transformation?',
+          say: '“Finance Transformation, almost always. They own the pain and get promoted for retiring spreadsheets. The CFO funds it after the Controller passes you.”',
+          then: 'Lead with the CFO only when a board-level number or a real relationship is already in play — and expect the Controller exam anyway.',
+          never: 'Cold-booking the CFO during close week. Right buyer, wrong door, and you burn the introduction.' },
+        { id: 'it', who: 'SAs and AEs',
+          q: 'IT owns the lakehouse and finance won’t engage. Where do I start?',
+          say: '“That is the normal starting position, and it is an advantage: the platform is already bought. What you’re selling now is the finance workload onto it.”',
+          then: 'Ask IT which finance number they reproduce by hand every month, then trade that for thirty minutes with FP&A and the Controller.',
+          never: '“Finance isn’t ready.” Finance is closing books. They are ready for a number, not for a platform.' },
+        { id: 'demo', who: 'SAs',
+          q: 'How do I customize the demo without a month of prep?',
+          say: '“You don’t rebuild anything. Take the four beats to a subvertical Genie space that already exists and swap in a metric they named in discovery.”',
+          then: 'Two hours of prep: one governed metric with an owner, one lineage view, one bridge to a number they already publish. Storyboard the rest.',
+          never: 'Improvised reconciliation or access on a live screen. If it isn’t staged, walk the storyboard — a fabricated bridge is unrecoverable.' },
+        { id: 'private', who: 'AEs',
+          q: 'My account is private, not public — does SOX apply at all?',
+          say: '“Formally SOX applies to SEC registrants. Practically the same control questions arrive through audited financials, debt covenants, a public parent, or IPO prep.”',
+          then: 'Ask who signs the numbers and who audits them. If there is an external audit or an IPO on the horizon, run the same playbook in their words.',
+          never: '“Then controls don’t matter here.” And don’t force SOX vocabulary when audit readiness is the word they actually use.' },
+        { id: 'audit', who: 'AEs and SAs',
+          q: 'What if Internal Audit won’t join the workshop?',
+          say: '“Run it with the Controller and design it as if Audit were in the room — access, lineage, and change evidence on every screen.”',
+          then: 'Send the control map to Audit afterwards through the Controller. Audit that finds you later is the version that parks the pilot for two quarters.',
+          never: '“Let’s keep this out of SOX scope for now.” Scope is not ours to set; their auditors set it.' },
+      ];
+
       /* ───────── nav ───────── */
 
       const VIZ = {};
@@ -1594,7 +1704,8 @@
         ['Appendix', [['Pillars',   [15]],
                       ['Vocab',     [16]],
                       ['Discover',  [17]],
-                      ['Stack',     [18]]]],
+                      ['Stack',     [18]],
+                      ['Questions', [19]]]],
       ];
 
       const rail = document.querySelector('.rail');
@@ -2069,6 +2180,42 @@
             `<div class="tag">Bank ${String(k).padStart(2, '0')} of ${String(BANKS.length).padStart(2, '0')} · ${bank.qs.length} questions</div>`
             + `<h3>${bank.title}</h3>`
             + `<ol>${bank.qs.map(q => `<li>${q}</li>`).join('')}</ol>`;
+        }
+
+        return { enter() { paint(); } };
+      });
+
+      /* ───────── slide 20 · questions from the room (appendix), fixed panel ───────── */
+      registerViz(19, (slide) => {
+        const railHost = slide.querySelector('.q-rail');
+        const headTag = slide.querySelector('.q-head .tag');
+        const headQ = slide.querySelector('.q-head h3');
+        const sayP = slide.querySelector('.q-row.say p');
+        const thenP = slide.querySelector('.q-row.then p');
+        const neverP = slide.querySelector('.q-row.never p');
+        let state = QA[0].id;
+
+        railHost.innerHTML = QA.map((item, k) =>
+          `<button type="button" class="q-card" data-q="${item.id}" aria-pressed="false">`
+          + `<span class="qn">${String(k + 1).padStart(2, '0')}</span>`
+          + `<span class="qt">${item.q}</span></button>`).join('');
+        railHost.addEventListener('click', (event) => {
+          const btn = event.target.closest('[data-q]');
+          if (!btn) return;
+          event.stopPropagation();
+          state = btn.dataset.q;
+          paint();
+        });
+
+        function paint() {
+          [...railHost.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.q === state)));
+          const item = QA.find(x => x.id === state);
+          const k = QA.indexOf(item) + 1;
+          headTag.textContent = `Question ${String(k).padStart(2, '0')} of ${String(QA.length).padStart(2, '0')} · asked by ${item.who}`;
+          headQ.textContent = item.q;
+          sayP.textContent = item.say;
+          thenP.textContent = item.then;
+          neverP.textContent = item.never;
         }
 
         return { enter() { paint(); } };

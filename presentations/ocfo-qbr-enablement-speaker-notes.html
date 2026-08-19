@@ -110,7 +110,7 @@
       <div class="on-screen" id="onscreen"></div>
     </div>
     <div class="head-right">
-      <div class="counter" id="counter">01 / 19</div>
+      <div class="counter" id="counter">01 / 20</div>
       <div class="seg" id="mode-toggle" role="group" aria-label="Notes view mode">
         <button type="button" data-mode="both" aria-pressed="true">Both</button>
         <button type="button" data-mode="cues" aria-pressed="false">Cues</button>
@@ -707,7 +707,7 @@
         {
           title: 'Close / four standards',
           onscreen: 'Four standards — trust, SOX without the myth, calendar, demo contract.',
-          say: 'Trust before wow. SOX without the myth. Their calendar. Demo the contract. Remember the boundary: Databricks proves definition, lineage, reconciliation, and control; the customer owns the decision and business action. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread — or flip into the appendix for pillars, vocabulary, and the discovery bank. Thank you.',
+          say: 'Trust before wow. SOX without the myth. Their calendar. Demo the contract. Remember the boundary: Databricks proves definition, lineage, reconciliation, and control; the customer owns the decision and business action. Take Aug 5 materials, put these on top, go get the meetings. Stay after if you want help on a live SOX thread — or flip into the appendix for pillars, vocabulary, the discovery bank, and the questions you are most likely to get. Thank you.',
           cues: [
             ['Four standards', [
               'Trust before wow',
@@ -720,7 +720,7 @@
             ]],
             ['Offer', [
               'Stay after if you want help on a live SOX thread',
-              'Or flip into the appendix — pillars, vocabulary, discovery bank',
+              'Or flip into the appendix — pillars, vocabulary, discovery bank, question cards',
             ]],
             ['Close', [
               'Thank you',
@@ -856,7 +856,70 @@
             ]],
             ['Failed DW history', ['Start with one use case — treasury, spend, or close — expand after value.']],
           ],
-          transition: 'End of appendix. Return to slide 15 for Q&A, or stay after for SOX rehearsal.'
+          transition: 'Transition: “Last card — the questions you are most likely to get from this room.”'
+        },
+        {
+          title: 'Appendix · Questions from the room',
+          onscreen: 'Eight selectable question cards on the left; the answer panel on the right holds Say this / Then / Do not say. Click the question that was actually asked — do not walk all eight.',
+          say: 'Last card, and it is the one I would actually keep open during Q&A. These are the eight questions I expect from this room. Click the one that gets asked, read the coral line as written, then stop talking — the “Then” line is only if they want more, and the red line is what costs you the deal. Two of them matter most. First: “are you SOX certified?” The answer is always “we support SOX-compliant workloads, customers run them on us today, and there is no SOX certification for any cloud provider.” Second: “why aren’t we replacing Anaplan or BlackLine?” Because the close and the plan are control environments — we feed them, we do not displace them, and that honesty is what buys you the Controller. If a question comes up that is not on this card, the CPA answer is the best one: “I don’t know — I will get you the exact language.” Nobody in finance has ever lost trust by saying that. They lose trust by guessing about a control.',
+          cues: [
+            ['How to run it live', [
+              'Do not walk all eight — click only what gets asked',
+              'Read the coral “Say this” line as written, then stop',
+              '“Then” is the follow-up only if they want more; red is the deal-coster',
+            ]],
+            ['01 · Anaplan / BlackLine', [
+              'Close and plan are control environments — feed them, do not displace them',
+              'Compete only where a model or recon became a shadow warehouse',
+            ]],
+            ['02 · “Are you SOX certified?”', [
+              'Support SOX-compliant workloads · customers run them today · no CSP certification exists',
+              'SOC 2 Type II for our controls; Unity Catalog, Repos, cluster policies for theirs',
+            ]],
+            ['03 · Genie and metric chaos', [
+              'That fear is correct — never demo an open prompt box',
+              'Curated space, named metric owner, agreed definition',
+            ]],
+            ['04 · CFO or Finance Transformation', [
+              'FinTrans almost always; the CFO funds it after the Controller passes you',
+              'Never cold-book the CFO during close week',
+            ]],
+            ['05 · IT owns the lakehouse', [
+              'Platform already bought — you are selling the finance workload onto it',
+              'Ask which finance number IT reproduces by hand every month',
+            ]],
+            ['06 · Demo prep time', [
+              'Existing subvertical Genie space + one metric from discovery',
+              'Two hours: metric owner, lineage view, bridge — storyboard the rest',
+            ]],
+            ['07 · Private company and SOX', [
+              'Formally SEC registrants; practically audited financials, covenants, public parent, IPO prep',
+              'Ask who signs the numbers and who audits them',
+            ]],
+            ['08 · Audit will not join', [
+              'Run it with the Controller, designed as if Audit were watching',
+              'Never offer to keep something “out of scope” — auditors set scope',
+            ]],
+            ['If it is not on the card', [
+              '“I don’t know — I’ll get you the exact language.”',
+              'That is the CPA answer; guessing about a control is what loses trust',
+            ]],
+          ],
+          bullets: [
+            ['Purpose', ['Give the room a landing pad for Q&A without turning the appendix into a FAQ wall — and give me a card to click while I answer.']],
+            ['Two more you will get', [
+              '“How is this different from what Mike and Adam already enabled?” — Aug 5 gave you the play, the assets, and the personas. This hour is the execution layer on top: SOX language, the four trust proofs, close-calendar timing, and the demo contract. Nothing here replaces those assets; it changes how you run them.',
+              '“What do I tag in Salesforce or the UCO?” — I am not going to invent a tagging convention on stage. Use whatever your leader already uses for the Aug 5 OCFO plays, and make sure the Controller and Internal Audit contacts are on the opportunity so deal reviews can see the finance seats.',
+            ]],
+            ['Provider vs payer vs biotech', [
+              'The SOX language and the four trust proofs do not change.',
+              'The metric does: provider — cost per case, denials, labor productivity. Payer — MLR, PMPM, reserve adequacy. Biotech / medtech — gross-to-net, R&D spend, milestone revenue.',
+              'Pre-commercial biotech: audit readiness and IPO prep are the words, not SOX.',
+            ]],
+            ['Leaders in the room', ['If a leader asks what to inspect: the bridge sentence, a named Controller champion, and whether anyone on the team said “SOX certified” this quarter.']],
+            ['Escalation', ['Live SOX thread on a real account — bring it to me directly rather than improvising language in a customer thread.']],
+          ],
+          transition: 'End of appendix. Stay after for live SOX threads, or return to slide 15 for the four standards.'
         }
       ];
 
