@@ -150,7 +150,7 @@ Memorize the middle column — that is what Controllership actually hears. Then 
 - “Who can change a metric definition today?”  
 - “Has Internal Audit already flagged lakehouse / Genie as in-scope for SOX?”
 
-**Transition:** Four proofs every demo must land — then SOX specifically.
+**Transition:** Four proofs every demo must land.
 
 ---
 
